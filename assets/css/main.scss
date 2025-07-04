@@ -5,22 +5,26 @@
  * This file controls what is imported from /_sass
  *
  * Note that the files are processed in the order they are imported, so they are partly
-   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ * sorted by their dependencies. The first two lines of the file are required by Jekyll.
  */
 
 @import
+    /* ——— vendors & core themes ——— */
     "vendor/breakpoint/breakpoint",
 
     "themes",
     "theme/default",
     "theme/dark",
 
+    /* ——— mixins & grid ——— */
     "include/mixins",
     "vendor/susy/susy",
 
+    /* ——— base styles ——— */
     "layout/reset",
     "layout/base",
 
+    /* ——— utilities & components ——— */
     "include/utilities",
     "layout/tables",
     "layout/buttons",
@@ -30,13 +34,19 @@
     "layout/footer",
     "syntax",
 
+    /* ——— forms ——— */
     "layout/forms",
 
+    /* ——— layouts ——— */
     "layout/page",
     "layout/archive",
     "layout/sidebar",
 
+    /* ——— font-awesome ——— */
     "vendor/font-awesome/fontawesome",
     "vendor/font-awesome/solid",
-    "vendor/font-awesome/brands"
+    "vendor/font-awesome/brands",
+
+    /* ——— custom overrides ——— */
+    "custom"
 ;
