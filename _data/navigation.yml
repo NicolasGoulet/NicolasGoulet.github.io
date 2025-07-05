@@ -12,4 +12,6 @@ main:
     url:   /books/
   - title: "Academic Interests"    # ← new
     url:   /academic-interests/
+  - title: "Music"                # ← new page
+    url:   /music/
 
