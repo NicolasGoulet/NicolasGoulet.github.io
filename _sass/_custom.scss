@@ -7,10 +7,22 @@
 }
 
 
-/* pin the dark/light toggle to the viewport’s top-right corner */
+/* _sass/_custom.scss */
+
+/* Make the wrapper a positioning context */
+.masthead__inner-wrap,
+.greedy-nav            { position: relative; }
+
+/* Pin the theme toggle to the right INSIDE the wrapper */
 #theme-toggle {
-  position: fixed;   /* take it out of the nav bar */
-  top: 1rem;         /* space from top edge */
-  right: 1rem;       /* space from right edge */
-  z-index: 9999;     /* sit above everything else */
+  position: absolute;          /* out of the flex-flow but in the wrapper */
+  top:  50%;                   /* vertically centre on the masthead */
+  right: 0;                    /* flush against the wrapper’s right edge */
+  transform: translateY(-50%); /* real vertical centring */
+  z-index: 999;                /* stay clickable above nav links */
 }
+
+/* keep the nav links centred */
+.greedy-nav,
+.greedy-nav .visible-links { justify-content: center !important; }
+
