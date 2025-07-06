@@ -30,24 +30,22 @@
   margin-left: 0.5rem;
   color: var(--mm-muted-text, #666);
 }
-/* _sass/_custom.scss */
+
 
 /* ----------------  DARK/LIGHT TOGGLE: masthead right corner  --------------- */
 
-/* make the wrapper a positioning context */
-.masthead__inner-wrap { position: relative; }
+/* _sass/_custom.scss  –  put this at the very end */
 
-/* centre visible nav links (you already had this) */
+/* centre links exactly as before */
 .greedy-nav,
 .greedy-nav .visible-links { justify-content: center !important; }
 
-/* park the toggle inside the wrapper’s right edge */
+/* pin the theme toggle to the viewport’s extreme top-right corner */
 #theme-toggle {
-  position: absolute !important;   /* take it out of flex flow */
-  top: 50%;                        /* vertical centre */
-  right: 0.75rem;                  /* space from edge */
-  transform: translateY(-50%);
-  z-index: 1000;                   /* stay clickable */
-  font-size: 1.2rem;               /* optional: make icon a touch larger */
+  position: fixed !important;   /* anchor to window, not wrapper */
+  top:   0.75rem;               /* distance from the top edge */
+  right: 0.75rem;               /* distance from the right edge */
+  z-index: 1000;
+  font-size: 1.2rem;
 }
 
