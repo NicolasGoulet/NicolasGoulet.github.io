@@ -7,5 +7,28 @@
 }
 
 
+/* _sass/_custom.scss */
+
+/* space between entries */
+.repertoire-entry       { margin: 3rem 0; }
+
+/* fancy mini-article heading */
+.piece-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 1rem 0;
+}
+
+/* smaller, lighter year */
+.piece-title .year {
+  font-style: normal;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-left: 0.5rem;
+  color: var(--mm-muted-text, #666);
+}
 
 

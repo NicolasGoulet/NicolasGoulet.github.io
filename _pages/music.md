@@ -19,32 +19,25 @@ For example: your background as a pianist, genres you enjoy, or what you hope to
 
 ## Répertoire
 
-| Year | Piece / Set | Composer / Arranger | Commentary |
-|------|-------------|---------------------|------------|
-| 2025 | *Étude in A-flat, Op. 25 No. 1* | Frédéric Chopin | “Aeolian Harp.” Still polishing the right-hand voicing. |
-| 2024 | *Gymnopédie No. 1* | Erik Satie | Recorded at home for a relaxation playlist. |
-|      | *(add more rows as needed)* | | |
+<section class="repertoire-entry">
+  <h2 class="piece-title">
+    <em>Étude in A-flat, Op.&nbsp;25 No.&nbsp;1</em> — Frédéric Chopin
+    <span class="year">(2025)</span>
+  </h2>
 
-> **How to use:**  
-> * One row per piece or movement.  
-> * Write anything in the “Commentary” cell—practice notes, recording links, or why the piece matters to you.
+  > *“Aeolian Harp.”*  
+  > First learned in 2024; currently revisiting to smooth out RH arpeggios.
 
----
+  **Practice notes**
 
-## Future Sections  *(optional)*
+  - Focus on seamless fingering in bars 5-8.  
+  - Experiment with half-pedal to avoid blur.
 
-<details>
-<summary>Recordings &amp; Videos</summary>
+  **Background**
 
-*Add embedded YouTube / SoundCloud links here.*
+  Chopin dedicated the entire Op. 25 set to Liszt’s partner Marie d’Agoult…
+  *(and you can keep going with as many paragraphs as you wish)*  
+</section>
 
-</details>
 
-<details>
-<summary>Gear &amp; Setup</summary>
-
-```text
-DAW      : Reaper
-Keyboards: Korg Minilogue XD, Elektron Analog Four MK II
-Plugins  : Valhalla Supermassive, u-He Diva
-Microphones: Shure SM57, Audio-Technica AT2020
+<!-- Duplicate the <section>…</section> block for each piece -->
