@@ -31,4 +31,11 @@
   color: var(--mm-muted-text, #666);
 }
 
+/* Pin the dark-/light-mode button to the top-right corner */
+#toggle-theme {
+  position: fixed;       /* take it out of the flow */
+  top: 1rem;             /* distance from the top of the viewport */
+  right: 1rem;           /* distance from the right edge */
+  z-index: 9999;         /* stay above other elements */
+}
 

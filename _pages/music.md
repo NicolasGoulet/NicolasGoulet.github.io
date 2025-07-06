@@ -8,10 +8,11 @@ author_profile: false
 <!-- ————— INTRODUCTION ————— -->
 <div style="text-align:center">
 
-# Music
+<p>
+FUck the chatgpt bullshit yo
 
-*(Write a short overview of what visitors will find here.  
-For example: your background as a pianist, genres you enjoy, or what you hope to share on this page.)*
+Itaque calidus sum oijlsdjf kjls gwj 
+</p>
 
 </div>
 
