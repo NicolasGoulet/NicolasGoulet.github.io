@@ -43,3 +43,10 @@
   list-style: none;           /* remove the bullet that some browsers add    */
   z-index: 2000;              /* keep it above everything else               */
 }
+
+#theme-toggle > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;           /* tweak to taste                                */
+}
