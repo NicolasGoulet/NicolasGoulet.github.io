@@ -34,18 +34,12 @@
 
 /* ----------------  DARK/LIGHT TOGGLE: masthead right corner  --------------- */
 
-/* _sass/_custom.scss  –  put this at the very end */
-
-/* centre links exactly as before */
-.greedy-nav,
-.greedy-nav .visible-links { justify-content: center !important; }
-
-/* pin the theme toggle to the viewport’s extreme top-right corner */
-#theme-toggle {
-  position: fixed !important;   /* anchor to window, not wrapper */
-  top:   0.75rem;               /* distance from the top edge */
-  right: 0.75rem;               /* distance from the right edge */
-  z-index: 1000;
-  font-size: 1.2rem;
+#theme-toggle {               /* <li id="theme-toggle"> … </li> */
+  position: fixed !important; /* anchor to the window, not the nav bar       */
+  top:   0.5rem;              /* distance from the top edge of the screen    */
+  right: 0.5rem;              /* distance from the right edge of the screen  */
+  margin: 0 !important;       /* kill any default list-item spacing          */
+  padding: 0 !important;
+  list-style: none;           /* remove the bullet that some browsers add    */
+  z-index: 2000;              /* keep it above everything else               */
 }
-
