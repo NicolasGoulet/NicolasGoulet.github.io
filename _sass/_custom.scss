@@ -31,9 +31,12 @@
   color: var(--mm-muted-text, #666);
 }
 /* _sass/_custom.scss */
+
+/* pin the dark/light toggle to the viewport’s top-right corner */
 #theme-toggle {
-  position: fixed;      /* take it out of the nav bar */
-  top:   1rem;          /* distance from top edge */
-  right: 1rem;          /* distance from right edge */
-  z-index: 9999;        /* stay above everything */
+  position: fixed;   /* take it out of the nav bar */
+  top: 1rem;         /* space from top edge */
+  right: 1rem;       /* space from right edge */
+  z-index: 9999;     /* sit above everything else */
 }
+
