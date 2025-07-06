@@ -9,9 +9,7 @@ author_profile: false
 <div style="text-align:center">
 
 <p>
-FUck the chatgpt bullshit yo
-
-Itaque calidus sum oijlsdjf kjls gwj 
+Read this page if you are interested on an amateur's take on great classics! 
 </p>
 
 </div>
@@ -21,7 +19,7 @@ Itaque calidus sum oijlsdjf kjls gwj
 ## Répertoire
 
 <section class="repertoire-entry" markdown="1">
-### *Étude in A-flat, Op.&nbsp;25 No.&nbsp;1* — Frédéric Chopin <span class="year">(2025)</span>
+### *A Dance in The Village In : Mephisto Waltz, Op.&nbsp;25 No.&nbsp;1* — Frédéric Chopin <span class="year">(2025)</span>
 
 > *“Aeolian Harp.”*  
 > First learned in 2024; currently revisiting to smooth out RH arpeggios.
