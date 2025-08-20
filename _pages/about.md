@@ -26,7 +26,7 @@ redirect_from:
 <p>
 I am a PhD student at <strong>HEC×MILA</strong> under the supervision of Prof.&nbsp;Eva Portelance,  
 working on language acquisition in humans and machines.<br>
-Previously, I spent seven years with Prof.&nbsp;Stevan Harnad; my master’s <em>mémoire</em>  
+Previously, I spent seven years with Prof.&nbsp;Stevan Harnad and four years in parallel with Prof. Alexandre Blondin Massé; my master’s <em>mémoire</em>  
 focused on Minimal Grounding Sets.
 </p>
 

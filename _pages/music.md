@@ -19,10 +19,10 @@ Read this page if you are interested on an amateur's take on great classics!
 ## Répertoire
 
 <section class="repertoire-entry" markdown="1">
-### *A Dance in The Village In : Mephisto Waltz, Op.&nbsp;25 No.&nbsp;1* — Frédéric Chopin <span class="year">(2025)</span>
+### *A Dance in The Village In : Mephisto Waltz, Op.&nbsp;25 No.&nbsp;1* — Franz Liszt <span class="year">(2025)</span>
 
-> *“Aeolian Harp.”*  
-> First learned in 2024; currently revisiting to smooth out RH arpeggios.
+> *“Mephisto Waltz”*  
+> First learned in 2022; currently revisiting to smooth out RH arpeggios.
 
 **Practice notes**
 
