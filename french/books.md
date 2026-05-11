@@ -9,96 +9,204 @@ alternate_url: /books/
 
 <!-- french/books.md -->
 
-## Fiction
+<div class="bookshelf">
 
-### Dostoievsky, Fyodor
+<section class="book-category">
+  <h2 class="book-category__title">Fiction</h2>
 
-<section class="book-entry" markdown="1">
-<!-- Ajoute le titre du livre ici, par exemple : #### *Titre* -->
+  <div class="author-list">
+    <section class="author-group">
+      <header class="author-group__header">
+        <h3 class="author-group__name">Dostoievsky, Fyodor</h3>
+      </header>
 
-**Date de publication:**
+      <ol class="book-list">
+        <li class="book-list__item">
+          <article class="book-entry">
+            <h4 class="book-entry__title" data-placeholder="Titre du livre"><!-- Ajoute le titre du livre ici. --></h4>
 
-**Résumé / critique**
+            <dl class="book-details">
+              <dt>Date de publication</dt>
+              <dd><!-- Ajoute la date de publication ici. --></dd>
+            </dl>
 
+            <div class="book-entry__section">
+              <p class="book-entry__label">Résumé / critique</p>
+              <div class="book-entry__summary" markdown="1">
 <!-- Ajoute ici ton résumé / ta critique. -->
+              </div>
+            </div>
 
-**Mots-clés:**
-<!-- Ajoute des mots-clés cliquables ici, par exemple : [mot-cle](/french/books/#mot-cle) -->
+            <div class="book-tags">
+              <span class="book-tags__label">Mots-clés</span>
+              <div class="book-tags__items" data-placeholder="Ajouter des mots-clés"><!-- Ajoute des mots-clés cliquables ici, par exemple : <a class="book-tag" href="/french/books/#mot-cle">mot-cle</a> --></div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <section class="author-group">
+      <header class="author-group__header">
+        <h3 class="author-group__name">Goethe, Wolfgang</h3>
+      </header>
+
+      <ol class="book-list">
+        <li class="book-list__item">
+          <article class="book-entry">
+            <h4 class="book-entry__title" data-placeholder="Titre du livre"><!-- Ajoute le titre du livre ici. --></h4>
+
+            <dl class="book-details">
+              <dt>Date de publication</dt>
+              <dd><!-- Ajoute la date de publication ici. --></dd>
+            </dl>
+
+            <div class="book-entry__section">
+              <p class="book-entry__label">Résumé / critique</p>
+              <div class="book-entry__summary" markdown="1">
+<!-- Ajoute ici ton résumé / ta critique. -->
+              </div>
+            </div>
+
+            <div class="book-tags">
+              <span class="book-tags__label">Mots-clés</span>
+              <div class="book-tags__items" data-placeholder="Ajouter des mots-clés"><!-- Ajoute des mots-clés cliquables ici, par exemple : <a class="book-tag" href="/french/books/#mot-cle">mot-cle</a> --></div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <section class="author-group">
+      <header class="author-group__header">
+        <h3 class="author-group__name">Hugo, Victor</h3>
+      </header>
+
+      <ol class="book-list">
+        <li class="book-list__item">
+          <article class="book-entry">
+            <h4 class="book-entry__title" data-placeholder="Titre du livre"><!-- Ajoute le titre du livre ici. --></h4>
+
+            <dl class="book-details">
+              <dt>Date de publication</dt>
+              <dd><!-- Ajoute la date de publication ici. --></dd>
+            </dl>
+
+            <div class="book-entry__section">
+              <p class="book-entry__label">Résumé / critique</p>
+              <div class="book-entry__summary" markdown="1">
+<!-- Ajoute ici ton résumé / ta critique. -->
+              </div>
+            </div>
+
+            <div class="book-tags">
+              <span class="book-tags__label">Mots-clés</span>
+              <div class="book-tags__items" data-placeholder="Ajouter des mots-clés"><!-- Ajoute des mots-clés cliquables ici, par exemple : <a class="book-tag" href="/french/books/#mot-cle">mot-cle</a> --></div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <section class="author-group">
+      <header class="author-group__header">
+        <h3 class="author-group__name">Rousseau, Jean Jacques</h3>
+      </header>
+
+      <ol class="book-list">
+        <li class="book-list__item">
+          <article class="book-entry">
+            <h4 class="book-entry__title" data-placeholder="Titre du livre"><!-- Ajoute le titre du livre ici. --></h4>
+
+            <dl class="book-details">
+              <dt>Date de publication</dt>
+              <dd><!-- Ajoute la date de publication ici. --></dd>
+            </dl>
+
+            <div class="book-entry__section">
+              <p class="book-entry__label">Résumé / critique</p>
+              <div class="book-entry__summary" markdown="1">
+<!-- Ajoute ici ton résumé / ta critique. -->
+              </div>
+            </div>
+
+            <div class="book-tags">
+              <span class="book-tags__label">Mots-clés</span>
+              <div class="book-tags__items" data-placeholder="Ajouter des mots-clés"><!-- Ajoute des mots-clés cliquables ici, par exemple : <a class="book-tag" href="/french/books/#mot-cle">mot-cle</a> --></div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </div>
 </section>
 
-### Goethe, Wolfgang
+<section class="book-category">
+  <h2 class="book-category__title">Non-fiction</h2>
 
-<section class="book-entry" markdown="1">
-<!-- Ajoute le titre du livre ici, par exemple : #### *Titre* -->
+  <div class="author-list">
+    <section class="author-group">
+      <header class="author-group__header">
+        <h3 class="author-group__name">Laborit, Henri</h3>
+      </header>
 
-**Date de publication:**
+      <ol class="book-list">
+        <li class="book-list__item">
+          <article class="book-entry">
+            <h4 class="book-entry__title" data-placeholder="Titre du livre"><!-- Ajoute le titre du livre ici. --></h4>
 
-**Résumé / critique**
+            <dl class="book-details">
+              <dt>Date de publication</dt>
+              <dd><!-- Ajoute la date de publication ici. --></dd>
+            </dl>
 
+            <div class="book-entry__section">
+              <p class="book-entry__label">Résumé / critique</p>
+              <div class="book-entry__summary" markdown="1">
 <!-- Ajoute ici ton résumé / ta critique. -->
+              </div>
+            </div>
 
-**Mots-clés:**
-<!-- Ajoute des mots-clés cliquables ici, par exemple : [mot-cle](/french/books/#mot-cle) -->
+            <div class="book-tags">
+              <span class="book-tags__label">Mots-clés</span>
+              <div class="book-tags__items" data-placeholder="Ajouter des mots-clés"><!-- Ajoute des mots-clés cliquables ici, par exemple : <a class="book-tag" href="/french/books/#mot-cle">mot-cle</a> --></div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <section class="author-group">
+      <header class="author-group__header">
+        <h3 class="author-group__name">Piketty, Thomas</h3>
+      </header>
+
+      <ol class="book-list">
+        <li class="book-list__item">
+          <article class="book-entry">
+            <h4 class="book-entry__title" data-placeholder="Titre du livre"><!-- Ajoute le titre du livre ici. --></h4>
+
+            <dl class="book-details">
+              <dt>Date de publication</dt>
+              <dd><!-- Ajoute la date de publication ici. --></dd>
+            </dl>
+
+            <div class="book-entry__section">
+              <p class="book-entry__label">Résumé / critique</p>
+              <div class="book-entry__summary" markdown="1">
+<!-- Ajoute ici ton résumé / ta critique. -->
+              </div>
+            </div>
+
+            <div class="book-tags">
+              <span class="book-tags__label">Mots-clés</span>
+              <div class="book-tags__items" data-placeholder="Ajouter des mots-clés"><!-- Ajoute des mots-clés cliquables ici, par exemple : <a class="book-tag" href="/french/books/#mot-cle">mot-cle</a> --></div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </div>
 </section>
 
-### Hugo, Victor
-
-<section class="book-entry" markdown="1">
-<!-- Ajoute le titre du livre ici, par exemple : #### *Titre* -->
-
-**Date de publication:**
-
-**Résumé / critique**
-
-<!-- Ajoute ici ton résumé / ta critique. -->
-
-**Mots-clés:**
-<!-- Ajoute des mots-clés cliquables ici, par exemple : [mot-cle](/french/books/#mot-cle) -->
-</section>
-
-### Rousseau, Jean Jacques
-
-<section class="book-entry" markdown="1">
-<!-- Ajoute le titre du livre ici, par exemple : #### *Titre* -->
-
-**Date de publication:**
-
-**Résumé / critique**
-
-<!-- Ajoute ici ton résumé / ta critique. -->
-
-**Mots-clés:**
-<!-- Ajoute des mots-clés cliquables ici, par exemple : [mot-cle](/french/books/#mot-cle) -->
-</section>
-
-## Non-fiction
-
-### Laborit, Henri
-
-<section class="book-entry" markdown="1">
-<!-- Ajoute le titre du livre ici, par exemple : #### *Titre* -->
-
-**Date de publication:**
-
-**Résumé / critique**
-
-<!-- Ajoute ici ton résumé / ta critique. -->
-
-**Mots-clés:**
-<!-- Ajoute des mots-clés cliquables ici, par exemple : [mot-cle](/french/books/#mot-cle) -->
-</section>
-
-### Piketty, Thomas
-
-<section class="book-entry" markdown="1">
-<!-- Ajoute le titre du livre ici, par exemple : #### *Titre* -->
-
-**Date de publication:**
-
-**Résumé / critique**
-
-<!-- Ajoute ici ton résumé / ta critique. -->
-
-**Mots-clés:**
-<!-- Ajoute des mots-clés cliquables ici, par exemple : [mot-cle](/french/books/#mot-cle) -->
-</section>
+</div>

@@ -7,14 +7,14 @@
 {% assign home_url = "/" %}
 {% assign home_label = site.title %}
 {% assign language_url = page.alternate_url | default: "/french/" %}
-{% assign language_label = "FR" %}
+{% assign language_label = "Français" %}
 {% assign language_title = "Voir en français" %}
 {% if is_french %}
   {% assign navigation_links = site.data.navigation.main_fr %}
   {% assign home_url = "/french/" %}
   {% assign home_label = "Accueil" %}
   {% assign language_url = page.alternate_url | default: "/" %}
-  {% assign language_label = "EN" %}
+  {% assign language_label = "English" %}
   {% assign language_title = "View in English" %}
 {% endif %}
 
