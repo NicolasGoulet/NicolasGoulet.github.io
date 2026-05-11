@@ -95,20 +95,8 @@
 
 /* ----------------  BOOKS: author-first reading structure  ---------------- */
 
-.bookshelf {
-  margin-top: 1.5rem;
-}
-
-.book-category {
-  margin: 0 0 3.5rem 0;
-}
-
-.book-category + .book-category {
-  margin-top: 3.75rem;
-}
-
-.page__content .book-category__title {
-  margin: 0;
+.page__content .book-category-title {
+  margin: 2.75rem 0 1.35rem 0;
   padding-bottom: 0.65rem;
   border-bottom: 2px solid var(--global-border-color);
   font-family: $sans-serif;
@@ -117,28 +105,14 @@
   line-height: 1.15;
 }
 
-.author-list {
-  margin-top: 1.25rem;
+.page__content .book-category-title:first-of-type {
+  margin-top: 1.5rem;
 }
 
-.author-group {
-  display: grid;
-  grid-template-columns: minmax(11rem, 0.34fr) 1fr;
-  gap: 1.5rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--global-border-color);
-}
-
-.author-group:last-child {
-  border-bottom: 0;
-}
-
-.author-group__header {
-  padding-top: 0.15rem;
-}
-
-.author-group__name {
-  margin: 0;
+.page__content .book-author {
+  margin: 1.8rem 0 0.65rem 0;
+  padding-left: 0.8rem;
+  border-left: 3px solid var(--global-border-color);
   color: var(--global-text-color);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.4rem;
@@ -146,19 +120,16 @@
   line-height: 1.25;
 }
 
-.book-list {
+.page__content .book-author + ul {
   display: grid;
   gap: 1rem;
-  margin: 0;
+  margin: 0 0 1.7rem 0;
   padding: 0;
   list-style: none;
 }
 
-.book-list__item {
+.page__content .book-author + ul > li {
   margin: 0;
-}
-
-.book-entry {
   padding: 1rem 1.1rem;
   border: 1px solid var(--global-border-color);
   border-radius: 8px;
@@ -166,8 +137,7 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.book-entry__title {
-  min-height: 1.45rem;
+.page__content .book-entry-title {
   margin: 0 0 0.9rem 0;
   color: var(--global-text-color);
   font-family: $sans-serif;
@@ -176,21 +146,14 @@
   line-height: 1.35;
 }
 
-.book-entry__title:empty::before {
-  content: attr(data-placeholder);
-  color: var(--global-text-color-light);
-  font-style: italic;
-  font-weight: 500;
-}
-
-.book-details {
+.page__content .book-author + ul dl {
   display: grid;
   grid-template-columns: 9rem 1fr;
-  gap: 0.45rem 1rem;
-  margin: 0 0 1rem 0;
+  gap: 0.55rem 1rem;
+  margin: 0;
 }
 
-.book-details dt {
+.page__content .book-author + ul dt {
   margin: 0;
   color: var(--global-text-color-light);
   font-family: $sans-serif;
@@ -198,54 +161,14 @@
   font-weight: 700;
 }
 
-.book-details dd {
-  min-height: 1.35rem;
-  margin: 0;
+.page__content .book-author + ul dd {
+  min-height: 1.45rem;
+  margin: 0 0 0.65rem 0;
+  padding-bottom: 0.35rem;
   border-bottom: 1px dotted var(--global-border-color);
 }
 
-.book-entry__section {
-  margin-top: 0.85rem;
-}
-
-.book-entry__label,
-.book-tags__label {
-  margin: 0 0 0.4rem 0;
-  color: var(--global-text-color-light);
-  font-family: $sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.book-entry__summary {
-  min-height: 4rem;
-  padding: 0.75rem 0.85rem;
-  border-left: 3px solid var(--global-border-color);
-  background: rgba(127, 127, 127, 0.06);
-}
-
-.book-entry__summary p:last-child {
-  margin-bottom: 0;
-}
-
-.book-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem 0.6rem;
-  align-items: baseline;
-  margin-top: 1rem;
-}
-
-.book-tags__items {
-  display: flex;
-  flex: 1 1 12rem;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  min-height: 1.5rem;
-}
-
-.book-tags__items:empty::before {
-  content: attr(data-placeholder);
+.page__content .book-author + ul dd em {
   color: var(--global-text-color-light);
   font-style: italic;
 }
@@ -267,26 +190,20 @@
 }
 
 @media (max-width: 760px) {
-  .page__content .book-category__title {
+  .page__content .book-category-title {
     font-size: 1.7rem;
   }
 
-  .author-group {
-    display: block;
-    padding: 1.35rem 0;
-  }
-
-  .author-group__name {
-    margin-bottom: 0.9rem;
+  .page__content .book-author {
     font-size: 1.25rem;
   }
 
-  .book-details {
+  .page__content .book-author + ul dl {
     grid-template-columns: 1fr;
     gap: 0.25rem;
   }
 
-  .book-details dt {
+  .page__content .book-author + ul dt {
     margin-top: 0.35rem;
   }
 }
