@@ -3,6 +3,8 @@ title: "Music"
 permalink: /music/
 layout: single
 author_profile: false
+lang: en
+alternate_url: /french/music/
 ---
 
 <!-- ————— INTRODUCTION ————— -->
@@ -36,4 +38,3 @@ Chopin dedicated the entire Op.&nbsp;25 set to Liszt’s partner Marie d’Agoul
 </section>
 
 <!-- Duplicate the <section markdown="1">…</section> block for additional pieces -->
-

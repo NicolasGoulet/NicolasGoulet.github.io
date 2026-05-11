@@ -1,4 +1,22 @@
 {% include base_path %}
+{% assign is_french = false %}
+{% if page.lang == "fr" %}
+  {% assign is_french = true %}
+{% endif %}
+{% assign navigation_links = site.data.navigation.main %}
+{% assign home_url = "/" %}
+{% assign home_label = site.title %}
+{% assign language_url = page.alternate_url | default: "/french/" %}
+{% assign language_label = "FR" %}
+{% assign language_title = "Voir en français" %}
+{% if is_french %}
+  {% assign navigation_links = site.data.navigation.main_fr %}
+  {% assign home_url = "/french/" %}
+  {% assign home_label = "Accueil" %}
+  {% assign language_url = page.alternate_url | default: "/" %}
+  {% assign language_label = "EN" %}
+  {% assign language_title = "View in English" %}
+{% endif %}
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
@@ -6,8 +24,8 @@
       <nav id="site-nav" class="greedy-nav">
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist"><a href="{{ base_path }}/">{{ site.title }}</a></li>
-          {% for link in site.data.navigation.main %}
+          <li class="masthead__menu-item masthead__menu-item--lg persist"><a href="{{ base_path }}{{ home_url }}">{{ home_label }}</a></li>
+          {% for link in navigation_links %}
             {% if link.url contains 'http' %}
               {% assign domain = '' %}
             {% else %}
@@ -15,6 +33,11 @@
             {% endif %}
             <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
+          <li id="language-toggle" class="masthead__menu-item persist">
+            <a href="{{ base_path }}{{ language_url }}" aria-label="{{ language_title }}" title="{{ language_title }}">
+              <span class="language-toggle__text">{{ language_label }}</span>
+            </a>
+          </li>
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
           </li>

@@ -15,3 +15,10 @@ main:
   - title: "Music"                # ← new page
     url:   /music/
 
+main_fr:
+  - title: "Intérêts académiques"
+    url:   /french/academic-interests/
+  - title: "Livres"
+    url:   /french/books/
+  - title: "Musique"
+    url:   /french/music/

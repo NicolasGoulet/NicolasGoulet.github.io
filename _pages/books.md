@@ -3,28 +3,102 @@ title: "Books"
 permalink: /books/
 layout: single
 author_profile: false
+lang: en
+alternate_url: /french/books/
 ---
 
 <!-- _pages/books.md -->
 
-<div style="text-align:center">
+## Fiction
 
-<p>
-A place for reading notes and short reflections.
-</p>
+### Dostoievsky, Fyodor
 
-</div>
+<section class="book-entry" markdown="1">
+<!-- Add book title here, for example: #### *Title* -->
 
----
+**Publication date:**
 
-## Reading Now
+**Summary / critique**
 
-<!-- Add the books you are currently reading here. -->
+<!-- Add your summary / critique here. -->
 
-## Notes
+**Tags:**
+<!-- Add clickable tags here, for example: [tag-name](/books/#tag-name) -->
+</section>
 
-<!-- Add finished books, excerpts, or reflections here. -->
+### Goethe, Wolfgang
 
-## Want To Read
+<section class="book-entry" markdown="1">
+<!-- Add book title here, for example: #### *Title* -->
 
-<!-- Add future reading ideas here. -->
+**Publication date:**
+
+**Summary / critique**
+
+<!-- Add your summary / critique here. -->
+
+**Tags:**
+<!-- Add clickable tags here, for example: [tag-name](/books/#tag-name) -->
+</section>
+
+### Hugo, Victor
+
+<section class="book-entry" markdown="1">
+<!-- Add book title here, for example: #### *Title* -->
+
+**Publication date:**
+
+**Summary / critique**
+
+<!-- Add your summary / critique here. -->
+
+**Tags:**
+<!-- Add clickable tags here, for example: [tag-name](/books/#tag-name) -->
+</section>
+
+### Rousseau, Jean Jacques
+
+<section class="book-entry" markdown="1">
+<!-- Add book title here, for example: #### *Title* -->
+
+**Publication date:**
+
+**Summary / critique**
+
+<!-- Add your summary / critique here. -->
+
+**Tags:**
+<!-- Add clickable tags here, for example: [tag-name](/books/#tag-name) -->
+</section>
+
+## Non-Fiction
+
+### Laborit, Henri
+
+<section class="book-entry" markdown="1">
+<!-- Add book title here, for example: #### *Title* -->
+
+**Publication date:**
+
+**Summary / critique**
+
+<!-- Add your summary / critique here. -->
+
+**Tags:**
+<!-- Add clickable tags here, for example: [tag-name](/books/#tag-name) -->
+</section>
+
+### Piketty, Thomas
+
+<section class="book-entry" markdown="1">
+<!-- Add book title here, for example: #### *Title* -->
+
+**Publication date:**
+
+**Summary / critique**
+
+<!-- Add your summary / critique here. -->
+
+**Tags:**
+<!-- Add clickable tags here, for example: [tag-name](/books/#tag-name) -->
+</section>

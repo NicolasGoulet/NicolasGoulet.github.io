@@ -3,6 +3,8 @@ permalink: /
 title: ""               # leave blank so we can control our own heading
 layout: single
 author_profile: false
+lang: en
+alternate_url: /french/
 redirect_from:
   - /about/
   - /about.html
