@@ -5,108 +5,42 @@ layout: single
 author_profile: false
 lang: fr
 alternate_url: /books/
+body_class: editorial-page bookshelf-page
+description: "Une bibliothèque de lectures et de notes littéraires de Nicolas Goulet."
 ---
 
-<!-- french/books.md -->
+<header class="editorial-intro">
+  <p class="eyebrow">Une petite bibliothèque en mouvement</p>
+  <p class="editorial-intro__lead">
+    Des livres que je lis, que je reprends ou auxquels je pense encore.
+    Les textes plus longs se trouvent dans le carnet; cette page garde l’étagère.
+  </p>
+</header>
 
-## Fiction
-{: .book-category-title }
+<section class="shelf-section">
+  <div class="shelf-section__heading">
+    <h2>Sur le bureau</h2>
+    <span>Relecture en cours</span>
+  </div>
 
-### Dostoievsky, Fyodor
-{: .book-author }
+  <article class="book-feature">
+    <div class="book-feature__spine" aria-hidden="true">
+      <span>J.-J. Rousseau</span>
+      <strong>Julie</strong>
+      <small>1761</small>
+    </div>
+    <div class="book-feature__copy">
+      <p class="eyebrow">Jean-Jacques Rousseau · 1761</p>
+      <h3><em>Julie, ou La Nouvelle Héloïse</em></h3>
+      <p>
+        Un roman épistolaire sur la passion et le devoir, mais aussi sur le
+        langage, la distance, l’éducation, le paysage et le rêve d’une vie ordonnée.
+      </p>
+      <a class="text-link" href="/writing/re-reading-la-nouvelle-heloise/">Lire mes notes de relecture <span aria-hidden="true">→</span></a>
+    </div>
+  </article>
+</section>
 
-- #### *Titre du livre*
-  {: .book-entry-title }
-
-  Date de publication
-  : _Ajoute la date de publication._
-
-  Résumé / critique
-  : _Ajoute ton résumé / ta critique._
-
-  Mots-clés
-  : _Ajoute des mots-clés._
-  <!-- Ajoute des mots-clés cliquables comme [mot-cle](/french/books/#mot-cle){: .book-tag } -->
-
-### Goethe, Wolfgang
-{: .book-author }
-
-- #### *Titre du livre*
-  {: .book-entry-title }
-
-  Date de publication
-  : _Ajoute la date de publication._
-
-  Résumé / critique
-  : _Ajoute ton résumé / ta critique._
-
-  Mots-clés
-  : _Ajoute des mots-clés._
-  <!-- Ajoute des mots-clés cliquables comme [mot-cle](/french/books/#mot-cle){: .book-tag } -->
-
-### Hugo, Victor
-{: .book-author }
-
-- #### *Titre du livre*
-  {: .book-entry-title }
-
-  Date de publication
-  : _Ajoute la date de publication._
-
-  Résumé / critique
-  : _Ajoute ton résumé / ta critique._
-
-  Mots-clés
-  : _Ajoute des mots-clés._
-  <!-- Ajoute des mots-clés cliquables comme [mot-cle](/french/books/#mot-cle){: .book-tag } -->
-
-### Rousseau, Jean Jacques
-{: .book-author }
-
-- #### *Titre du livre*
-  {: .book-entry-title }
-
-  Date de publication
-  : _Ajoute la date de publication._
-
-  Résumé / critique
-  : _Ajoute ton résumé / ta critique._
-
-  Mots-clés
-  : _Ajoute des mots-clés._
-  <!-- Ajoute des mots-clés cliquables comme [mot-cle](/french/books/#mot-cle){: .book-tag } -->
-
-## Non-fiction
-{: .book-category-title }
-
-### Laborit, Henri
-{: .book-author }
-
-- #### *Titre du livre*
-  {: .book-entry-title }
-
-  Date de publication
-  : _Ajoute la date de publication._
-
-  Résumé / critique
-  : _Ajoute ton résumé / ta critique._
-
-  Mots-clés
-  : _Ajoute des mots-clés._
-  <!-- Ajoute des mots-clés cliquables comme [mot-cle](/french/books/#mot-cle){: .book-tag } -->
-
-### Piketty, Thomas
-{: .book-author }
-
-- #### *Titre du livre*
-  {: .book-entry-title }
-
-  Date de publication
-  : _Ajoute la date de publication._
-
-  Résumé / critique
-  : _Ajoute ton résumé / ta critique._
-
-  Mots-clés
-  : _Ajoute des mots-clés._
-  <!-- Ajoute des mots-clés cliquables comme [mot-cle](/french/books/#mot-cle){: .book-tag } -->
+<p class="shelf-colophon">
+  D’autres titres rejoindront l’étagère au fil des lectures.
+</p>

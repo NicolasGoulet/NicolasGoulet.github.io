@@ -8,15 +8,19 @@
 #      Markdown formatted page while the second is generated using JSON.
 
 main:
-  - title: "Academic Interests"    # ← new
+  - title: "Writing"
+    url:   /writing/
+  - title: "Research"
     url:   /academic-interests/
-  - title: "Books"                 # ← new
+  - title: "Books"
     url:   /books/
-  - title: "Music"                # ← new page
+  - title: "Music"
     url:   /music/
 
 main_fr:
-  - title: "Intérêts académiques"
+  - title: "Carnet"
+    url:   /writing/
+  - title: "Recherche"
     url:   /french/academic-interests/
   - title: "Livres"
     url:   /french/books/
