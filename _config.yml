@@ -9,13 +9,13 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default"
-title                    : "Nicolas Goulet"
-title_separator          : "·"
-name                     : &name "Nicolas Goulet"
-description              : &description "PhD researcher studying language acquisition in humans and machines at HEC Montréal and Mila."
+title                    : "Home Page"
+title_separator          : "-"
+name                     : &name "Your Name"
+description              : &description "personal description"
 url                      : https://nicolasgoulet.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "NicolasGoulet/NicolasGoulet.github.io"
+repository               : "academicpages/academicpages.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
@@ -23,22 +23,22 @@ repository               : "NicolasGoulet/NicolasGoulet.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Nicolas Goulet"
+  name             : "Your Sidebar Name"
   pronouns         : # example: "she/her"  
-  bio              : "Language acquisition in humans and machines."
-  location         : "Montréal, Canada"
-  employer         : "HEC Montréal × Mila"
+  bio              : "Short biography for the left-hand sidebar"
+  location         : "Earth"
+  employer         : "Red Brick University"
   uri              : # URL
-  email            :
+  email            : "none@example.org" 
 
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    :
+  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
   impactstory      : # URL
-  orcid            :
+  orcid            : "http://orcid.org/yourorcidurl"
   semantic         : # URL
-  pubmed           :
+  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   researchgate     : # URL
   scopus           : # URL
 
@@ -46,13 +46,13 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "NicolasGoulet"
+  github           : "academicpages"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
   artstation       : # Username
-  bluesky          :
+  bluesky          : "bsky.app" # Replace this with you Bluesky username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
@@ -90,7 +90,7 @@ publication_category:
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
-future                   : false
+future                   : true
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
@@ -240,9 +240,9 @@ defaults:
       layout: single
       author_profile: false
       read_time: true
-      comments: false
-      share: false
-      related: false
+      comments: true
+      share: true
+      related: true
   # _pages
   - scope:
       path: ""
@@ -297,7 +297,7 @@ sass:
 permalink: /:categories/:title/
 # paginate: 5 # amount of posts to show
 # paginate_path: /page:num/
-timezone: America/Toronto
+timezone: Etc/UTC # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins

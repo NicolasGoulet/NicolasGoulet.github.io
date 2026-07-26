@@ -5,33 +5,36 @@ layout: single
 author_profile: false
 lang: en
 alternate_url: /french/music/
-body_class: editorial-page music-page
-description: "Piano repertoire and practice notes by Nicolas Goulet."
 ---
 
-<header class="editorial-intro">
-  <p class="eyebrow">Listening · practising · returning</p>
-  <p class="editorial-intro__lead">
-    Notes from an amateur pianist on repertoire, interpretation, and the slow
-    pleasure of learning a piece from the inside.
-  </p>
-</header>
+<!-- ————— INTRODUCTION ————— -->
+<div style="text-align:center">
 
-<section class="music-entry">
-  <div class="music-entry__number" aria-hidden="true">01</div>
-  <div class="music-entry__body">
-    <p class="eyebrow">In the repertoire · revisited 2025</p>
-    <h2><em>Mephisto Waltz No. 1, S. 514</em></h2>
-    <p class="music-entry__composer">Franz Liszt</p>
-    <p>
-      I first learned the piece in 2022 and have been returning to it: less to
-      chase speed than to find clarity inside its theatrical energy. The work
-      is in the transitions—keeping the line alive while the texture changes
-      beneath it.
-    </p>
-    <div class="practice-note">
-      <span>Practice thought</span>
-      <p>Let virtuosity sound like character, not effort.</p>
-    </div>
-  </div>
+<p>
+Read this page if you are interested on an amateur's take on great classics! 
+</p>
+
+</div>
+
+---
+
+## Répertoire
+
+<section class="repertoire-entry" markdown="1">
+### *A Dance in The Village In : Mephisto Waltz, Op.&nbsp;25 No.&nbsp;1* — Franz Liszt <span class="year">(2025)</span>
+
+> *“Mephisto Waltz”*  
+> First learned in 2022; currently revisiting to smooth out RH arpeggios.
+
+**Practice notes**
+
+- Focus on seamless fingering in bars 5–8.  
+- Experiment with half-pedal to avoid blur.
+
+**Background**
+
+Chopin dedicated the entire Op.&nbsp;25 set to Liszt’s partner Marie d’Agoult…  
+*(and you can keep going with as many paragraphs as you wish)*
 </section>
+
+<!-- Duplicate the <section markdown="1">…</section> block for additional pieces -->
