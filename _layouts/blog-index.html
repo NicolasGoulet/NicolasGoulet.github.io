@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  <main class="blog-index" aria-labelledby="blog-title">
+    <header class="blog-index__header">
+      <p class="blog-kicker">Notes &amp; drafts</p>
+      <h1 id="blog-title">Blog</h1>
+    </header>
+
+    <section class="blog-list" aria-label="Blog entries">
+      {% assign blog_posts = site.posts | where: "blog_entry", true %}
+      {% for post in blog_posts %}
+        <a class="blog-card" href="{{ base_path }}{{ post.url }}">
+          <div class="blog-card__meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %Y" }}</time>
+            <span>{{ post.status | default: "Draft" }}</span>
+          </div>
+          <div class="blog-card__title">
+            <p>Reading notes</p>
+            <h2>{{ post.title }}</h2>
+          </div>
+          <span class="blog-card__arrow" aria-hidden="true">→</span>
+        </a>
+      {% endfor %}
+    </section>
+  </main>
+</div>

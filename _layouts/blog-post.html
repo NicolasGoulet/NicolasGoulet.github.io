@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  <article class="blog-article" itemscope itemtype="http://schema.org/BlogPosting">
+    <a class="blog-back" href="{{ base_path }}/blog/"><span aria-hidden="true">←</span> Blog</a>
+
+    <header class="blog-article__header">
+      <p class="blog-kicker">{{ page.status | default: "Draft" }} · Reading notes</p>
+      <h1 itemprop="headline">{{ page.title }}</h1>
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %d, %Y" }}</time>
+    </header>
+
+    <div class="blog-article__content" itemprop="articleBody">
+      {{ content }}
+    </div>
+  </article>
+</div>

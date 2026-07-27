@@ -14,6 +14,8 @@ main:
     url:   /books/
   - title: "Music"                # ← new page
     url:   /music/
+  - title: "Blog"
+    url:   /blog/
 
 main_fr:
   - title: "Intérêts académiques"
@@ -22,3 +24,5 @@ main_fr:
     url:   /french/books/
   - title: "Musique"
     url:   /french/music/
+  - title: "Blog"
+    url:   /blog/
