@@ -4,6 +4,9 @@ date: 2026-08-06
 permalink: /blog/rereading-don-quichotte/
 layout: blog-post
 blog_entry: true
+blog_series: rereading
+series_title: "ReReading"
+series_url: /blog/rereading/
 status: "Work in progress"
 lang: en
 alternate_url: /french/blog/relecture-don-quichotte/
@@ -35,7 +38,15 @@ The first time I read this, dear reader, was 16 years ago when I was a troubled 
 
 Who was Miguel De Cervantes? This is a more than academic question : it is an object of ceaseless acaemdic effort for centuries now. This is not an academic essay about Cervantes. That's a rabbit hole for you to dig yourself into. Some among you might be surprised by the nerdiness and the intellectual LARPing of thoes dedicating themselves to the lore of certain mangas : litearrary studies are the most glorified and refined form of this, and it is relvant and necessary for society. 
 
-The first thing that amazed me about him was how not sedentary he was. He was a solider and literaly got shot, was a slave for many years etc. Some of us barely get through the angstof living in the modern conditions and struggle to express the best of ourselves through fully accomplishing work of arts. The resilience and courage it took for this indiviudla to not literaly die while trying to  flee three times from slavery and fully bearing responsability for attemps at feeling in face of a litertaly king ot then just later on write some of the greatest liteary works of human kind is, as the kids sya, based.  
-<!-- Continue writing below this line. -->
+The first thing that amazed me about him was how not sedentary he was. He was a solider and literaly got shot, was a slave for many years etc. Some of us barely get through the angstof living in the modern conditions and struggle to express the best of ourselves through fully accomplishing work of arts. The resilience and courage it took for this indiviudla to not literaly die while trying to  flee three times from slavery and fully bearing responsability for attemps at feeling in face of a litertaly king ot then just later on write some of the greatest liteary works of human kind is, as the kids sya, based. 
 
+The exact chronology of his life is still subject of debate. While this blogpost while not serve a sa review of the differnt argeumnts made for placing cervantes at specific times and places, I still want to show you a mpa tracing the life and times of CErvantes, following hium accross a map etc
+
+### Don Quichottes
+
+How do we introduce the greatest noble knight to have ever walked this earth? Who is this man, how come he lives through us? Nowadays, we are full of modern Quichottes, people whose brain turn to mush after reading certain things too much. There is so much commentary to be written or already written about how certain of our contemporaries are in what we could call the *dimensionality* of *Quichottism*. Like many things in this blog post, I leave for my reader the pleasure of conjuring up their own ideas about the matter. 
+
+For the sake of those who have yet to open this great book, let's actually describe it for now. Don Quicho 
+
+<!-- Continue writing below this line. -->
 

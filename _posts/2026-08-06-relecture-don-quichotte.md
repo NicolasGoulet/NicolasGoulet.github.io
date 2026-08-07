@@ -4,6 +4,9 @@ date: 2026-08-06
 permalink: /french/blog/relecture-don-quichotte/
 layout: blog-post
 blog_entry: true
+blog_series: rereading
+series_title: "ReLecture"
+series_url: /french/blog/relecture/
 status: "Travail en cours"
 lang: fr
 alternate_url: /blog/rereading-don-quichotte/

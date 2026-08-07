@@ -4,6 +4,9 @@ date: 2026-07-28
 permalink: /blog/rereading-la-valeur-dun-film-philosophie-du-beau-au-cinema/
 layout: blog-post
 blog_entry: true
+blog_series: rereading
+series_title: "ReReading"
+series_url: /blog/rereading/
 status: "Work in progress"
 lang: en
 alternate_url: /french/blog/relecture-la-valeur-dun-film-philosophie-du-beau-au-cinema/

@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  <article class="blog-article interest-period">
+    <a class="blog-back" href="{{ base_path }}{% if page.lang == 'fr' %}/french/academic-interests/{% else %}/academic-interests/{% endif %}">
+      <span aria-hidden="true">←</span>
+      {% if page.lang == "fr" %}Intérêts académiques{% else %}Academic Interests{% endif %}
+    </a>
+
+    <header class="blog-article__header">
+      <p class="blog-kicker">{{ page.period }}</p>
+      <h1>{{ page.title }}</h1>
+    </header>
+
+    <div class="blog-article__content">
+      {{ content }}
+    </div>
+  </article>
+</div>

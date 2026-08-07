@@ -6,13 +6,20 @@ layout: default
 
 <div id="main" role="main">
   <main class="blog-index" aria-labelledby="blog-title">
+    <a class="blog-back" href="{{ base_path }}{% if page.lang == 'fr' %}/french/blog/{% else %}/blog/{% endif %}"><span aria-hidden="true">←</span> Blog</a>
+
     <header class="blog-index__header">
-      <p class="blog-kicker">{% if page.lang == "fr" %}Notes et brouillons{% else %}Notes &amp; drafts{% endif %}</p>
-      <h1 id="blog-title">Blog</h1>
+      <p class="blog-kicker">{% if page.lang == "fr" %}Série du blogue{% else %}Blog series{% endif %}</p>
+      <h1 id="blog-title">{{ page.title }}</h1>
     </header>
 
-    <section class="blog-list" aria-label="{% if page.lang == "fr" %}Articles du blogue{% else %}Blog entries{% endif %}">
-      {% assign blog_posts = site.posts | where: "blog_entry", true | where: "lang", page.lang %}
+    <section class="blog-series-intro" aria-label="{% if page.lang == 'fr' %}À propos de cette série{% else %}About this series{% endif %}">
+      {{ content }}
+    </section>
+
+    {% assign blog_posts = site.posts | where: "blog_entry", true | where: "lang", page.lang | where: "blog_series", page.blog_series %}
+    {% if blog_posts.size > 0 %}
+    <section class="blog-list blog-series-posts" aria-label="{% if page.lang == "fr" %}Articles de la série{% else %}Series entries{% endif %}">
       {% for post in blog_posts %}
         <a class="blog-card" href="{{ base_path }}{{ post.url }}">
           <div class="blog-card__meta">
@@ -20,12 +27,13 @@ layout: default
             <span>{{ post.status | default: "Draft" }}</span>
           </div>
           <div class="blog-card__title">
-            <p>{% if page.lang == "fr" %}Notes de lecture{% else %}Reading notes{% endif %}</p>
+            <p>{{ page.entry_label }}</p>
             <h2>{{ post.title }}</h2>
           </div>
           <span class="blog-card__arrow" aria-hidden="true">→</span>
         </a>
       {% endfor %}
     </section>
+    {% endif %}
   </main>
 </div>

@@ -4,6 +4,9 @@ date: 2026-07-26
 permalink: /blog/rereading-julie-ou-la-nouvelle-heloise/
 layout: blog-post
 blog_entry: true
+blog_series: rereading
+series_title: "ReReading"
+series_url: /blog/rereading/
 status: "Work in progress"
 lang: en
 alternate_url: /french/blog/relecture-julie-ou-la-nouvelle-heloise/
