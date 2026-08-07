@@ -23,17 +23,47 @@
     if (map) frame.style.height = `${Math.ceil(map.getBoundingClientRect().height)}px`;
   };
 
+  const installAnimationClock = childWindow => {
+    if (childWindow.__cvmPlaybackClock) return childWindow.__cvmPlaybackClock;
+
+    const nativeRequestAnimationFrame = childWindow.requestAnimationFrame.bind(childWindow);
+    let playbackRate = 1;
+    let previousRealTime = null;
+    let virtualTime = null;
+
+    childWindow.requestAnimationFrame = callback => nativeRequestAnimationFrame(realTime => {
+      if (previousRealTime === null) {
+        previousRealTime = realTime;
+        virtualTime = realTime;
+      } else {
+        virtualTime += (realTime - previousRealTime) * playbackRate;
+        previousRealTime = realTime;
+      }
+      callback(virtualTime);
+    });
+
+    childWindow.__cvmPlaybackClock = {
+      setRate(rate) {
+        playbackRate = rate;
+      }
+    };
+
+    return childWindow.__cvmPlaybackClock;
+  };
+
   const addStepControls = map => {
     if (map.querySelector(".cvm__step-controls")) return;
 
     const childDocument = map.ownerDocument;
     const childWindow = childDocument.defaultView;
     const scrubber = map.querySelector("#cvm-scrubber");
-    const originalPlay = map.querySelector("#cvm-play");
-    if (!scrubber || !originalPlay) return;
+    const playButton = map.querySelector("#cvm-play");
+    const playLabel = map.querySelector("#cvm-play-label");
+    const controlsRow = map.querySelector(".cvm__controls");
+    if (!scrubber || !playButton || !playLabel || !controlsRow) return;
 
-    const playButton = originalPlay.cloneNode(true);
-    originalPlay.replaceWith(playButton);
+    const animationClock = installAnimationClock(childWindow);
+    controlsRow.classList.add("cvm__controls--enhanced");
 
     const controls = childDocument.createElement("div");
     controls.className = "cvm__step-controls";
@@ -46,115 +76,76 @@
 
     const speedButton = childDocument.createElement("button");
     speedButton.type = "button";
-    speedButton.className = "cvm__utility-button";
+    speedButton.className = "cvm__utility-button cvm__speed-button";
 
     const nextButton = childDocument.createElement("button");
     nextButton.type = "button";
     nextButton.className = "cvm__utility-button";
     nextButton.textContent = "Next →";
 
-    controls.append(previousButton, speedButton, nextButton);
-    map.querySelector(".cvm__controls")?.after(controls);
+    controls.append(previousButton, nextButton, speedButton);
+    controlsRow.append(controls);
 
-    const playIcon = playButton.querySelector("#cvm-play-icon");
-    const playLabel = playButton.querySelector("#cvm-play-label");
-    const speeds = [0.5, 1, 2];
+    const speeds = [
+      { rate: 0.5, label: "½×" },
+      { rate: 1, label: "1×" },
+      { rate: 2, label: "2×" }
+    ];
     let speedIndex = 1;
-    let timer = null;
-    let playing = false;
-    let controlledUpdate = false;
 
     const currentPosition = () => Number(scrubber.value);
     const maxPosition = () => Number(scrubber.max);
+    const isPlaying = () => playLabel.textContent.trim() === "Pause";
 
     const updateButtons = () => {
       const position = currentPosition();
-      previousButton.disabled = position <= 0;
-      nextButton.disabled = position >= maxPosition();
-      speedButton.textContent = `Speed ${speeds[speedIndex]}×`;
-      speedButton.setAttribute("aria-label", `Playback speed ${speeds[speedIndex]} times; activate to change`);
+      const playing = isPlaying();
+      previousButton.disabled = playing || Math.round(position) <= 0;
+      nextButton.disabled = playing || Math.round(position) >= maxPosition();
+      previousButton.title = playing ? "Pause the journey to move between places" : "Previous place";
+      nextButton.title = playing ? "Pause the journey to move between places" : "Next place";
 
-      if (playing) {
-        playIcon.textContent = "Ⅱ";
-        playLabel.textContent = "Pause";
-        playButton.setAttribute("aria-label", "Pause Cervantes’s journey");
-      } else if (position >= maxPosition()) {
-        playIcon.textContent = "↻";
-        playLabel.textContent = "Replay journey";
-        playButton.setAttribute("aria-label", "Replay Cervantes’s journey");
-      } else {
-        playIcon.textContent = "▶";
-        playLabel.textContent = position > 0 ? "Resume journey" : "Play journey";
-        playButton.setAttribute("aria-label", playLabel.textContent);
-      }
+      const speed = speeds[speedIndex];
+      speedButton.textContent = `Speed ${speed.label}`;
+      speedButton.setAttribute("aria-label", `Playback speed ${speed.label}; activate to change`);
     };
 
-    const stopPlayback = () => {
-      playing = false;
-      if (timer !== null) childWindow.clearTimeout(timer);
-      timer = null;
-      updateButtons();
-    };
-
-    const goTo = (position, keepPlaying = false) => {
+    const goTo = position => {
+      if (isPlaying()) return;
       const nextPosition = Math.max(0, Math.min(maxPosition(), position));
-      controlledUpdate = true;
       scrubber.value = String(nextPosition);
       scrubber.dispatchEvent(new childWindow.Event("input", { bubbles: true }));
-      controlledUpdate = false;
-      if (!keepPlaying) stopPlayback();
       updateButtons();
       syncHeight();
     };
 
-    const scheduleStep = () => {
-      timer = childWindow.setTimeout(() => {
-        const position = Math.round(currentPosition());
-        if (position >= maxPosition()) {
-          stopPlayback();
-          return;
-        }
-
-        goTo(position + 1, true);
-        if (currentPosition() >= maxPosition()) stopPlayback();
-        else scheduleStep();
-      }, 1080 / speeds[speedIndex]);
-    };
-
-    const startPlayback = () => {
-      if (currentPosition() >= maxPosition()) goTo(0, true);
-      playing = true;
-      updateButtons();
-      scheduleStep();
-    };
-
     playButton.addEventListener("click", () => {
-      if (playing) stopPlayback();
-      else startPlayback();
+      childWindow.queueMicrotask(updateButtons);
     });
 
     previousButton.addEventListener("click", () => {
-      goTo(Math.ceil(currentPosition()) - 1);
+      goTo(Math.round(currentPosition()) - 1);
     });
 
     nextButton.addEventListener("click", () => {
-      goTo(Math.floor(currentPosition()) + 1);
+      goTo(Math.round(currentPosition()) + 1);
     });
 
     speedButton.addEventListener("click", () => {
       speedIndex = (speedIndex + 1) % speeds.length;
-      if (playing) {
-        childWindow.clearTimeout(timer);
-        scheduleStep();
-      }
+      animationClock.setRate(speeds[speedIndex].rate);
       updateButtons();
     });
 
-    scrubber.addEventListener("input", () => {
-      if (!controlledUpdate) stopPlayback();
-      updateButtons();
+    scrubber.addEventListener("input", updateButtons);
+
+    new childWindow.MutationObserver(updateButtons).observe(playLabel, {
+      childList: true,
+      characterData: true,
+      subtree: true
     });
 
+    animationClock.setRate(speeds[speedIndex].rate);
     updateButtons();
   };
 

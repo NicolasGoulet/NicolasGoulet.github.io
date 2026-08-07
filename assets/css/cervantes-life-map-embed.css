@@ -106,9 +106,38 @@ html[data-theme="dark"] body #cervantes-life-map .cvm__scrubber {
 
 html body #cervantes-life-map .cvm__step-controls {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  order: 2;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+html body #cervantes-life-map .cvm__controls--enhanced {
+  flex-wrap: wrap;
+}
+
+html body #cervantes-life-map .cvm__controls--enhanced .cvm__play {
+  order: 1;
+}
+
+html body #cervantes-life-map .cvm__controls--enhanced .cvm__timeline {
+  order: 3;
+  flex: 1 1 calc(100% - 4.6rem);
+  margin-top: 0.7rem;
+}
+
+html body #cervantes-life-map .cvm__controls--enhanced .cvm__count {
+  order: 4;
+  margin-top: 0.7rem;
+}
+
+html body #cervantes-life-map .cvm__years {
+  margin-right: 4.65rem;
+  margin-left: 0;
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__speed-button {
+  border-color: color-mix(in srgb, var(--cvm-accent) 55%, var(--cvm-rule));
+  color: var(--cvm-accent);
 }
 
 html body #cervantes-life-map .sr-only,
@@ -131,11 +160,10 @@ html body #cervantes-life-map .visually-hidden {
   }
 
   html body #cervantes-life-map .cvm__step-controls {
-    justify-content: space-between;
+    width: auto;
   }
 
   html body #cervantes-life-map .cvm__utility-button {
-    flex: 1 1 auto;
     padding-right: 0.55rem;
     padding-left: 0.55rem;
   }
