@@ -60,16 +60,17 @@
   body {
     margin: 0;
     padding: 0;
-    background: transparent;
+    background: var(--site-paper, #f6f1e7);
   }
 
   html[data-theme="dark"] {
-    --site-paper: #182124;
-    --site-paper-raised: #202c2f;
-    --site-ink: #eee9df;
-    --site-muted: #adb5b4;
-    --site-accent: #e29a83;
-    --site-rule: rgba(238, 233, 223, 0.15);
+    --site-paper: #111111;
+    --site-paper-raised: #211d1d;
+    --site-ink: #f2eee6;
+    --site-muted: #96999d;
+    --site-accent: #ff453a;
+    --site-rule: rgba(242, 238, 230, 0.16);
+    color-scheme: dark;
   }
 
   #cervantes-life-map {
@@ -81,6 +82,8 @@
     --cvm-rule: var(--site-rule, rgba(27, 42, 47, 0.16));
     width: 100%;
     margin: 0;
+    padding: 2rem clamp(1rem, 4vw, 2.7rem) 1.5rem;
+    box-sizing: border-box;
     color: var(--cvm-ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -113,7 +116,7 @@
 
   #cervantes-life-map .cvm__place {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.75rem, 4vw, 2.8rem);
+    font-size: clamp(1.9rem, 5.5vw, 2.8rem);
     font-weight: 400;
     letter-spacing: -0.035em;
     line-height: 1.02;
@@ -132,7 +135,7 @@
     margin: 0;
     color: var(--cvm-ink);
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
     line-height: 1.55;
   }
 
@@ -168,6 +171,27 @@
     fill: none;
     stroke: color-mix(in srgb, var(--cvm-ink) 38%, transparent);
     stroke-width: 0.75;
+  }
+
+  html[data-theme="dark"] #cervantes-life-map .cvm__sea {
+    fill: #070303;
+  }
+
+  html[data-theme="dark"] #cervantes-life-map .cvm__graticule {
+    stroke: #302727;
+  }
+
+  html[data-theme="dark"] #cervantes-life-map .cvm__country {
+    fill: #2b2727;
+  }
+
+  html[data-theme="dark"] #cervantes-life-map .cvm__boundary {
+    stroke: #77716e;
+  }
+
+  html[data-theme="dark"] #cervantes-life-map .cvm__route-future {
+    stroke: #b52c25;
+    opacity: 0.32;
   }
 
   #cervantes-life-map .cvm__route-future {
@@ -237,6 +261,16 @@
     filter: brightness(1.08);
   }
 
+  html[data-theme="dark"] #cervantes-life-map .cvm__play {
+    border-radius: 999px;
+    background: var(--cvm-ink);
+    color: var(--cvm-paper);
+  }
+
+  html[data-theme="dark"] #cervantes-life-map .cvm__scrubber {
+    accent-color: var(--cvm-ink);
+  }
+
   #cervantes-life-map .cvm__timeline {
     display: flex;
     flex: 1 1 auto;
@@ -282,9 +316,23 @@
     text-underline-offset: 0.15em;
   }
 
+  #cervantes-life-map .sr-only,
+  #cervantes-life-map .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
   @media (max-width: 600px) {
     #cervantes-life-map {
       margin: 0;
+      padding: 1.4rem 1rem 1.1rem;
     }
 
     #cervantes-life-map .cvm__readout {
@@ -343,7 +391,11 @@
   }
 
   const syncTheme = () => {
-    document.documentElement.toggleAttribute("data-theme", Boolean(parentRoot && parentRoot.hasAttribute("data-theme")));
+    if (parentRoot && parentRoot.getAttribute("data-theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
   };
   syncTheme();
   if (parentRoot) {
@@ -355,7 +407,8 @@
 
   const syncFrameHeight = () => {
     if (window.frameElement) {
-      window.frameElement.style.height = `${Math.ceil(document.documentElement.scrollHeight)}px`;
+      const mapHeight = document.getElementById("cervantes-life-map")?.getBoundingClientRect().height;
+      window.frameElement.style.height = `${Math.ceil(mapHeight || document.body.scrollHeight)}px`;
     }
   };
 
