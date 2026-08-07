@@ -40,7 +40,9 @@ Who was Miguel De Cervantes? This is a more than academic question : it is an ob
 
 The first thing that amazed me about him was how not sedentary he was. He was a solider and literaly got shot, was a slave for many years etc. Some of us barely get through the angstof living in the modern conditions and struggle to express the best of ourselves through fully accomplishing work of arts. The resilience and courage it took for this indiviudla to not literaly die while trying to  flee three times from slavery and fully bearing responsability for attemps at feeling in face of a litertaly king ot then just later on write some of the greatest liteary works of human kind is, as the kids sya, based. 
 
-The exact chronology of his life is still subject of debate. While this blogpost while not serve a sa review of the differnt argeumnts made for placing cervantes at specific times and places, I still want to show you a mpa tracing the life and times of CErvantes, following hium accross a map etc
+The exact chronology of his life is still subject of debate. While this blogpost will not serve a sa review of the differnt argeumnts made for placing cervantes at specific times and places, I still want to show you a mpa tracing the life and times of CErvantes, that can be played and watched at your leasure. 
+
+{% include cervantes-life-map.html %}
 
 ### Don Quichottes
 
@@ -49,4 +51,3 @@ How do we introduce the greatest noble knight to have ever walked this earth? Wh
 For the sake of those who have yet to open this great book, let's actually describe it for now. Don Quicho 
 
 <!-- Continue writing below this line. -->
-
