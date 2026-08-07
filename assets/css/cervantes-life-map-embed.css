@@ -1,0 +1,142 @@
+:root {
+  --site-paper: #f6f1e7;
+  --site-paper-raised: #fffaf1;
+  --site-ink: #1b2a2f;
+  --site-muted: #687174;
+  --site-accent: #9b4b38;
+  --site-rule: rgba(27, 42, 47, 0.16);
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+  background: var(--site-paper);
+}
+
+html[data-theme="dark"] {
+  --site-paper: #111111;
+  --site-paper-raised: #211d1d;
+  --site-ink: #f2eee6;
+  --site-muted: #96999d;
+  --site-accent: #ff453a;
+  --site-rule: rgba(242, 238, 230, 0.16);
+  color-scheme: dark;
+}
+
+html body #cervantes-life-map {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2rem clamp(1rem, 4vw, 2.7rem) 1.5rem;
+}
+
+html body #cervantes-life-map .cvm__place {
+  font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+}
+
+html body #cervantes-life-map .cvm__event {
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__sea {
+  fill: #070303;
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__graticule {
+  stroke: #302727;
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__country {
+  fill: #2b2727;
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__boundary {
+  stroke: #77716e;
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__route-future {
+  stroke: #b52c25;
+  opacity: 0.32;
+}
+
+html body #cervantes-life-map .cvm__play,
+html body #cervantes-life-map .cvm__utility-button {
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  border: 0;
+  border-radius: 3px;
+  background: var(--cvm-accent);
+  color: var(--cvm-raised);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+html body #cervantes-life-map .cvm__play:hover,
+html body #cervantes-life-map .cvm__play:focus-visible,
+html body #cervantes-life-map .cvm__utility-button:hover,
+html body #cervantes-life-map .cvm__utility-button:focus-visible {
+  filter: brightness(1.08);
+}
+
+html body #cervantes-life-map .cvm__utility-button:disabled {
+  cursor: not-allowed;
+  filter: none;
+  opacity: 0.38;
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__play {
+  border-radius: 999px;
+  background: var(--cvm-ink);
+  color: var(--cvm-paper);
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__utility-button {
+  border: 1px solid var(--cvm-rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cvm-ink);
+}
+
+html[data-theme="dark"] body #cervantes-life-map .cvm__scrubber {
+  accent-color: var(--cvm-ink);
+}
+
+html body #cervantes-life-map .cvm__step-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+html body #cervantes-life-map .sr-only,
+html body #cervantes-life-map .visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 600px) {
+  html body #cervantes-life-map {
+    margin: 0;
+    padding: 1.4rem 1rem 1.1rem;
+  }
+
+  html body #cervantes-life-map .cvm__step-controls {
+    justify-content: space-between;
+  }
+
+  html body #cervantes-life-map .cvm__utility-button {
+    flex: 1 1 auto;
+    padding-right: 0.55rem;
+    padding-left: 0.55rem;
+  }
+}

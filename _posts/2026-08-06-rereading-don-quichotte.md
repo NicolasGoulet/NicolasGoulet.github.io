@@ -49,11 +49,13 @@ The exact chronology of his life is still subject of debate. While this blogpost
 <iframe
   id="cervantes-life-map-frame"
   class="cervantes-life-map-frame"
-  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}?v=4b6f0d6"
+  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}?v=dd4ceaa"
+  data-embed-stylesheet="{{ '/assets/css/cervantes-life-map-embed.css' | relative_url }}?v=1"
   title="Animated map of Miguel de Cervantes’s life and travels"
   loading="lazy"
   scrolling="no">
 </iframe>
+<script src="{{ '/assets/js/cervantes-life-map-embed.js' | relative_url }}?v=1"></script>
 
 ### Don Quichottes
 
