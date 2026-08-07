@@ -49,7 +49,7 @@ The exact chronology of his life is still subject of debate. While this blogpost
 <iframe
   id="cervantes-life-map-frame"
   class="cervantes-life-map-frame"
-  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}"
+  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}?v=4b6f0d6"
   title="Animated map of Miguel de Cervantes’s life and travels"
   loading="lazy"
   scrolling="no">
