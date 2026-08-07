@@ -1,8 +1,8 @@
 ---
 title: "Blog"
-permalink: /blog/
+permalink: /french/blog/
 layout: blog-index
 author_profile: false
-lang: en
-alternate_url: /french/blog/
+lang: fr
+alternate_url: /blog/
 ---

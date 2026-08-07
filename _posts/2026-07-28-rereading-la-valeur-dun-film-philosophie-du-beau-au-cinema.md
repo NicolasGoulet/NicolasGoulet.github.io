@@ -6,6 +6,7 @@ layout: blog-post
 blog_entry: true
 status: "Work in progress"
 lang: en
+alternate_url: /french/blog/relecture-la-valeur-dun-film-philosophie-du-beau-au-cinema/
 ---
 
 ## Intro

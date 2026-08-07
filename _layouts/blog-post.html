@@ -6,10 +6,10 @@ layout: default
 
 <div id="main" role="main">
   <article class="blog-article" itemscope itemtype="http://schema.org/BlogPosting">
-    <a class="blog-back" href="{{ base_path }}/blog/"><span aria-hidden="true">←</span> Blog</a>
+    <a class="blog-back" href="{{ base_path }}{% if page.lang == 'fr' %}/french/blog/{% else %}/blog/{% endif %}"><span aria-hidden="true">←</span> Blog</a>
 
     <header class="blog-article__header">
-      <p class="blog-kicker">{{ page.status | default: "Draft" }} · Reading notes</p>
+      <p class="blog-kicker">{{ page.status | default: "Draft" }} · {% if page.lang == "fr" %}Notes de lecture{% else %}Reading notes{% endif %}</p>
       <h1 itemprop="headline">{{ page.title }}</h1>
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %d, %Y" }}</time>
     </header>
