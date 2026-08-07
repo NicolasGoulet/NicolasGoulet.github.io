@@ -5,6 +5,10 @@ permalink: /french/blog/relecture-la-valeur-dun-film-philosophie-du-beau-au-cine
 layout: blog-post
 blog_entry: true
 blog_series: rereading
+work_slug: la-valeur-dun-film
+work_title: "La Valeur d'Un Film, Philosophie du Beau au Cinéma"
+entry_number: 1
+entry_title: "Introduction"
 series_title: "ReLecture"
 series_url: /french/blog/relecture/
 status: "Travail en cours"

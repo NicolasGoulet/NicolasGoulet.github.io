@@ -5,6 +5,10 @@ permalink: /blog/rereading-julie-ou-la-nouvelle-heloise/
 layout: blog-post
 blog_entry: true
 blog_series: rereading
+work_slug: julie-ou-la-nouvelle-heloise
+work_title: "Julie, ou La Nouvelle Héloïse"
+entry_number: 1
+entry_title: "Introduction"
 series_title: "ReReading"
 series_url: /blog/rereading/
 status: "Work in progress"

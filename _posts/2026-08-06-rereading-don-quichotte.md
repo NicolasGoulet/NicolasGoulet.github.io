@@ -5,6 +5,10 @@ permalink: /blog/rereading-don-quichotte/
 layout: blog-post
 blog_entry: true
 blog_series: rereading
+work_slug: don-quichotte
+work_title: "Don Quichotte"
+entry_number: 1
+entry_title: "Cervantes and Don Quichotte"
 series_title: "ReReading"
 series_url: /blog/rereading/
 status: "Work in progress"

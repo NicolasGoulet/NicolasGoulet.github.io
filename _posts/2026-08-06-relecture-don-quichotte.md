@@ -5,6 +5,10 @@ permalink: /french/blog/relecture-don-quichotte/
 layout: blog-post
 blog_entry: true
 blog_series: rereading
+work_slug: don-quichotte
+work_title: "Don Quichotte"
+entry_number: 1
+entry_title: "Cervantès et Don Quichotte"
 series_title: "ReLecture"
 series_url: /french/blog/relecture/
 status: "Travail en cours"

@@ -19,6 +19,36 @@ layout: default
 
     {% assign blog_posts = site.posts | where: "blog_entry", true | where: "lang", page.lang | where: "blog_series", page.blog_series %}
     {% if blog_posts.size > 0 %}
+    {% if page.group_by_work %}
+    {% assign work_groups = blog_posts | group_by: "work_slug" %}
+    <section class="reading-work-list" aria-label="{% if page.lang == 'fr' %}Œuvres et entrées{% else %}Works and entries{% endif %}">
+      {% for work in work_groups %}
+        {% assign entries = work.items | sort: "entry_number" %}
+        {% assign first_entry = entries | first %}
+        <section class="reading-work" id="{{ work.name }}">
+          <header class="reading-work__header">
+            <p>{% if page.lang == "fr" %}Œuvre{% else %}Work{% endif %}</p>
+            <h2>{{ first_entry.work_title }}</h2>
+          </header>
+
+          <ol class="reading-entry-list">
+            {% for entry in entries %}
+              <li>
+                <a class="reading-entry" href="{{ base_path }}{{ entry.url }}">
+                  <span class="reading-entry__number">{% if page.lang == "fr" %}Entrée{% else %}Entry{% endif %} {{ entry.entry_number }}</span>
+                  <span class="reading-entry__body">
+                    <strong>{{ entry.entry_title }}</strong>
+                    <span>{{ entry.date | date: "%B %Y" }} · {{ entry.status }}</span>
+                  </span>
+                  <span class="reading-entry__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ol>
+        </section>
+      {% endfor %}
+    </section>
+    {% else %}
     <section class="blog-list blog-series-posts" aria-label="{% if page.lang == "fr" %}Articles de la série{% else %}Series entries{% endif %}">
       {% for post in blog_posts %}
         <a class="blog-card" href="{{ base_path }}{{ post.url }}">
@@ -34,6 +64,7 @@ layout: default
         </a>
       {% endfor %}
     </section>
+    {% endif %}
     {% endif %}
   </main>
 </div>

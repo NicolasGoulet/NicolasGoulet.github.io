@@ -9,7 +9,11 @@ layout: default
     <a class="blog-back" href="{{ base_path }}{{ page.series_url }}"><span aria-hidden="true">←</span> {{ page.series_title }}</a>
 
     <header class="blog-article__header">
-      <p class="blog-kicker">{{ page.status | default: "Draft" }} · {{ page.series_title }}</p>
+      <p class="blog-kicker">
+        {{ page.status | default: "Draft" }} · {{ page.series_title }}
+        {% if page.work_title %} · {{ page.work_title }}{% endif %}
+        {% if page.entry_number %} · {% if page.lang == "fr" %}Entrée{% else %}Entry{% endif %} {{ page.entry_number }}{% endif %}
+      </p>
       <h1 itemprop="headline">{{ page.title }}</h1>
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %d, %Y" }}</time>
     </header>
@@ -17,5 +21,47 @@ layout: default
     <div class="blog-article__content" itemprop="articleBody">
       {{ content }}
     </div>
+
+    {% if page.work_slug %}
+      {% assign work_entries = site.posts | where: "blog_entry", true | where: "lang", page.lang | where: "blog_series", page.blog_series | where: "work_slug", page.work_slug | sort: "entry_number" %}
+      {% assign current_index = nil %}
+      {% for entry in work_entries %}
+        {% if entry.url == page.url %}{% assign current_index = forloop.index0 %}{% endif %}
+      {% endfor %}
+      {% assign previous_entry = nil %}
+      {% assign next_entry = nil %}
+      {% if current_index != nil %}
+        {% if current_index > 0 %}
+          {% assign previous_index = current_index | minus: 1 %}
+          {% assign previous_entry = work_entries[previous_index] %}
+        {% endif %}
+        {% assign next_index = current_index | plus: 1 %}
+        {% if next_index < work_entries.size %}{% assign next_entry = work_entries[next_index] %}{% endif %}
+      {% endif %}
+
+      <nav class="blog-entry-nav" aria-label="{% if page.lang == 'fr' %}Navigation entre les entrées{% else %}Entry navigation{% endif %}">
+        <a class="blog-entry-nav__all" href="{{ base_path }}{{ page.series_url }}#{{ page.work_slug }}">
+          <span aria-hidden="true">↑</span>
+          {% if page.lang == "fr" %}Toutes les entrées : {{ page.work_title }}{% else %}All {{ page.work_title }} entries{% endif %}
+        </a>
+
+        {% if previous_entry or next_entry %}
+          <div class="blog-entry-nav__links">
+            {% if previous_entry %}
+              <a class="blog-entry-nav__item" href="{{ base_path }}{{ previous_entry.url }}">
+                <small>← {% if page.lang == "fr" %}Entrée précédente{% else %}Previous entry{% endif %}</small>
+                <span>{{ previous_entry.entry_number }} · {{ previous_entry.entry_title }}</span>
+              </a>
+            {% endif %}
+            {% if next_entry %}
+              <a class="blog-entry-nav__item blog-entry-nav__item--next" href="{{ base_path }}{{ next_entry.url }}">
+                <small>{% if page.lang == "fr" %}Entrée suivante{% else %}Next entry{% endif %} →</small>
+                <span>{{ next_entry.entry_number }} · {{ next_entry.entry_title }}</span>
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </nav>
+    {% endif %}
   </article>
 </div>
