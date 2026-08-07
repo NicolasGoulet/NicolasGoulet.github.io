@@ -1,3 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cervantes life map</title>
+</head>
+<body>
 <section id="cervantes-life-map" class="cvm" aria-label="The documented journeys of Miguel de Cervantes, 1547 to 1616" data-cervantes-life-map>
   <div class="cvm__readout" aria-live="polite">
     <div class="cvm__where">
@@ -48,6 +56,22 @@
 </section>
 
 <style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  html[data-theme="dark"] {
+    --site-paper: #182124;
+    --site-paper-raised: #202c2f;
+    --site-ink: #eee9df;
+    --site-muted: #adb5b4;
+    --site-accent: #e29a83;
+    --site-rule: rgba(238, 233, 223, 0.15);
+  }
+
   #cervantes-life-map {
     --cvm-paper: var(--site-paper, #f6f1e7);
     --cvm-raised: var(--site-paper-raised, #fffaf1);
@@ -56,7 +80,7 @@
     --cvm-accent: var(--blog-accent, var(--site-accent, #9b4b38));
     --cvm-rule: var(--site-rule, rgba(27, 42, 47, 0.16));
     width: 100%;
-    margin: 3.25rem 0;
+    margin: 0;
     color: var(--cvm-ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -197,7 +221,20 @@
   #cervantes-life-map .cvm__play {
     flex: 0 0 auto;
     margin: 0;
+    padding: 0.65rem 0.9rem;
+    border: 0;
+    border-radius: 3px;
+    background: var(--cvm-accent);
+    color: var(--cvm-raised);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
     white-space: nowrap;
+  }
+
+  #cervantes-life-map .cvm__play:hover,
+  #cervantes-life-map .cvm__play:focus-visible {
+    filter: brightness(1.08);
   }
 
   #cervantes-life-map .cvm__timeline {
@@ -247,7 +284,7 @@
 
   @media (max-width: 600px) {
     #cervantes-life-map {
-      margin: 2.5rem 0;
+      margin: 0;
     }
 
     #cervantes-life-map .cvm__readout {
@@ -297,6 +334,30 @@
 <script>
 (() => {
   "use strict";
+
+  let parentRoot = null;
+  try {
+    parentRoot = window.parent !== window ? window.parent.document.documentElement : null;
+  } catch (_) {
+    parentRoot = null;
+  }
+
+  const syncTheme = () => {
+    document.documentElement.toggleAttribute("data-theme", Boolean(parentRoot && parentRoot.hasAttribute("data-theme")));
+  };
+  syncTheme();
+  if (parentRoot) {
+    new MutationObserver(syncTheme).observe(parentRoot, {
+      attributes: true,
+      attributeFilter: ["data-theme"]
+    });
+  }
+
+  const syncFrameHeight = () => {
+    if (window.frameElement) {
+      window.frameElement.style.height = `${Math.ceil(document.documentElement.scrollHeight)}px`;
+    }
+  };
 
   const root = document.getElementById("cervantes-life-map");
   if (!root || !window.d3 || !window.topojson) return;
@@ -542,5 +603,12 @@
   });
 
   render(0);
+  window.addEventListener("load", syncFrameHeight);
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(syncFrameHeight).observe(document.body);
+  }
+  syncFrameHeight();
 })();
 </script>
+</body>
+</html>

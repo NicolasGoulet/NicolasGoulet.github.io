@@ -46,7 +46,14 @@ The first thing that amazed me about him was how not sedentary he was. He was a 
 
 The exact chronology of his life is still subject of debate. While this blogpost will not serve a sa review of the differnt argeumnts made for placing cervantes at specific times and places, I still want to show you a mpa tracing the life and times of CErvantes, that can be played and watched at your leasure. 
 
-{% include cervantes-life-map.html %}
+<iframe
+  id="cervantes-life-map-frame"
+  class="cervantes-life-map-frame"
+  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}"
+  title="Animated map of Miguel de Cervantes’s life and travels"
+  loading="lazy"
+  scrolling="no">
+</iframe>
 
 ### Don Quichottes
 
