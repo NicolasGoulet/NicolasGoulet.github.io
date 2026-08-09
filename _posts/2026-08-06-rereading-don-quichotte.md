@@ -14,6 +14,7 @@ series_url: /blog/rereading/
 status: "Work in progress"
 lang: en
 alternate_url: /french/blog/relecture-don-quichotte/
+arrival_sound: hey-guys-i-think-i-found-a-glue
 ---
 
 ## Intro
@@ -57,10 +58,22 @@ The exact chronology of his life is still subject of debate. While this blogpost
 </iframe>
 <script src="{{ '/assets/js/cervantes-life-map-embed.js' | relative_url }}?v=2"></script>
 
+At this point, this blog post could start explaining the very complex socio-political climate our author grew up in, but it'd be simply overwhleming. Instead, I propose that future blog posts will explore the most important ones as we progress through chapters in the upcoming months. 
+
 ### Don Quichottes
 
 How do we introduce the greatest noble knight to have ever walked this earth? Who is this man, how come he lives through us? Nowadays, we are full of modern Quichottes, people whose brain turn to mush after reading certain things too much. There is so much commentary to be written or already written about how certain of our contemporaries are in what we could call the *dimensionality* of *Quichottism*. Like many things in this blog post, I leave for my reader the pleasure of conjuring up their own ideas about the matter. 
 
-For the sake of those who have yet to open this great book, let's actually describe it for now. Don Quicho 
+For the sake of those who have yet to open this great book, let's actually describe it for now. Don Quicho TODO. 
+
+Another character at this point should deserve his own section, is Sancho. Enough time will be dedicated to him later. For now, let's mention that the eponym character can hardly be considered outside of the couple he forms with his most loyal squire. 
+
+## A Brief History of Its Publication
+
+To conclude this first blog post about Don Quichottes, it is relevant to express certain interesting facts surrounding the book itself and its publication. One fact that might feel certain who have already read the book feel better is the fact that **mistakes were made in the various original published editions**. This went as far a wrong ordering of chapters, of names of chapters, and **even the names of characters being wrong** at times! Indeed, the First of the Quichottes (as there are two) might come across as mind-boggingly confusing. It ended up being entirely addressed in the Second Quichottes (let's use First and Second for short from now on), with Sancho ()
+
+### The Fake Second Quichottes
+
+Did I mention that this book is endlessly fascinating, even the discourse surrounding it? After the success of the First, many people were expecting a Second, a continuation and end to the adventures of our ingenious knight. Up until now, not much has been said about the actual contents of the work
 
 <!-- Continue writing below this line. -->

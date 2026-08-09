@@ -12,7 +12,7 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body{% if page.arrival_sound %} data-arrival-sound="{{ page.arrival_sound | escape }}"{% endif %}{% if page.arrival_sound_volume %} data-arrival-sound-volume="{{ page.arrival_sound_volume | escape }}"{% endif %}{% if page.arrival_sound_rate %} data-arrival-sound-rate="{{ page.arrival_sound_rate | escape }}"{% endif %}>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}

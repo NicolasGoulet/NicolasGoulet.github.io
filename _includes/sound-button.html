@@ -1,0 +1,8 @@
+{% assign sound_button_label = include.label | default: include.sound %}
+<button
+  type="button"
+  class="btn{% if include.class %} {{ include.class | escape }}{% endif %}"
+  data-sound="{{ include.sound | escape }}"
+  {% if include.volume %}data-sound-volume="{{ include.volume | escape }}"{% endif %}
+  {% if include.rate %}data-sound-rate="{{ include.rate | escape }}"{% endif %}
+>{{ sound_button_label | escape }}</button>
