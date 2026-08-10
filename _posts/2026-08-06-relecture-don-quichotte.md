@@ -14,6 +14,7 @@ series_url: /french/blog/relecture/
 status: "Travail en cours"
 lang: fr
 alternate_url: /blog/rereading-don-quichotte/
+arrival_sound: hey-guys-i-think-i-found-a-glue
 ---
 
 ## Introduction
