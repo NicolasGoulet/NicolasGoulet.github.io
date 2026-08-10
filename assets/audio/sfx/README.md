@@ -55,5 +55,21 @@ blocked, it plays once on the visitor's first click, tap, or keypress instead.
 - `jarona.mp3`: [Deltarune - JARONA](https://www.myinstants.com/en/instant/deltarune-jarona-58237/)
 - `hey-guys-i-think-i-found-a-glue.mp3`: [Hey guys, I think I found a glue!](https://www.myinstants.com/en/instant/hey-guys-i-think-i-found-a-glue-52629/)
 
+## Full Flowery voice pack
+
+The folder also contains 61 clips extracted from [Deltarune Chapter 5 - All
+Flowery Voice Clips [ENGLISH] [EXTENDED]](https://www.youtube.com/watch?v=piGARuwab4k).
+Their filenames start with `flowery-`, so they are easy to find. For example:
+
+```html
+<button data-sound="flowery-leaf-it-to-me">Leaf it to me</button>
+<button data-sound="flowery-jarona-3">JARONA</button>
+<button data-sound="flowery-theyre-eating-my-flesh">Help</button>
+```
+
+See [`flowery-clips.tsv`](flowery-clips.tsv) for every copyable sound name, its
+original game-file identifier, and its source timestamps.
+
 These third-party clips are not covered by this repository's software license.
+The YouTube source does not declare a Creative Commons or public-domain license.
 Confirm that you have permission to publish any audio used on the site.
