@@ -70,10 +70,14 @@ Another character at this point should deserve his own section, is Sancho. Enoug
 
 ## A Brief History of Its Publication
 
-To conclude this first blog post about Don Quichottes, it is relevant to express certain interesting facts surrounding the book itself and its publication. One fact that might feel certain who have already read the book feel better is the fact that **mistakes were made in the various original published editions**. This went as far a wrong ordering of chapters, of names of chapters, and **even the names of characters being wrong** at times! Indeed, the First of the Quichottes (as there are two) might come across as mind-boggingly confusing. It ended up being entirely addressed in the Second Quichottes (let's use First and Second for short from now on), with Sancho ()
+To conclude this first blog post about Don Quichottes, it is relevant to express certain interesting facts surrounding the book itself and its publication. One fact that might feel certain who have already read the book feel better is the fact that **mistakes were made in the various original published editions**. This went as far a wrong ordering of chapters, of names of chapters, and **even the names of characters being wrong** at times! Indeed, the First of the Quichottes (as there are two) might come across as mind-boggingly confusing. It ended up being entirely addressed in the Second Quichottes (let's use First and Second for short from now on), with Sancho () TODO
 
 ### The Fake Second Quichottes
 
-Did I mention that this book is endlessly fascinating, even the discourse surrounding it? After the success of the First, many people were expecting a Second, a continuation and end to the adventures of our ingenious knight. Up until now, not much has been said about the actual contents of the work
+Did I mention that this book is endlessly fascinating, even the discourse surrounding it? After the success of the First, many people were expecting a Second, a continuation and end to the adventures of our ingenious knight. Up until now, not much has been said about the actual contents of the work TODO
+
+## Conclusion
+
+And so for now, I prefer to cut short this introduction. So much more is left to be said. However, it will be funner to discuss them along the way. I am being fascetious ; in all honesty, I am tired of waiting to finish this entry before starting to read. It was never my job to fully explain these things : I merely wished to hint you towards interesting mysteries and facts to bear in mind while approaching the monument that is, Don Quichottes. 
 
 <!-- Continue writing below this line. -->
