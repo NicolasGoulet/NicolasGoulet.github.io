@@ -1,3 +1,20 @@
+---
+title: "ReReading : Don Quichotte — Entry 2"
+date: 2026-08-14
+permalink: /blog/rereading-don-quichotte-2/
+layout: blog-post
+blog_entry: true
+blog_series: rereading
+work_slug: don-quichotte
+work_title: "Don Quichotte"
+entry_number: 2
+entry_title: "Dédicace, Prologue, and Liminary Poems"
+series_title: "ReReading"
+series_url: /blog/rereading/
+status: "Work in progress"
+lang: en
+---
+
 ## *Dédicace*, Prologue, and Liminary Poems
 
 Before talking about the <span class="sound-text-trigger" role="button" tabindex="0" data-sound="gaster-theme-sting" data-sound-on-select data-sound-exclusive title="Click or highlight these words to play Gaster's Theme">very, very interesting</span> prologue. There is only one neat thing to say about it : it most probably is something written up by the original editor and most likely plagiarized from some other letter to some other inconsequential - to our discussion - lord from Spain.
@@ -29,4 +46,4 @@ Now, for the most famous episode of the book (someone with bad faith might say t
 
 ## Start of the Second Part
 
-This blog entry will end with a coverage of the second part. I imagine the start of the second part is around when people realize Don Quichottes might not only be for fun and giggles, it can get quite complex. Rapidly, the reader realizes the tone has shifted and that it is written in a much more dry and convoluted manner, at least until we go back to following the adventures of our knight. 
+This blog entry will end with a coverage of the second part. I imagine the start of the second part is around when people realize Don Quichottes might not only be for fun and giggles, it can get quite complex. Rapidly, the reader realizes the tone has shifted and that it is written in a much more dry and convoluted manner, at least until we go back to following the adventures of our knight.

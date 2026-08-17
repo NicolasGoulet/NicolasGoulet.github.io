@@ -18,12 +18,14 @@ def document_at(site_dir, relative_path)
   Nokogiri::HTML(path.read)
 end
 
+def href_path(href)
+  URI.parse(href).path
+rescue URI::InvalidURIError
+  href
+end
+
 def nav_hrefs(document)
-  document.css("#site-nav a[href]").map do |link|
-    URI.parse(link["href"]).path
-  rescue URI::InvalidURIError
-    link["href"]
-  end
+  document.css("#site-nav a[href]").map { |link| href_path(link["href"]) }
 end
 
 english = document_at(site_dir, "index.html")
@@ -68,5 +70,17 @@ end
 fail_check("English home styling hook is missing") if english.at_css(".home-profile").nil?
 fail_check("French home styling hook is missing") if french.at_css(".home-profile").nil?
 fail_check("compiled stylesheet is missing") unless site_dir.join("assets/css/main.css").file?
+
+rereading = document_at(site_dir, "blog/rereading/index.html")
+don_quichotte_entries = rereading.css("#don-quichotte .reading-entry")
+don_quichotte_paths = don_quichotte_entries.map { |entry| href_path(entry["href"]) }
+expected_don_quichotte_paths = [
+  "/blog/rereading-don-quichotte/",
+  "/blog/rereading-don-quichotte-2/"
+]
+
+unless don_quichotte_paths == expected_don_quichotte_paths
+  fail_check("Don Quichotte entries are incomplete or out of order: #{don_quichotte_paths.inspect}")
+end
 
 puts "Site verification passed: active tabs render, hidden tabs stay hidden, and retained pages still build."
