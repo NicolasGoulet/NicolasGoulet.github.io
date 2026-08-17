@@ -33,6 +33,19 @@ No JavaScript changes are needed. Elements added to the page later also work.
 Repeated clicks can overlap naturally. Optional volume values range from `0` to
 `1`, and optional playback speed can be set with `data-sound-rate`.
 
+Text can play a sound when it is either clicked or selected:
+
+```html
+<span role="button" tabindex="0"
+      data-sound="gaster-theme-sting"
+      data-sound-on-select
+      data-sound-exclusive>very, very interesting</span>
+```
+
+`data-sound-exclusive` stops any currently playing site sound before starting
+the new one, so quick repeated interactions restart the clip instead of stacking
+copies of it.
+
 Sounds can also be played from JavaScript:
 
 ```javascript

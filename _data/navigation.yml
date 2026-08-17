@@ -1,19 +1,21 @@
 # The following is the order of the links in the header of the website.
 #
 # Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
+# links. Set `visible: false` to hide a link without deleting its page. Remove
+# that line (or set it to true) when the page is ready to return to the header.
 #
 # NOTE that only one of the CV options should be selected, the first is for the
 #      Markdown formatted page while the second is generated using JSON.
 
 main:
-  - title: "Academic Interests"    # ← new
+  - title: "Academic Interests"
     url:   /academic-interests/
-  - title: "Books"                 # ← new
+  - title: "Books"
     url:   /books/
-  - title: "Music"                # ← new page
+    visible: false
+  - title: "Music"
     url:   /music/
+    visible: false
   - title: "Blog"
     url:   /blog/
 
@@ -22,7 +24,9 @@ main_fr:
     url:   /french/academic-interests/
   - title: "Livres"
     url:   /french/books/
+    visible: false
   - title: "Musique"
     url:   /french/music/
+    visible: false
   - title: "Blog"
     url:   /french/blog/

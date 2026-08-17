@@ -26,12 +26,14 @@
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist"><a href="{{ base_path }}{{ home_url }}">{{ home_label }}</a></li>
           {% for link in navigation_links %}
-            {% if link.url contains 'http' %}
-              {% assign domain = '' %}
-            {% else %}
-              {% assign domain = base_path %}
-            {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            {% unless link.visible == false %}
+              {% if link.url contains 'http' %}
+                {% assign domain = '' %}
+              {% else %}
+                {% assign domain = base_path %}
+              {% endif %}
+              <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            {% endunless %}
           {% endfor %}
           <li id="language-toggle" class="masthead__menu-item persist">
             <a href="{{ base_path }}{{ language_url }}" aria-label="{{ language_title }}" title="{{ language_title }}">

@@ -4,6 +4,7 @@ layout: compress
 
 {% include base_path %}
 {% assign html_lang = page.lang | default: site.locale | slice: 0, 2 %}
+{% assign layout_class = page.layout | default: "default" | prepend: "layout--" %}
 
 <!doctype html>
 <html lang="{{ html_lang }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
@@ -12,7 +13,7 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body{% if page.arrival_sound %} data-arrival-sound="{{ page.arrival_sound | escape }}"{% endif %}{% if page.arrival_sound_volume %} data-arrival-sound-volume="{{ page.arrival_sound_volume | escape }}"{% endif %}{% if page.arrival_sound_rate %} data-arrival-sound-rate="{{ page.arrival_sound_rate | escape }}"{% endif %}>
+  <body class="{{ layout_class }}{% if page.body_class %} {{ page.body_class }}{% endif %}"{% if page.arrival_sound %} data-arrival-sound="{{ page.arrival_sound | escape }}"{% endif %}{% if page.arrival_sound_volume %} data-arrival-sound-volume="{{ page.arrival_sound_volume | escape }}"{% endif %}{% if page.arrival_sound_rate %} data-arrival-sound-rate="{{ page.arrival_sound_rate | escape }}"{% endif %}>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}

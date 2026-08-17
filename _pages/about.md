@@ -10,20 +10,13 @@ redirect_from:
   - /about.html
 ---
 
-<div style="text-align:center">
+<div class="home-profile">
 
-<!-- centred page heading with extra top margin -->
-<h1 style="margin:2.5rem 0 1.5rem 0;">Nicolas Goulet</h1>
+<h1 class="home-profile__title">Nicolas Goulet</h1>
 
-<!-- placeholder profile image -->
-<img src="/images/profile.png"
-     alt="Profile photo"
-     style="display:block;
-            width:220px;
-            max-width:40%;
-            height:auto;
-            border-radius:50%;
-            margin:0 auto 1.75rem;">
+<img class="home-profile__image"
+     src="/images/profile.png"
+     alt="Profile photo">
 
 <p>
 I am a PhD student at <strong>HEC×MILA</strong> under the supervision of Prof.&nbsp;Eva Portelance,  

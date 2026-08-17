@@ -9,6 +9,8 @@
  * MP3 is assumed when the extension is omitted. Exact filenames work too:
  *
  *   <button data-sound="my-sound.ogg" data-sound-volume="0.5">Click me</button>
+ *
+ * Add data-sound-on-select to also play when the element's text is selected.
  */
 (function () {
   "use strict";
@@ -19,6 +21,9 @@
     : "/assets/audio/sfx/";
   var soundTemplates = new Map();
   var activeSounds = new Set();
+  var lastSelectionSignature = "";
+  var lastSelectionTarget = null;
+  var lastSelectionPlayedAt = 0;
   var muted = false;
 
   function filenameFor(soundName) {
@@ -61,6 +66,10 @@
     var settings = options || {};
     var audio;
 
+    if (settings.exclusive) {
+      stopAll();
+    }
+
     try {
       audio = soundTemplate(soundName).cloneNode(true);
     } catch (error) {
@@ -92,6 +101,18 @@
     }
 
     return audio;
+  }
+
+  function settingsFor(element) {
+    return {
+      volume: element.dataset.soundVolume,
+      rate: element.dataset.soundRate,
+      exclusive: element.hasAttribute("data-sound-exclusive")
+    };
+  }
+
+  function playFor(element) {
+    return play(element.dataset.sound, settingsFor(element));
   }
 
   function preload(soundName) {
@@ -143,6 +164,57 @@
     });
   }
 
+  function selectionTarget(selection) {
+    if (!selection || selection.isCollapsed || !selection.toString().trim()) {
+      return null;
+    }
+
+    var range = selection.getRangeAt(0);
+    var targets = document.querySelectorAll("[data-sound][data-sound-on-select]");
+
+    for (var index = 0; index < targets.length; index += 1) {
+      try {
+        if (range.intersectsNode(targets[index])) {
+          return targets[index];
+        }
+      } catch (error) {
+        // A target removed during selection can no longer be intersected.
+      }
+    }
+
+    return null;
+  }
+
+  function playSelectedSound() {
+    var selection = window.getSelection();
+    var target = selectionTarget(selection);
+
+    if (!target) {
+      lastSelectionSignature = "";
+      lastSelectionTarget = null;
+      return;
+    }
+
+    var range = selection.getRangeAt(0);
+    var signature = [
+      selection.toString(),
+      range.startOffset,
+      range.endOffset
+    ].join(":");
+
+    if (target === lastSelectionTarget && signature === lastSelectionSignature) {
+      return;
+    }
+
+    lastSelectionTarget = target;
+    lastSelectionSignature = signature;
+    lastSelectionPlayedAt = Date.now();
+    playFor(target);
+  }
+
+  document.addEventListener("pointerup", playSelectedSound);
+  document.addEventListener("keyup", playSelectedSound);
+
   document.addEventListener("click", function (event) {
     var clickedElement = event.target instanceof Element
       ? event.target.closest("[data-sound]")
@@ -156,10 +228,33 @@
       return;
     }
 
-    play(clickedElement.dataset.sound, {
-      volume: clickedElement.dataset.soundVolume,
-      rate: clickedElement.dataset.soundRate
-    });
+    // Selecting text also produces a click in some browsers. Avoid playing the
+    // same sound twice for that one gesture.
+    if (
+      clickedElement === lastSelectionTarget &&
+      Date.now() - lastSelectionPlayedAt < 500
+    ) {
+      return;
+    }
+
+    playFor(clickedElement);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    var target = event.target instanceof Element
+      ? event.target.closest('[role="button"][data-sound]')
+      : null;
+
+    if (
+      !target ||
+      target.matches("button, a, input, select, textarea") ||
+      (event.key !== "Enter" && event.key !== " ")
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    playFor(target);
   });
 
   // Only preload sounds that are actually used on the current page.

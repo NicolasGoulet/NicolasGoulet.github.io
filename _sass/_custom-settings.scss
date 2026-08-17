@@ -1,0 +1,82 @@
+// SITE DESIGN SETTINGS
+//
+// Change the values in this file for broad visual adjustments. Detailed
+// component rules remain in _sass/_custom.scss.
+
+// Typography
+$site-serif: Georgia, "Times New Roman", serif;
+$site-sans: $sans-serif;
+$site-base-font-size: 17px;
+$site-mobile-font-size: 16px;
+
+// Main page proportions
+$site-shell-width: 1180px;
+$site-page-width: 820px;
+$site-copy-width: 68ch;
+$site-page-padding: 5rem 1.4rem 4rem;
+$site-mobile-page-padding: 3.5rem 1.15rem 3rem;
+$site-page-title-size: clamp(2.8rem, 7vw, 5.4rem);
+$site-section-title-size: clamp(2rem, 5vw, 3.2rem);
+
+// Home page
+$home-title-size: clamp(3.4rem, 9vw, 6.7rem);
+$home-profile-image-width: 230px;
+$home-profile-image-max-width: 52vw;
+$home-copy-width: 690px;
+
+// Header and controls
+$site-header-padding: 0.7rem 1.4rem;
+$site-language-control-right: 3.45rem;
+$site-theme-control-right: 1.25rem;
+$site-mobile-language-control-right: 3.2rem;
+$site-mobile-theme-control-right: 1rem;
+
+// Light palette
+$site-light-paper: #f6f1e7;
+$site-light-paper-raised: #fffaf1;
+$site-light-ink: #1b2a2f;
+$site-light-muted: #687174;
+$site-light-accent: #9b4b38;
+$site-light-accent-hover: #713325;
+$site-light-accent-visited: #7b5349;
+$site-light-accent-soft: rgba(155, 75, 56, 0.1);
+$site-light-rule: rgba(27, 42, 47, 0.16);
+$site-light-rule-strong: rgba(27, 42, 47, 0.24);
+$site-light-footer: #eee7da;
+$site-light-masthead: rgba(246, 241, 231, 0.9);
+$site-light-shadow: 0 18px 50px rgba(49, 38, 28, 0.1);
+
+// Dark palette
+$site-dark-paper: #182124;
+$site-dark-paper-raised: #202c2f;
+$site-dark-ink: #eee9df;
+$site-dark-muted: #adb5b4;
+$site-dark-accent: #e29a83;
+$site-dark-accent-hover: #f0b7a4;
+$site-dark-accent-visited: #ca9a8c;
+$site-dark-accent-soft: rgba(226, 154, 131, 0.1);
+$site-dark-rule: rgba(238, 233, 223, 0.15);
+$site-dark-rule-strong: rgba(238, 233, 223, 0.24);
+$site-dark-footer: #12191b;
+$site-dark-masthead: rgba(24, 33, 36, 0.9);
+$site-dark-shadow: 0 20px 55px rgba(0, 0, 0, 0.22);
+
+// Blog and section hubs
+$blog-index-width: 980px;
+$blog-article-width: 780px;
+$blog-copy-width: 700px;
+$blog-index-title-size: clamp(3.5rem, 9vw, 6.5rem);
+$blog-card-title-size: clamp(1.7rem, 4vw, 2.75rem);
+$blog-article-title-size: clamp(3rem, 8vw, 5.7rem);
+$blog-card-columns: 8rem minmax(0, 1fr) 2rem;
+$blog-work-columns: 8rem minmax(0, 1fr);
+$blog-entry-columns: 5rem minmax(0, 1fr) 1.5rem;
+$blog-mobile-entry-columns: 4.5rem minmax(0, 1fr) 1rem;
+$blog-column-gap: 2rem;
+$blog-mobile-breakpoint: 700px;
+
+// Books and media
+$book-details-columns: 9rem 1fr;
+$site-mobile-breakpoint: 760px;
+$cervantes-map-height: 760px;
+$cervantes-map-mobile-height: 680px;
