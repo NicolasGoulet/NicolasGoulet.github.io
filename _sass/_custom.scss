@@ -937,7 +937,7 @@ html[data-theme="dark"] .masthead {
 
 .page {
   float: none;
-  width: min(100%, $site-page-width);
+  width: unquote("min(100%, #{$site-page-width})");
   margin: 0 auto;
   padding: 0;
 }
@@ -1052,7 +1052,7 @@ html[data-theme="dark"] .masthead {
 .page__content .home-profile__image {
   display: block;
   width: $home-profile-image-width !important;
-  max-width: min($home-profile-image-max-width, $home-profile-image-width) !important;
+  max-width: unquote("min(#{$home-profile-image-max-width}, #{$home-profile-image-width})") !important;
   height: auto;
   margin: 0 auto 2.4rem !important;
   padding: 7px;

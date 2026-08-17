@@ -70,11 +70,22 @@ You can then write a narrowly scoped rule such as
 
 ## Preview
 
-With the Ruby dependencies installed, run:
+The project uses the pinned Ruby version in `.ruby-version`, the exact gem
+versions in `Gemfile.lock`, and a local toolchain stored under the ignored
+`.tools/` and `vendor/` directories.
+
+Before pushing, run the complete production build and navigation verification:
 
 ```sh
-bundle exec jekyll serve -l -H localhost
+scripts/site check
 ```
 
-Then open `http://localhost:4000`. Changes to `_config.yml` require restarting
-the server; content and style changes normally rebuild automatically.
+For a live local preview, run:
+
+```sh
+scripts/site serve
+```
+
+Then open `http://localhost:4000`. To reinstall gems from the lockfile, run
+`scripts/site install`. Changes to `_config.yml` require restarting the server;
+content and style changes normally rebuild automatically.

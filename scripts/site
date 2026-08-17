@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+repo_dir=$(CDPATH= cd -- "$script_dir/.." && pwd)
+ruby_version=$(tr -d '[:space:]' < "$repo_dir/.ruby-version")
+ruby_bin="$repo_dir/.tools/ruby-$ruby_version/bin"
+
+if [ ! -x "$ruby_bin/bundle" ]; then
+  echo "Local Ruby $ruby_version is missing from $ruby_bin." >&2
+  echo "Install the project toolchain before running this command." >&2
+  exit 1
+fi
+
+PATH="$ruby_bin:$PATH"
+export PATH
+export BUNDLE_GEMFILE="$repo_dir/Gemfile"
+
+cd "$repo_dir"
+
+command=${1:-check}
+
+case "$command" in
+  install)
+    bundle config set --local path vendor/bundle
+    bundle install
+    ;;
+  build)
+    JEKYLL_ENV=production bundle exec jekyll build --trace --strict_front_matter
+    ;;
+  check)
+    bundle check
+    JEKYLL_ENV=production bundle exec jekyll build --trace --strict_front_matter
+    bundle exec ruby scripts/verify_site.rb
+    ;;
+  serve)
+    bundle exec jekyll serve --livereload --host localhost
+    ;;
+  *)
+    echo "Usage: scripts/site {install|build|check|serve}" >&2
+    exit 2
+    ;;
+esac
