@@ -1,0 +1,70 @@
+:root {
+  --site-paper: #f6f1e7;
+  --site-paper-raised: #fffaf1;
+  --site-ink: #1b2a2f;
+  --site-muted: #687174;
+  --site-accent: #9b4b38;
+  --site-rule: rgba(27, 42, 47, 0.16);
+  --aam-map-sea: #e7ecea;
+  --aam-map-graticule: #c4cbc8;
+  --aam-map-country: #d8d1c5;
+  --aam-map-iberia: #e2ddd4;
+  --aam-map-boundary: #77716e;
+  color-scheme: light;
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+  background: var(--site-paper);
+}
+
+html[data-theme="dark"] {
+  --site-paper: #111111;
+  --site-paper-raised: #211d1d;
+  --site-ink: #f2eee6;
+  --site-muted: #96999d;
+  --site-accent: #ff453a;
+  --site-rule: rgba(242, 238, 230, 0.16);
+  --aam-map-sea: #070303;
+  --aam-map-graticule: #302727;
+  --aam-map-country: #2b2727;
+  --aam-map-iberia: #312c2c;
+  --aam-map-boundary: #77716e;
+  color-scheme: dark;
+}
+
+html body #al-andalus-history-map {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2rem clamp(1rem, 4vw, 2.7rem) 1.5rem;
+}
+
+html body #al-andalus-history-map .aam__title {
+  font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+}
+
+html body #al-andalus-history-map .aam__event {
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+}
+
+html[data-theme="dark"] body #al-andalus-history-map .aam__play {
+  border-radius: 999px;
+  background: var(--aam-ink);
+  color: var(--aam-paper);
+}
+
+html[data-theme="dark"] body #al-andalus-history-map .aam__utility-button {
+  border-radius: 999px;
+}
+
+html[data-theme="dark"] body #al-andalus-history-map .aam__scrubber {
+  accent-color: var(--aam-ink);
+}
+
+@media (max-width: 600px) {
+  html body #al-andalus-history-map {
+    margin: 0;
+    padding: 1.4rem 1rem 1.1rem;
+  }
+}

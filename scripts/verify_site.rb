@@ -168,10 +168,29 @@ end
   fail_check("#{language} Cervantes map has the wrong language") unless frame["src"].include?(language_query)
 end
 
+{
+  "English" => ["blog/rereading-don-quichotte-2/index.html", "lang=en"],
+  "French" => ["french/blog/relecture-don-quichotte-2/index.html", "lang=fr"]
+}.each do |language, (relative_path, language_query)|
+  document = document_at(site_dir, relative_path)
+  frame = document.at_css("#al-andalus-history-map-frame")
+  fail_check("#{language} al-Andalus map is missing") if frame.nil?
+  fail_check("#{language} al-Andalus map has the wrong language") unless frame["src"].include?(language_query)
+end
+
 map_html = site_dir.join("assets/maps/cervantes-life-map.html").read
 map_css = site_dir.join("assets/css/cervantes-life-map-embed.css").read
 fail_check("Cervantes map is missing its French translation") unless map_html.include?("Lancer le voyage")
 fail_check("Cervantes map is missing its light palette") unless map_css.include?("--cvm-map-sea: #e7ecea")
 fail_check("Cervantes map is missing its dark palette") unless map_css.include?("--cvm-map-sea: #070303")
 
-puts "Site verification passed: navigation, paired translations, localized metadata, Don Quichotte entries, and bilingual map themes all build."
+al_andalus_map_html = site_dir.join("assets/maps/al-andalus-history-map.html").read
+al_andalus_map_css = site_dir.join("assets/css/al-andalus-history-map-embed.css").read
+fail_check("al-Andalus map is not a standalone HTML document") unless al_andalus_map_html.start_with?("<!doctype html>")
+fail_check("al-Andalus map does not contain 19 stages") unless al_andalus_map_html.scan(/^\s+territory:/).size == 19
+fail_check("al-Andalus map is missing its French translation") unless al_andalus_map_html.include?("Lancer l’histoire")
+fail_check("al-Andalus map is missing its French geographic labels") unless al_andalus_map_html.include?("PÉNINSULE IBÉRIQUE")
+fail_check("al-Andalus map is missing its light palette") unless al_andalus_map_css.include?("--aam-map-sea: #e7ecea")
+fail_check("al-Andalus map is missing its dark palette") unless al_andalus_map_css.include?("--aam-map-sea: #070303")
+
+puts "Site verification passed: navigation, paired translations, localized metadata, Don Quichotte entries, and both bilingual map themes all build."

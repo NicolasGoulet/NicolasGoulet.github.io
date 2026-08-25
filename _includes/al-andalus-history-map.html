@@ -1,0 +1,17 @@
+{% assign al_andalus_map_lang = include.lang | default: page.lang | default: "en" %}
+{% if al_andalus_map_lang == "fr" %}
+  {% assign al_andalus_map_title = "Carte animée de l’histoire politique d’al-Andalus et de la Reconquista, 711–1492" %}
+{% else %}
+  {% assign al_andalus_map_title = "Animated political history of al-Andalus and the Reconquista, 711–1492" %}
+{% endif %}
+<iframe
+  id="al-andalus-history-map-frame"
+  class="cervantes-life-map-frame al-andalus-history-map-frame"
+  src="{{ '/assets/maps/al-andalus-history-map.html' | relative_url }}?v=2&amp;lang={{ al_andalus_map_lang }}"
+  data-embed-stylesheet="{{ '/assets/css/al-andalus-history-map-embed.css' | relative_url }}?v=2"
+  data-language="{{ al_andalus_map_lang }}"
+  title="{{ al_andalus_map_title }}"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+<script src="{{ '/assets/js/al-andalus-history-map-embed.js' | relative_url }}?v=2"></script>

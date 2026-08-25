@@ -1,0 +1,1255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      const theme = new URLSearchParams(window.location.search).get("theme");
+      if (theme === "dark" || (theme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+  <link id="al-andalus-history-map-embed-styles" rel="stylesheet" href="../css/al-andalus-history-map-embed.css?v=2">
+</head>
+<body>
+<section id="al-andalus-history-map" class="aam" lang="en" aria-label="A schematic political history of al-Andalus, 711 to 1492" data-al-andalus-history-map>
+  <div class="aam__readout" aria-live="polite">
+    <div class="aam__where">
+      <span id="aam-date" class="aam__date">711</span>
+      <strong id="aam-title" class="aam__title">The crossing</strong>
+      <span id="aam-phase" class="aam__phase">initial invasion</span>
+    </div>
+    <p id="aam-event" class="aam__event">An Umayyad army of Arab and Amazigh/Berber troops crosses from North Africa. The landing near Gibraltar begins a rapid invasion of the Visigothic kingdom.</p>
+  </div>
+
+  <div class="aam__map-wrap">
+    <svg id="aam-map" class="aam__map" viewBox="0 0 700 500" role="img" aria-labelledby="aam-map-title aam-map-desc">
+      <title id="aam-map-title">Political history of al-Andalus from 711 to 1492</title>
+      <desc id="aam-map-desc">Schematic territorial fills and directional arrows show the initial Umayyad conquest, northern Christian advances, North African interventions, and the contraction of Muslim rule to Granada.</desc>
+      <defs>
+        <clipPath id="aam-iberia-clip"></clipPath>
+        <pattern id="aam-taifa-pattern" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+          <line x1="0" y1="0" x2="0" y2="9" class="aam__taifa-hatch"></line>
+        </pattern>
+        <marker id="aam-arrow-muslim" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 8 4.5 L 0 9 z" class="aam__arrowhead aam__arrowhead--muslim"></path>
+        </marker>
+        <marker id="aam-arrow-christian" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 8 4.5 L 0 9 z" class="aam__arrowhead aam__arrowhead--christian"></path>
+        </marker>
+        <marker id="aam-arrow-rollback" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 8 4.5 L 0 9 z" class="aam__arrowhead aam__arrowhead--rollback"></path>
+        </marker>
+      </defs>
+      <rect class="aam__sea" width="700" height="500"></rect>
+      <g id="aam-graticule"></g>
+      <g id="aam-land"></g>
+      <g id="aam-origin"></g>
+      <g id="aam-iberia-base"></g>
+      <g id="aam-territory" clip-path="url(#aam-iberia-clip)"></g>
+      <g id="aam-external-territory"></g>
+      <g id="aam-fragmentation" clip-path="url(#aam-iberia-clip)"></g>
+      <g id="aam-boundaries"></g>
+      <g id="aam-movements"></g>
+      <g id="aam-places"></g>
+      <g id="aam-geographic-labels" aria-hidden="true"></g>
+    </svg>
+
+    <div id="aam-legend" class="aam__legend" aria-label="Map legend">
+      <span class="aam__legend-item"><i class="aam__swatch aam__swatch--muslim"></i><span id="aam-legend-muslim-territory">Muslim-ruled territory</span></span>
+      <span class="aam__legend-item"><i class="aam__swatch aam__swatch--christian"></i><span id="aam-legend-christian-territory">Christian-ruled territory</span></span>
+      <span class="aam__legend-item"><i class="aam__line-key aam__line-key--muslim"></i><span id="aam-legend-muslim-advance">Muslim advance or intervention</span></span>
+      <span class="aam__legend-item"><i class="aam__line-key aam__line-key--christian"></i><span id="aam-legend-christian-advance">Christian advance</span></span>
+    </div>
+  </div>
+
+  <div class="aam__controls">
+    <button id="aam-play" class="aam__play" type="button" aria-label="Play the history of al-Andalus">
+      <span id="aam-play-icon" aria-hidden="true">▶</span>
+      <span id="aam-play-label">Play history</span>
+    </button>
+
+    <div id="aam-step-controls" class="aam__step-controls" aria-label="Timeline navigation">
+      <button id="aam-previous" class="aam__utility-button" type="button">← Previous</button>
+      <button id="aam-next" class="aam__utility-button" type="button">Next →</button>
+      <button id="aam-speed" class="aam__utility-button aam__speed-button" type="button" aria-label="Playback speed 1×; activate to change">Speed 1×</button>
+    </div>
+
+    <label class="aam__timeline" for="aam-scrubber">
+      <span id="aam-timeline-label" class="sr-only visually-hidden">Historical timeline</span>
+      <input id="aam-scrubber" class="aam__scrubber" type="range" min="0" max="18" step="1" value="0">
+    </label>
+    <span id="aam-count" class="aam__count" aria-hidden="true">01 / 19</span>
+  </div>
+  <div class="aam__years" aria-hidden="true"><span>711</span><span>1031</span><span>1212</span><span>1492</span></div>
+
+  <p id="aam-caveat" class="aam__caveat"><strong>How to read this map.</strong> The fills are schematic snapshots of political control, not exact modern-style borders and not a map of religion or ethnicity. “Reconquista” is a conventional and debated label for many intermittent wars, alliances, truces, raids, and settlements—not one continuous, unified campaign.</p>
+
+  <p id="aam-source" class="aam__source">
+    Chronology and broad territorial stages follow the
+    <a href="https://www.metmuseum.org/essays/the-art-of-the-umayyad-period-in-spain-711-1031">Metropolitan Museum of Art</a>,
+    its account of the <a href="https://www.metmuseum.org/essays/the-art-of-the-almoravid-and-almohad-periods-ca-1062-1269">Almoravid and Almohad periods</a>, and
+    a <a href="https://assets.cambridge.org/97811084/28071/excerpt/9781108428071_excerpt.pdf">Cambridge University Press overview</a> of the intermittent Christian conquests.
+    Coastlines and present-day borders are included only for orientation.
+  </p>
+</section>
+
+<style>
+  #al-andalus-history-map {
+    --aam-paper: var(--site-paper, #f6f1e7);
+    --aam-raised: var(--site-paper-raised, #fffaf1);
+    --aam-ink: var(--site-ink, #1b2a2f);
+    --aam-muted: var(--site-muted, #687174);
+    --aam-accent: var(--blog-accent, var(--site-accent, #9b4b38));
+    --aam-rule: var(--site-rule, rgba(27, 42, 47, 0.16));
+    --aam-christian: color-mix(in srgb, var(--aam-ink) 14%, var(--aam-raised));
+    width: 100%;
+    margin: 3.25rem 0;
+    color: var(--aam-ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  #al-andalus-history-map *,
+  #al-andalus-history-map *::before,
+  #al-andalus-history-map *::after {
+    box-sizing: border-box;
+  }
+
+  #al-andalus-history-map .aam__readout {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.4fr);
+    gap: 1.5rem;
+    align-items: end;
+    min-height: 8.5rem;
+    padding: 0 0 1.25rem;
+    border-bottom: 1px solid var(--aam-rule);
+  }
+
+  #al-andalus-history-map .aam__where {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.65rem;
+  }
+
+  #al-andalus-history-map .aam__date {
+    width: 100%;
+    color: var(--aam-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  #al-andalus-history-map .aam__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.75rem, 4vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+  }
+
+  #al-andalus-history-map .aam__phase {
+    color: var(--aam-muted);
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  #al-andalus-history-map .aam__event {
+    max-width: 36rem;
+    margin: 0;
+    color: var(--aam-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.55;
+  }
+
+  #al-andalus-history-map .aam__map-wrap {
+    position: relative;
+    width: 100%;
+    margin: 1.25rem 0 0.9rem;
+    overflow: hidden;
+  }
+
+  #al-andalus-history-map .aam__map {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #al-andalus-history-map .aam__sea {
+    fill: var(--aam-map-sea, #e7ecea);
+  }
+
+  #al-andalus-history-map .aam__graticule {
+    fill: none;
+    stroke: var(--aam-map-graticule, #c4cbc8);
+    stroke-width: 0.75;
+  }
+
+  #al-andalus-history-map .aam__country {
+    fill: var(--aam-map-country, #d8d1c5);
+    stroke: none;
+  }
+
+  #al-andalus-history-map .aam__iberia {
+    fill: var(--aam-map-iberia, var(--aam-christian));
+  }
+
+  #al-andalus-history-map .aam__boundary {
+    fill: none;
+    stroke: var(--aam-map-boundary, #77716e);
+    stroke-width: 0.7;
+  }
+
+  #al-andalus-history-map .aam__territory {
+    fill: color-mix(in srgb, var(--aam-accent) 78%, var(--aam-paper));
+    stroke: var(--aam-accent);
+    stroke-width: 1.2;
+    stroke-linejoin: round;
+  }
+
+  #al-andalus-history-map .aam__territory--external {
+    opacity: 0.72;
+  }
+
+  #al-andalus-history-map .aam__taifa-overlay {
+    fill: url(#aam-taifa-pattern);
+    opacity: 0.7;
+  }
+
+  #al-andalus-history-map .aam__taifa-hatch {
+    stroke: color-mix(in srgb, var(--aam-raised) 72%, transparent);
+    stroke-width: 3;
+  }
+
+  #al-andalus-history-map .aam__taifa-line {
+    fill: none;
+    stroke: color-mix(in srgb, var(--aam-raised) 80%, transparent);
+    stroke-width: 1.25;
+    stroke-dasharray: 3 3;
+  }
+
+  #al-andalus-history-map .aam__origin {
+    fill: color-mix(in srgb, var(--aam-accent) 21%, var(--aam-raised));
+    stroke: color-mix(in srgb, var(--aam-accent) 55%, transparent);
+    stroke-width: 1;
+  }
+
+  #al-andalus-history-map #aam-territory,
+  #al-andalus-history-map #aam-external-territory,
+  #al-andalus-history-map #aam-origin,
+  #al-andalus-history-map #aam-fragmentation,
+  #al-andalus-history-map #aam-movements,
+  #al-andalus-history-map #aam-places {
+    transition: opacity 180ms ease;
+  }
+
+  #al-andalus-history-map .aam__movement {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #al-andalus-history-map .aam__movement--muslim {
+    stroke: var(--aam-accent);
+    marker-end: url(#aam-arrow-muslim);
+  }
+
+  #al-andalus-history-map .aam__movement--christian {
+    stroke: var(--aam-ink);
+    marker-end: url(#aam-arrow-christian);
+  }
+
+  #al-andalus-history-map .aam__movement--rollback {
+    stroke: var(--aam-muted);
+    stroke-dasharray: 5 4;
+    marker-end: url(#aam-arrow-rollback);
+  }
+
+  #al-andalus-history-map .aam__arrowhead--muslim { fill: var(--aam-accent); }
+  #al-andalus-history-map .aam__arrowhead--christian { fill: var(--aam-ink); }
+  #al-andalus-history-map .aam__arrowhead--rollback { fill: var(--aam-muted); }
+
+  #al-andalus-history-map .aam__place-dot {
+    fill: var(--aam-raised);
+    stroke: var(--aam-ink);
+    stroke-width: 1.35;
+  }
+
+  #al-andalus-history-map .aam__place-dot--accent {
+    fill: var(--aam-accent);
+    stroke: var(--aam-raised);
+  }
+
+  #al-andalus-history-map .aam__place-label {
+    fill: var(--aam-ink);
+    paint-order: stroke;
+    stroke: var(--aam-paper);
+    stroke-width: 3.5px;
+    stroke-linejoin: round;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+  }
+
+  #al-andalus-history-map .aam__geo-label {
+    fill: var(--aam-muted);
+    opacity: 0.72;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-anchor: middle;
+  }
+
+  #al-andalus-history-map .aam__water-label {
+    fill: var(--aam-muted);
+    opacity: 0.52;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 10px;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+  }
+
+  #al-andalus-history-map .aam__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+    margin: 0.45rem 0 0;
+    color: var(--aam-muted);
+    font-size: 0.66rem;
+    letter-spacing: 0.035em;
+  }
+
+  #al-andalus-history-map .aam__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  #al-andalus-history-map .aam__swatch {
+    display: inline-block;
+    width: 0.85rem;
+    height: 0.65rem;
+    border: 1px solid var(--aam-rule);
+  }
+
+  #al-andalus-history-map .aam__swatch--muslim {
+    border-color: color-mix(in srgb, var(--aam-accent) 75%, transparent);
+    background: color-mix(in srgb, var(--aam-accent) 78%, var(--aam-paper));
+  }
+
+  #al-andalus-history-map .aam__swatch--christian { background: var(--aam-christian); }
+
+  #al-andalus-history-map .aam__line-key {
+    display: inline-block;
+    width: 1rem;
+    border-top: 2px solid;
+  }
+
+  #al-andalus-history-map .aam__line-key--muslim { border-color: var(--aam-accent); }
+  #al-andalus-history-map .aam__line-key--christian { border-color: var(--aam-ink); }
+
+  #al-andalus-history-map .aam__controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #al-andalus-history-map .aam__play,
+  #al-andalus-history-map .aam__utility-button {
+    margin: 0;
+    padding: 0.65rem 0.9rem;
+    border: 0;
+    border-radius: 3px;
+    background: var(--aam-accent);
+    color: var(--aam-raised);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  #al-andalus-history-map .aam__utility-button {
+    border: 1px solid var(--aam-rule);
+    background: transparent;
+    color: var(--aam-ink);
+  }
+
+  #al-andalus-history-map .aam__play:hover,
+  #al-andalus-history-map .aam__play:focus-visible,
+  #al-andalus-history-map .aam__utility-button:hover,
+  #al-andalus-history-map .aam__utility-button:focus-visible { filter: brightness(1.08); }
+
+  #al-andalus-history-map .aam__utility-button:disabled {
+    cursor: not-allowed;
+    filter: none;
+    opacity: 0.38;
+  }
+
+  #al-andalus-history-map .aam__step-controls {
+    display: flex;
+    gap: 0.4rem;
+    margin-left: auto;
+  }
+
+  #al-andalus-history-map .aam__speed-button {
+    border-color: color-mix(in srgb, var(--aam-accent) 55%, var(--aam-rule));
+    color: var(--aam-accent);
+  }
+
+  #al-andalus-history-map .aam__timeline {
+    display: flex;
+    flex: 1 1 calc(100% - 4.6rem);
+    align-items: center;
+    order: 3;
+    margin: 0.35rem 0 0;
+  }
+
+  #al-andalus-history-map .aam__scrubber {
+    width: 100%;
+    margin: 0;
+    accent-color: var(--aam-accent);
+  }
+
+  #al-andalus-history-map .aam__count {
+    min-width: 3.8rem;
+    order: 4;
+    margin-top: 0.35rem;
+    color: var(--aam-muted);
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.045em;
+    text-align: right;
+  }
+
+  #al-andalus-history-map .aam__years {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.2rem 4.65rem 0 0;
+    color: var(--aam-muted);
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.045em;
+  }
+
+  #al-andalus-history-map .aam__caveat {
+    margin: 1.15rem 0 0;
+    padding: 0.85rem 1rem;
+    border-left: 2px solid color-mix(in srgb, var(--aam-accent) 72%, transparent);
+    background: color-mix(in srgb, var(--aam-accent) 5%, transparent);
+    color: var(--aam-muted);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.79rem;
+    line-height: 1.55;
+  }
+
+  #al-andalus-history-map .aam__caveat strong { color: var(--aam-ink); }
+
+  #al-andalus-history-map .aam__source {
+    margin: 1rem 0 0;
+    color: var(--aam-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.035em;
+    line-height: 1.55;
+  }
+
+  #al-andalus-history-map .aam__source a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+  }
+
+  #al-andalus-history-map .sr-only,
+  #al-andalus-history-map .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  @media (max-width: 600px) {
+    #al-andalus-history-map { margin: 2.5rem 0; }
+
+    #al-andalus-history-map .aam__readout {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      min-height: 12.5rem;
+    }
+
+    #al-andalus-history-map .aam__map-wrap { margin-top: 0.85rem; }
+    #al-andalus-history-map .aam__legend { column-gap: 0.7rem; }
+    #al-andalus-history-map .aam__step-controls { width: auto; }
+
+    #al-andalus-history-map .aam__utility-button {
+      padding-right: 0.55rem;
+      padding-left: 0.55rem;
+    }
+
+    #al-andalus-history-map .aam__years {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #al-andalus-history-map #aam-territory,
+    #al-andalus-history-map #aam-external-territory,
+    #al-andalus-history-map #aam-origin,
+    #al-andalus-history-map #aam-fragmentation,
+    #al-andalus-history-map #aam-movements,
+    #al-andalus-history-map #aam-places { transition: none; }
+  }
+</style>
+
+<script>
+(() => {
+  "use strict";
+
+  const root = document.querySelector("[data-al-andalus-history-map]");
+  if (!root) return;
+
+  const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+  let language = requestedLanguage === "fr" ? "fr" : "en";
+
+  const NS = "http://www.w3.org/2000/svg";
+  const dateNode = root.querySelector("#aam-date");
+  const titleNode = root.querySelector("#aam-title");
+  const phaseNode = root.querySelector("#aam-phase");
+  const eventNode = root.querySelector("#aam-event");
+  const mapTitleNode = root.querySelector("#aam-map-title");
+  const descriptionNode = root.querySelector("#aam-map-desc");
+  const scrubber = root.querySelector("#aam-scrubber");
+  const countNode = root.querySelector("#aam-count");
+  const playButton = root.querySelector("#aam-play");
+  const playIcon = root.querySelector("#aam-play-icon");
+  const playLabel = root.querySelector("#aam-play-label");
+  const previousButton = root.querySelector("#aam-previous");
+  const nextButton = root.querySelector("#aam-next");
+  const speedButton = root.querySelector("#aam-speed");
+  const stepControls = root.querySelector("#aam-step-controls");
+  const timelineLabel = root.querySelector("#aam-timeline-label");
+  const legend = root.querySelector("#aam-legend");
+  const legendMuslimTerritory = root.querySelector("#aam-legend-muslim-territory");
+  const legendChristianTerritory = root.querySelector("#aam-legend-christian-territory");
+  const legendMuslimAdvance = root.querySelector("#aam-legend-muslim-advance");
+  const legendChristianAdvance = root.querySelector("#aam-legend-christian-advance");
+  const caveatNode = root.querySelector("#aam-caveat");
+  const sourceNode = root.querySelector("#aam-source");
+  const landLayer = root.querySelector("#aam-land");
+  const iberiaLayer = root.querySelector("#aam-iberia-base");
+  const territoryLayer = root.querySelector("#aam-territory");
+  const externalLayer = root.querySelector("#aam-external-territory");
+  const fragmentationLayer = root.querySelector("#aam-fragmentation");
+  const originLayer = root.querySelector("#aam-origin");
+  const boundaryLayer = root.querySelector("#aam-boundaries");
+  const movementLayer = root.querySelector("#aam-movements");
+  const placeLayer = root.querySelector("#aam-places");
+  const graticuleLayer = root.querySelector("#aam-graticule");
+  const labelLayer = root.querySelector("#aam-geographic-labels");
+  const iberiaClip = root.querySelector("#aam-iberia-clip");
+
+  const countryData = {"FRA":[[[[6.187,49.464],[6.658,49.202],[8.098,49.018],[7.594,48.332],[7.468,47.62],[7.191,47.45],[6.737,47.542],[6.77,47.287],[6.039,46.726],[6.021,46.273],[6.5,46.429],[6.842,45.992],[6.802,45.708],[7.097,45.333],[6.748,45.028],[7.007,44.255],[7.551,44.128],[7.436,43.694],[6.529,43.128],[4.556,43.399],[3.101,43.076],[2.986,42.473],[1.827,42.343],[0.7,42.796],[0.337,42.579],[-1.503,43.034],[-1.903,43.423],[-1.384,44.022],[-1.193,46.014],[-2.227,47.065],[-2.965,47.57],[-4.491,47.955],[-4.592,48.685],[-3.296,48.902],[-1.618,48.645],[-1.935,49.777],[-0.988,49.348],[1.337,50.128],[1.64,50.947],[2.515,51.149],[2.659,50.796],[3.123,50.781],[3.587,50.38],[4.286,49.907],[4.801,49.985],[5.675,49.529],[5.899,49.442],[6.187,49.464]]]],"DZA":[[[[-8.685,27.396],[-8.663,27.59],[-8.667,27.656],[-8.674,28.84],[-7.058,29.578],[-6.061,29.731],[-5.243,30],[-4.858,30.501],[-3.692,30.896],[-3.649,31.638],[-3.069,31.725],[-2.615,32.095],[-1.309,32.263],[-1.125,32.652],[-1.388,32.864],[-1.733,33.92],[-1.795,34.527],[-2.169,35.168],[-1.208,35.715],[-0.128,35.889],[0.502,36.302],[1.467,36.606],[3.163,36.783],[4.815,36.865],[5.319,36.717],[6.262,37.111],[7.331,37.118],[7.738,36.886],[8.422,36.946],[8.217,36.434],[8.375,35.481],[8.141,34.656],[7.526,34.097],[7.612,33.345],[8.429,32.747],[8.44,32.506],[9.056,32.103],[9.481,30.308],[9.805,29.424],[9.859,28.96],[9.682,28.144],[9.758,27.687],[9.628,27.14],[9.715,26.512],[9.319,26.095],[9.909,25.366],[9.949,24.937],[10.305,24.379],[10.773,24.562],[11.562,24.098],[12.001,23.471],[8.573,21.566],[5.679,19.601],[4.268,19.154],[3.159,19.057],[3.148,19.693],[2.684,19.856],[2.061,20.142],[1.823,20.611],[-1.55,22.792],[-4.923,24.975],[-8.685,27.396]]]],"PRT":[[[[-9.034,41.881],[-8.671,42.135],[-8.264,42.281],[-8.012,41.791],[-7.421,41.793],[-7.252,41.918],[-6.669,41.883],[-6.388,41.381],[-6.853,41.11],[-6.863,40.331],[-7.025,40.185],[-7.065,39.712],[-7.497,39.629],[-7.097,39.03],[-7.375,38.374],[-7.029,38.075],[-7.166,37.804],[-7.537,37.429],[-7.454,37.097],[-7.857,36.839],[-8.383,36.979],[-8.897,36.868],[-8.746,37.651],[-8.84,38.266],[-9.286,38.358],[-9.527,38.737],[-9.448,39.391],[-9.049,39.756],[-8.977,40.159],[-8.768,40.761],[-8.789,41.185],[-8.991,41.543],[-9.034,41.881]]]],"ESP":[[[[-1.903,43.423],[-1.503,43.034],[0.337,42.579],[0.7,42.796],[1.827,42.343],[2.986,42.473],[3.04,41.892],[2.093,41.227],[0.812,41.015],[0.722,40.678],[0.106,40.124],[-0.279,39.31],[0.11,38.738],[-0.466,38.292],[-0.682,37.643],[-1.438,37.443],[-2.147,36.674],[-3.415,36.66],[-4.369,36.677],[-4.995,36.325],[-5.377,35.946],[-5.866,36.029],[-6.237,36.368],[-6.521,36.943],[-7.454,37.097],[-7.537,37.429],[-7.166,37.804],[-7.029,38.075],[-7.375,38.374],[-7.097,39.03],[-7.497,39.629],[-7.065,39.712],[-7.025,40.185],[-6.863,40.331],[-6.853,41.11],[-6.388,41.381],[-6.669,41.883],[-7.252,41.918],[-7.421,41.793],[-8.012,41.791],[-8.264,42.281],[-8.671,42.135],[-9.034,41.881],[-8.984,42.593],[-9.394,43.027],[-7.979,43.748],[-6.755,43.567],[-5.413,43.574],[-4.347,43.404],[-3.519,43.456],[-1.903,43.423]]]],"MAR":[[[[-8.667,27.656],[-8.818,27.656],[-8.793,27.121],[-9.412,27.088],[-9.736,26.861],[-10.19,26.861],[-10.55,26.991],[-11.392,26.883],[-11.72,26.104],[-12.03,26.031],[-12.501,24.77],[-13.891,23.692],[-14.222,22.31],[-14.632,21.862],[-14.751,21.5],[-17.001,21.421],[-17.019,21.422],[-16.972,21.886],[-16.591,22.159],[-16.263,22.679],[-16.328,23.018],[-15.982,23.723],[-15.424,24.359],[-15.09,24.52],[-14.823,25.104],[-14.802,25.637],[-14.442,26.255],[-13.776,26.619],[-13.138,27.641],[-13.12,27.654],[-12.62,28.038],[-11.688,28.149],[-10.903,28.832],[-10.399,29.099],[-9.563,29.934],[-9.815,31.178],[-9.434,32.037],[-9.301,32.565],[-8.656,33.241],[-7.655,33.697],[-6.914,34.111],[-6.244,35.146],[-5.931,35.76],[-5.193,35.755],[-4.592,35.331],[-3.641,35.399],[-2.605,35.179],[-2.169,35.168],[-1.795,34.527],[-1.733,33.92],[-1.388,32.864],[-1.125,32.652],[-1.309,32.263],[-2.615,32.095],[-3.069,31.725],[-3.649,31.638],[-3.692,30.896],[-4.858,30.501],[-5.243,30],[-6.061,29.731],[-7.058,29.578],[-8.674,28.84],[-8.667,27.656]]]]};
+
+  const bounds = { minLon: -12, maxLon: 8, minLat: 30.5, maxLat: 49 };
+  const frame = { left: 34, right: 675, top: 20, bottom: 475 };
+  const radians = Math.PI / 180;
+  const mercatorY = latitude => Math.log(Math.tan(Math.PI / 4 + latitude * radians / 2));
+  const mercatorTop = mercatorY(bounds.maxLat);
+  const mercatorBottom = mercatorY(bounds.minLat);
+
+  const project = ([longitude, latitude]) => [
+    frame.left + (longitude - bounds.minLon) / (bounds.maxLon - bounds.minLon) * (frame.right - frame.left),
+    frame.top + (mercatorTop - mercatorY(latitude)) / (mercatorTop - mercatorBottom) * (frame.bottom - frame.top)
+  ];
+
+  const createSvg = (name, attributes = {}) => {
+    const node = document.createElementNS(NS, name);
+    Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, value));
+    return node;
+  };
+
+  const ringPath = points => {
+    if (!points.length) return "";
+    return points.map((point, index) => {
+      const [x, y] = project(point);
+      return `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`;
+    }).join(" ") + " Z";
+  };
+
+  const polylinePath = points => points.map((point, index) => {
+    const [x, y] = project(point);
+    return `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`;
+  }).join(" ");
+
+  const countryPath = polygons => polygons.map(polygon => polygon.map(ringPath).join(" ")).join(" ");
+  const southOf = frontier => [[...frontier, [8.2, 30.2], [-12.2, 30.2]]];
+
+  const territoryShapes = {
+    beachhead: [[[-6.35, 36.65], [-5.82, 36.05], [-5.15, 36.02], [-4.65, 36.45], [-5.1, 36.9]]],
+    conquest: southOf([[-10, 42.9], [-8.2, 42.72], [-6.5, 42.87], [-5, 43.05], [-3.5, 42.75], [-1.5, 42.65], [0.4, 42.2], [3.25, 42.3]]),
+    umayyad: southOf([[-10, 42.45], [-8.2, 42.35], [-6.2, 42.45], [-4.2, 42.25], [-2.1, 42.05], [0.2, 41.7], [3.25, 41.85]]),
+    caliphate: southOf([[-10, 41.75], [-8, 41.7], [-6.3, 41.55], [-4.5, 41.7], [-2.5, 41.45], [-0.3, 41.05], [3.2, 41.25]]),
+    taifa: southOf([[-10, 41.55], [-8.1, 41.45], [-6.1, 41.35], [-4.1, 41.1], [-2, 40.95], [0.2, 40.75], [3.2, 41.1]]),
+    postToledo: southOf([[-10, 40.45], [-8, 40.1], [-6.2, 39.8], [-4.6, 39.45], [-3.6, 39.05], [-2.3, 39.75], [-0.2, 40.35], [3.2, 40.9]]),
+    postZaragoza: southOf([[-10, 40.35], [-8.1, 40.05], [-6.3, 39.75], [-4.4, 39.35], [-2.5, 39.6], [-0.4, 39.7], [1.3, 40.0], [3.2, 40.25]]),
+    almohad: southOf([[-10, 39.4], [-8.1, 39.2], [-6.1, 39.05], [-4.2, 39.15], [-2.2, 39.55], [-0.1, 39.85], [3.2, 40.05]]),
+    almohadCounter: southOf([[-10, 39.45], [-8.1, 39.35], [-6.1, 39.4], [-4.3, 39.85], [-2.5, 39.8], [-0.1, 39.9], [3.2, 40.1]]),
+    post1212: southOf([[-10, 38.65], [-8.1, 38.55], [-6.3, 38.35], [-4.3, 38.05], [-2.4, 38.7], [-0.2, 39.2], [3.2, 39.6]]),
+    postCordoba: [
+      [[-8.95, 37.55], [-7.15, 37.35], [-6.3, 36.9], [-5.1, 36.0], [-3.95, 36.3], [-4.5, 37.45], [-6.1, 38.05], [-7.5, 38.2]],
+      [[-4.65, 37.75], [-3.5, 36.55], [-1.7, 36.65], [0.6, 38.0], [1.35, 39.35], [-0.25, 39.65], [-2.0, 39.05]]
+    ],
+    postSeville: [
+      [[-4.85, 37.5], [-3.55, 36.45], [-1.7, 36.6], [0.4, 37.85], [0.85, 38.9], [-0.55, 39.25], [-2.1, 38.55]],
+      [[-8.9, 37.35], [-7.5, 37.05], [-7.1, 37.35], [-7.7, 37.9], [-8.65, 38.05]]
+    ],
+    granada: [[[-5.0, 37.25], [-4.2, 36.45], [-2.4, 36.55], [-1.45, 37.25], [-2.05, 38.05], [-3.25, 38.35], [-4.45, 37.9]]],
+    granadaWar: [[[-4.65, 37.2], [-4.0, 36.55], [-2.45, 36.6], [-1.8, 37.25], [-2.35, 37.85], [-3.25, 38.05], [-4.2, 37.7]]],
+    none: []
+  };
+
+  const septimania = [[[0.9, 42.55], [1.8, 42.35], [3.5, 42.5], [4.35, 43.0], [3.75, 43.75], [2.3, 43.75], [1.1, 43.35]]];
+  const taifaLines = [
+    [[-8.0, 37.0], [-7.2, 39.8], [-6.2, 41.2]],
+    [[-6.2, 36.1], [-5.5, 38.4], [-4.8, 41.2]],
+    [[-4.4, 36.2], [-4.1, 38.2], [-2.9, 40.9]],
+    [[-2.4, 36.7], [-1.4, 38.4], [-0.6, 40.7]],
+    [[0.2, 38.1], [1.25, 39.5], [2.35, 40.8]],
+    [[-8.3, 39.0], [-5.6, 39.1], [-3.2, 38.6], [-0.2, 39.0]],
+    [[-7.3, 40.1], [-4.4, 40.0], [-1.6, 39.7], [1.5, 40.1]]
+  ];
+
+  const events = [
+    {
+      date: "711",
+      title: "The crossing",
+      phase: "initial invasion",
+      territory: "beachhead",
+      origin: true,
+      event: "An Umayyad army of Arab and Amazigh/Berber troops crosses from North Africa. The landing near Gibraltar begins a rapid invasion of the Visigothic kingdom.",
+      arrows: [{ type: "muslim", points: [[-5.81, 35.76], [-5.35, 36.14], [-5.55, 36.55]] }],
+      places: [{ label: "Tangier", coords: [-5.81, 35.76] }, { label: "Gibraltar", coords: [-5.35, 36.14], accent: true }, { label: "Guadalete?", coords: [-5.75, 36.55] }]
+    },
+    {
+      date: "711–718",
+      title: "A kingdom collapses",
+      phase: "rapid conquest",
+      territory: "conquest",
+      event: "After the Visigothic defeat near Guadalete, Muslim forces take Córdoba, Toledo, Zaragoza, and most of the peninsula within a few years. Rule is extensive, but never uniform or uncontested.",
+      arrows: [
+        { type: "muslim", points: [[-5.5, 36.4], [-4.78, 37.89], [-4.03, 39.86]] },
+        { type: "muslim", points: [[-4.03, 39.86], [-2.3, 40.6], [-0.89, 41.65]] },
+        { type: "muslim", points: [[-4.78, 37.89], [-6.0, 39.0], [-8.0, 41.2]] }
+      ],
+      places: [{ label: "Córdoba", coords: [-4.78, 37.89] }, { label: "Toledo", coords: [-4.03, 39.86], accent: true }, { label: "Zaragoza", coords: [-0.89, 41.65] }]
+    },
+    {
+      date: "c. 722",
+      title: "Northern resistance",
+      phase: "Christian footholds",
+      territory: "conquest",
+      event: "The small Asturian victory traditionally associated with Covadonga becomes a founding story for later Christian kingdoms. It was a local resistance, not yet a coordinated centuries-long campaign.",
+      arrows: [{ type: "christian", points: [[-5.05, 43.3], [-5.45, 42.8], [-5.6, 42.15]] }],
+      places: [{ label: "Covadonga", coords: [-5.05, 43.3], accent: true }, { label: "Asturias", coords: [-5.9, 43.15] }]
+    },
+    {
+      date: "732",
+      title: "Beyond the Pyrenees",
+      phase: "advance and rollback",
+      territory: "umayyad",
+      external: true,
+      event: "Muslim forces had moved through Septimania into Frankish territory. Their defeat near Tours in 732 checks the northward advance; the Franks later retake Narbonne in 759.",
+      arrows: [
+        { type: "muslim", points: [[-0.89, 41.65], [3.0, 43.18], [0.68, 47.39]] },
+        { type: "rollback", points: [[0.68, 47.39], [2.0, 45.0], [3.0, 43.18]] }
+      ],
+      places: [{ label: "Narbonne", coords: [3.0, 43.18] }, { label: "Tours", coords: [0.68, 47.39], accent: true }]
+    },
+    {
+      date: "756",
+      title: "The Córdoba emirate",
+      phase: "consolidation",
+      territory: "umayyad",
+      event: "ʿAbd al-Raḥmān I, an Umayyad survivor, establishes an independent emirate at Córdoba. Al-Andalus becomes a durable state, while northern Christian polities continue to consolidate.",
+      arrows: [],
+      places: [{ label: "Córdoba", coords: [-4.78, 37.89], accent: true }, { label: "Oviedo", coords: [-5.85, 43.36] }, { label: "Pamplona", coords: [-1.64, 42.82] }]
+    },
+    {
+      date: "929",
+      title: "The Córdoba caliphate",
+      phase: "political apogee",
+      territory: "caliphate",
+      event: "ʿAbd al-Raḥmān III proclaims a caliphate. Córdoba anchors the most powerful unified Andalusi state, although campaigns, tribute, raids, and shifting northern frontiers continue.",
+      arrows: [],
+      places: [{ label: "Córdoba", coords: [-4.78, 37.89], accent: true }, { label: "León", coords: [-5.57, 42.6] }, { label: "Barcelona", coords: [2.17, 41.39] }]
+    },
+    {
+      date: "1031",
+      title: "The taifas",
+      phase: "fragmentation",
+      territory: "taifa",
+      fragmented: true,
+      event: "Civil war ends the caliphate and al-Andalus fractures into rival taifa principalities. Their wealth and rivalry encourage tribute payments, alliances across religious lines, and northern Christian expansion.",
+      arrows: [],
+      places: [{ label: "Seville", coords: [-5.98, 37.39] }, { label: "Toledo", coords: [-4.03, 39.86] }, { label: "Zaragoza", coords: [-0.89, 41.65] }, { label: "Granada", coords: [-3.6, 37.18], accent: true }]
+    },
+    {
+      date: "1085",
+      title: "Toledo falls",
+      phase: "Christian advance",
+      territory: "postToledo",
+      fragmented: true,
+      event: "Alfonso VI of León-Castile takes Toledo, the former Visigothic capital and a strategic centre. The loss exposes the taifa states and prompts their rulers to seek help across the Strait.",
+      arrows: [{ type: "christian", points: [[-5.57, 42.6], [-4.9, 41.1], [-4.03, 39.86]] }],
+      places: [{ label: "León", coords: [-5.57, 42.6] }, { label: "Toledo", coords: [-4.03, 39.86], accent: true }]
+    },
+    {
+      date: "1086",
+      title: "The Almoravid intervention",
+      phase: "North African wave",
+      territory: "postToledo",
+      origin: true,
+      event: "Taifa rulers invite the Almoravids, an Amazigh/Berber empire based in Marrakesh. They defeat Alfonso VI at Sagrajas and check the advance, then absorb most taifas into their own empire.",
+      arrows: [{ type: "muslim", points: [[-7.98, 31.63], [-5.81, 35.76], [-5.35, 36.14], [-6.97, 38.88]] }],
+      places: [{ label: "Marrakesh", coords: [-7.98, 31.63] }, { label: "Sagrajas", coords: [-6.97, 38.88], accent: true }, { label: "Toledo", coords: [-4.03, 39.86] }]
+    },
+    {
+      date: "1118",
+      title: "Zaragoza falls",
+      phase: "Christian advance",
+      territory: "postZaragoza",
+      event: "Alfonso I of Aragon takes Zaragoza. Christian expansion is proceeding from several northern centres—Portuguese, Leonese-Castilian, Navarrese, Aragonese, and Catalan—not from a single state.",
+      arrows: [{ type: "christian", points: [[-1.64, 42.82], [-1.2, 42.25], [-0.89, 41.65]] }],
+      places: [{ label: "Pamplona", coords: [-1.64, 42.82] }, { label: "Zaragoza", coords: [-0.89, 41.65], accent: true }]
+    },
+    {
+      date: "1147–1172",
+      title: "The Almohad takeover",
+      phase: "North African wave",
+      territory: "almohad",
+      origin: true,
+      event: "A second Amazigh/Berber empire, the Almohads, replaces the Almoravids and gradually takes the remaining Andalusi territories. Seville becomes an imperial capital alongside Marrakesh.",
+      arrows: [{ type: "muslim", points: [[-7.98, 31.63], [-5.81, 35.76], [-5.98, 37.39]] }],
+      places: [{ label: "Marrakesh", coords: [-7.98, 31.63] }, { label: "Seville", coords: [-5.98, 37.39], accent: true }]
+    },
+    {
+      date: "1195",
+      title: "The counterstroke at Alarcos",
+      phase: "Muslim pushback",
+      territory: "almohadCounter",
+      origin: true,
+      event: "The Almohads crush Alfonso VIII of Castile at Alarcos and temporarily restore the military balance. The episode makes clear that the frontier did not move steadily south.",
+      arrows: [{ type: "muslim", points: [[-5.98, 37.39], [-4.8, 38.3], [-4.06, 38.99]] }],
+      places: [{ label: "Seville", coords: [-5.98, 37.39] }, { label: "Alarcos", coords: [-4.06, 38.99], accent: true }]
+    },
+    {
+      date: "1212",
+      title: "Las Navas de Tolosa",
+      phase: "decisive Christian victory",
+      territory: "post1212",
+      event: "A coalition led by Castile, Aragon, and Navarre defeats the Almohads near the Sierra Morena. Almohad power in Iberia unravels, opening the way to much faster thirteenth-century conquests.",
+      arrows: [
+        { type: "christian", points: [[-4.03, 39.86], [-3.85, 39.0], [-3.55, 38.34]] },
+        { type: "christian", points: [[-1.3, 42.4], [-2.1, 40.4], [-3.55, 38.34]] }
+      ],
+      places: [{ label: "Toledo", coords: [-4.03, 39.86] }, { label: "Las Navas", coords: [-3.55, 38.34], accent: true }]
+    },
+    {
+      date: "1236",
+      title: "Córdoba falls",
+      phase: "rapid Christian advance",
+      territory: "postCordoba",
+      event: "Ferdinand III of Castile takes Córdoba. Portuguese, Castilian, and Aragonese conquests are now breaking the remaining Muslim territories into separated southern and eastern pockets.",
+      arrows: [{ type: "christian", points: [[-4.03, 39.86], [-4.2, 38.9], [-4.78, 37.89]] }],
+      places: [{ label: "Córdoba", coords: [-4.78, 37.89], accent: true }, { label: "Valencia", coords: [-0.38, 39.47] }, { label: "Seville", coords: [-5.98, 37.39] }]
+    },
+    {
+      date: "1248",
+      title: "Seville falls",
+      phase: "rapid Christian advance",
+      territory: "postSeville",
+      event: "Ferdinand III takes Seville. By the 1260s, the Algarve and Murcia have also passed under Christian rule; only the Nasrid state centred on Granada will endure.",
+      arrows: [{ type: "christian", points: [[-4.78, 37.89], [-5.4, 37.7], [-5.98, 37.39]] }],
+      places: [{ label: "Seville", coords: [-5.98, 37.39], accent: true }, { label: "Granada", coords: [-3.6, 37.18] }, { label: "Murcia", coords: [-1.13, 37.99] }]
+    },
+    {
+      date: "1266",
+      title: "Granada alone",
+      phase: "Nasrid survival",
+      territory: "granada",
+      event: "After Murcia is incorporated into Castile, the Nasrid Emirate of Granada is the peninsula’s last Muslim-ruled state. It survives for more than two centuries through tribute, diplomacy, terrain, and internal politics.",
+      arrows: [],
+      places: [{ label: "Granada", coords: [-3.6, 37.18], accent: true }, { label: "Málaga", coords: [-4.42, 36.72] }, { label: "Almería", coords: [-2.46, 36.84] }]
+    },
+    {
+      date: "1340",
+      title: "The Marinids are stopped",
+      phase: "final North African wave",
+      territory: "granada",
+      origin: true,
+      event: "A Marinid–Nasrid army is defeated by Castile and Portugal at Río Salado near Tarifa. The victory ends the last major North African attempt to reverse the balance of power across the Strait.",
+      arrows: [
+        { type: "muslim", points: [[-5.81, 35.76], [-5.6, 36.01], [-5.75, 36.13]] },
+        { type: "rollback", points: [[-5.75, 36.13], [-5.68, 35.85], [-5.81, 35.76]] }
+      ],
+      places: [{ label: "Tarifa", coords: [-5.6, 36.01] }, { label: "Río Salado", coords: [-5.75, 36.13], accent: true }, { label: "Granada", coords: [-3.6, 37.18] }]
+    },
+    {
+      date: "1482–1491",
+      title: "The Granada War",
+      phase: "final conquest",
+      territory: "granadaWar",
+      event: "The Catholic Monarchs wage a ten-year war against a Nasrid state weakened by dynastic conflict. Castilian-Aragonese armies reduce the emirate fortress by fortress and surround Granada.",
+      arrows: [
+        { type: "christian", points: [[-5.98, 37.39], [-4.75, 37.4], [-3.6, 37.18]] },
+        { type: "christian", points: [[-1.13, 37.99], [-2.25, 37.7], [-3.6, 37.18]] },
+        { type: "christian", points: [[-3.8, 38.7], [-3.65, 38.0], [-3.6, 37.18]] }
+      ],
+      places: [{ label: "Granada", coords: [-3.6, 37.18], accent: true }, { label: "Málaga", coords: [-4.42, 36.72] }, { label: "Almería", coords: [-2.46, 36.84] }]
+    },
+    {
+      date: "2 January 1492",
+      title: "Granada surrenders",
+      phase: "end of Muslim sovereignty",
+      territory: "none",
+      event: "Muḥammad XII surrenders Granada to Isabella of Castile and Ferdinand of Aragon. Muslim political rule ends, but Muslim people remain; the capitulation’s protections, later forced conversions, and expulsions belong to the history after this map.",
+      arrows: [],
+      places: [{ label: "Granada", coords: [-3.6, 37.18], accent: true }]
+    }
+  ];
+
+  const eventTranslations = {
+    fr: [
+      {
+        title: "La traversée",
+        phase: "invasion initiale",
+        event: "Une armée omeyyade formée de troupes arabes et amazighes/berbères traverse le détroit depuis l’Afrique du Nord. Le débarquement près de Gibraltar amorce une invasion rapide du royaume wisigoth."
+      },
+      {
+        title: "L’effondrement d’un royaume",
+        phase: "conquête rapide",
+        event: "Après la défaite wisigothe près du Guadalete, les forces musulmanes prennent Cordoue, Tolède, Saragosse et la majeure partie de la péninsule en quelques années. Leur pouvoir est étendu, mais jamais uniforme ni incontesté."
+      },
+      {
+        date: "v. 722",
+        title: "La résistance du Nord",
+        phase: "foyers chrétiens",
+        event: "La petite victoire asturienne traditionnellement associée à Covadonga devient un récit fondateur pour les royaumes chrétiens ultérieurs. Il s’agit alors d’une résistance locale, et non d’une campagne coordonnée appelée à durer des siècles."
+      },
+      {
+        title: "Au-delà des Pyrénées",
+        phase: "avancée et recul",
+        event: "Les forces musulmanes avaient franchi la Septimanie pour entrer en territoire franc. Leur défaite près de Tours en 732 freine l’avancée vers le nord; les Francs reprennent ensuite Narbonne en 759."
+      },
+      {
+        title: "L’émirat de Cordoue",
+        phase: "consolidation",
+        event: "ʿAbd al-Raḥmān Ier, survivant omeyyade, fonde à Cordoue un émirat indépendant. Al-Andalus devient un État durable, tandis que les entités politiques chrétiennes du Nord continuent de se consolider."
+      },
+      {
+        title: "Le califat de Cordoue",
+        phase: "apogée politique",
+        event: "ʿAbd al-Raḥmān III proclame un califat. Cordoue devient le centre du plus puissant État andalou unifié, bien que se poursuivent campagnes, tributs, raids et déplacements des frontières septentrionales."
+      },
+      {
+        title: "Les taifas",
+        phase: "fragmentation",
+        event: "La guerre civile met fin au califat et fragmente al-Andalus en principautés rivales appelées taifas. Leur richesse et leurs rivalités favorisent le paiement de tributs, les alliances au-delà des appartenances religieuses et l’expansion des royaumes chrétiens du Nord."
+      },
+      {
+        title: "La chute de Tolède",
+        phase: "avancée chrétienne",
+        event: "Alphonse VI de León-Castille s’empare de Tolède, ancienne capitale wisigothe et centre stratégique. Cette perte fragilise les États des taifas et pousse leurs souverains à chercher de l’aide de l’autre côté du détroit."
+      },
+      {
+        title: "L’intervention almoravide",
+        phase: "vague nord-africaine",
+        event: "Les souverains des taifas invitent les Almoravides, empire amazigh/berbère établi à Marrakech. Ceux-ci battent Alphonse VI à Sagrajas et freinent l’avancée, puis intègrent la plupart des taifas à leur propre empire."
+      },
+      {
+        title: "La chute de Saragosse",
+        phase: "avancée chrétienne",
+        event: "Alphonse Ier d’Aragon s’empare de Saragosse. L’expansion chrétienne part de plusieurs centres du Nord — portugais, léonais-castillan, navarrais, aragonais et catalan —, et non d’un seul État."
+      },
+      {
+        title: "La prise de pouvoir almohade",
+        phase: "vague nord-africaine",
+        event: "Un deuxième empire amazigh/berbère, celui des Almohades, remplace les Almoravides et s’empare progressivement des territoires andalous restants. Séville devient une capitale impériale aux côtés de Marrakech."
+      },
+      {
+        title: "La contre-attaque d’Alarcos",
+        phase: "riposte musulmane",
+        event: "Les Almohades écrasent Alphonse VIII de Castille à Alarcos et rétablissent temporairement l’équilibre militaire. L’épisode montre clairement que la frontière ne se déplaçait pas constamment vers le sud."
+      },
+      {
+        title: "Las Navas de Tolosa",
+        phase: "victoire chrétienne décisive",
+        event: "Une coalition menée par la Castille, l’Aragon et la Navarre bat les Almohades près de la Sierra Morena. Le pouvoir almohade dans la péninsule s’effondre, ouvrant la voie aux conquêtes beaucoup plus rapides du XIIIe siècle."
+      },
+      {
+        title: "La chute de Cordoue",
+        phase: "avancée chrétienne rapide",
+        event: "Ferdinand III de Castille s’empare de Cordoue. Les conquêtes portugaises, castillanes et aragonaises divisent désormais les territoires musulmans restants en poches isolées au sud et à l’est."
+      },
+      {
+        title: "La chute de Séville",
+        phase: "avancée chrétienne rapide",
+        event: "Ferdinand III s’empare de Séville. Dans les années 1260, l’Algarve et Murcie passent aussi sous domination chrétienne; seul l’État nasride centré sur Grenade subsistera."
+      },
+      {
+        title: "Grenade demeure seule",
+        phase: "survie nasride",
+        event: "Après l’intégration de Murcie à la Castille, l’émirat nasride de Grenade devient le dernier État de la péninsule gouverné par des musulmans. Il subsiste plus de deux siècles grâce aux tributs, à la diplomatie, au relief et à sa politique intérieure."
+      },
+      {
+        title: "L’arrêt des Mérinides",
+        phase: "dernière vague nord-africaine",
+        event: "Une armée mérinido-nasride est battue par la Castille et le Portugal au Río Salado, près de Tarifa. Cette victoire met fin à la dernière grande tentative nord-africaine de renverser l’équilibre des forces de l’autre côté du détroit."
+      },
+      {
+        title: "La guerre de Grenade",
+        phase: "conquête finale",
+        event: "Les Rois Catholiques mènent une guerre de dix ans contre un État nasride affaibli par un conflit dynastique. Les armées castillano-aragonaises réduisent l’émirat forteresse après forteresse et encerclent Grenade."
+      },
+      {
+        date: "2 janvier 1492",
+        title: "Grenade capitule",
+        phase: "fin de la souveraineté musulmane",
+        event: "Muḥammad XII remet Grenade à Isabelle de Castille et Ferdinand d’Aragon. Le pouvoir politique musulman prend fin, mais les populations musulmanes demeurent; les garanties de la capitulation, puis les conversions forcées et les expulsions, appartiennent à l’histoire postérieure à cette carte."
+      }
+    ]
+  };
+
+  const uiText = {
+    en: {
+      rootLabel: "A schematic political history of al-Andalus, 711 to 1492",
+      mapTitle: "Political history of al-Andalus from 711 to 1492",
+      mapDescription: "Schematic territorial fills and directional arrows show the initial Umayyad conquest, northern Christian advances, North African interventions, and the contraction of Muslim rule to Granada.",
+      legend: "Map legend",
+      muslimTerritory: "Muslim-ruled territory",
+      christianTerritory: "Christian-ruled territory",
+      muslimAdvance: "Muslim advance or intervention",
+      christianAdvance: "Christian advance",
+      play: "Play history",
+      pause: "Pause",
+      replay: "Replay history",
+      playLabel: "Play the history of al-Andalus",
+      pauseLabel: "Pause the history of al-Andalus",
+      replayLabel: "Replay the history of al-Andalus",
+      navigation: "Timeline navigation",
+      previous: "← Previous",
+      next: "Next →",
+      speed: "Speed",
+      speedLabel: rate => `Playback speed ${rate}; activate to change`,
+      timeline: "Historical timeline",
+      caveat: "<strong>How to read this map.</strong> The fills are schematic snapshots of political control, not exact modern-style borders and not a map of religion or ethnicity. “Reconquista” is a conventional and debated label for many intermittent wars, alliances, truces, raids, and settlements—not one continuous, unified campaign.",
+      source: `Chronology and broad territorial stages follow the <a href="https://www.metmuseum.org/essays/the-art-of-the-umayyad-period-in-spain-711-1031">Metropolitan Museum of Art</a>, its account of the <a href="https://www.metmuseum.org/essays/the-art-of-the-almoravid-and-almohad-periods-ca-1062-1269">Almoravid and Almohad periods</a>, and a <a href="https://assets.cambridge.org/97811084/28071/excerpt/9781108428071_excerpt.pdf">Cambridge University Press overview</a> of the intermittent Christian conquests. Coastlines and present-day borders are included only for orientation.`,
+      geography: ["FRANCE", "IBERIAN PENINSULA", "NORTH AFRICA", "ATLANTIC", "MEDITERRANEAN"]
+    },
+    fr: {
+      rootLabel: "Une histoire politique schématique d’al-Andalus, de 711 à 1492",
+      mapTitle: "Histoire politique d’al-Andalus de 711 à 1492",
+      mapDescription: "Des aplats territoriaux schématiques et des flèches montrent la conquête omeyyade initiale, les avancées chrétiennes depuis le nord, les interventions nord-africaines et la contraction du pouvoir musulman jusqu’à Grenade.",
+      legend: "Légende de la carte",
+      muslimTerritory: "Territoire sous pouvoir musulman",
+      christianTerritory: "Territoire sous pouvoir chrétien",
+      muslimAdvance: "Avancée ou intervention musulmane",
+      christianAdvance: "Avancée chrétienne",
+      play: "Lancer l’histoire",
+      pause: "Pause",
+      replay: "Rejouer l’histoire",
+      playLabel: "Lancer l’histoire d’al-Andalus",
+      pauseLabel: "Mettre l’histoire d’al-Andalus en pause",
+      replayLabel: "Rejouer l’histoire d’al-Andalus",
+      navigation: "Navigation chronologique",
+      previous: "← Précédent",
+      next: "Suivant →",
+      speed: "Vitesse",
+      speedLabel: rate => `Vitesse de lecture ${rate}; activer pour la modifier`,
+      timeline: "Chronologie historique",
+      caveat: "<strong>Comment lire cette carte.</strong> Les aplats sont des instantanés schématiques du contrôle politique, non des frontières modernes exactes ni une carte des religions ou des appartenances ethniques. « Reconquista » est une appellation conventionnelle et débattue qui recouvre de nombreuses guerres intermittentes, alliances, trêves, razzias et implantations — et non une campagne continue et unifiée.",
+      source: `La chronologie et les grandes étapes territoriales suivent le <a href="https://www.metmuseum.org/essays/the-art-of-the-umayyad-period-in-spain-711-1031">Metropolitan Museum of Art</a>, son étude des <a href="https://www.metmuseum.org/essays/the-art-of-the-almoravid-and-almohad-periods-ca-1062-1269">périodes almoravide et almohade</a>, ainsi qu’un <a href="https://assets.cambridge.org/97811084/28071/excerpt/9781108428071_excerpt.pdf">survol publié par Cambridge University Press</a> des conquêtes chrétiennes intermittentes. Les littoraux et frontières actuelles ne servent qu’à l’orientation.`,
+      geography: ["FRANCE", "PÉNINSULE IBÉRIQUE", "AFRIQUE DU NORD", "ATLANTIQUE", "MÉDITERRANÉE"]
+    }
+  };
+
+  const placeTranslations = {
+    Tangier: "Tanger",
+    Córdoba: "Cordoue",
+    Toledo: "Tolède",
+    Zaragoza: "Saragosse",
+    Asturias: "Asturies",
+    Barcelona: "Barcelone",
+    Seville: "Séville",
+    Marrakesh: "Marrakech",
+    Pamplona: "Pampelune",
+    Granada: "Grenade"
+  };
+
+  const localizedEventAt = index => {
+    const entry = events[index];
+    const translation = language === "fr" ? eventTranslations.fr[index] : null;
+    return {
+      ...entry,
+      ...(translation || {}),
+      places: (entry.places || []).map(place => ({
+        ...place,
+        label: language === "fr" ? (placeTranslations[place.label] || place.label) : place.label
+      }))
+    };
+  };
+
+  const renderGeographicLabels = () => {
+    const labels = [
+      { coords: [-2.1, 46.0], className: "aam__geo-label" },
+      { coords: [-3.6, 41.0], className: "aam__geo-label" },
+      { coords: [-3.4, 32.8], className: "aam__geo-label" },
+      { coords: [-10.35, 39.7], className: "aam__water-label" },
+      { coords: [2.3, 35.2], className: "aam__water-label" }
+    ];
+
+    labelLayer.replaceChildren();
+    labels.forEach((label, index) => {
+      const [x, y] = project(label.coords);
+      const text = createSvg("text", { x: x.toFixed(2), y: y.toFixed(2), class: label.className });
+      text.textContent = uiText[language].geography[index];
+      labelLayer.append(text);
+    });
+  };
+
+  const renderStaticMap = () => {
+    [-10, -5, 0, 5].forEach(longitude => {
+      const path = createSvg("path", { d: polylinePath([[longitude, bounds.minLat], [longitude, bounds.maxLat]]), class: "aam__graticule" });
+      graticuleLayer.append(path);
+    });
+    [35, 40, 45].forEach(latitude => {
+      const path = createSvg("path", { d: polylinePath([[bounds.minLon, latitude], [bounds.maxLon, latitude]]), class: "aam__graticule" });
+      graticuleLayer.append(path);
+    });
+
+    Object.entries(countryData).forEach(([id, polygons]) => {
+      const path = createSvg("path", { d: countryPath(polygons), class: "aam__country", "data-country": id });
+      landLayer.append(path);
+      const boundary = createSvg("path", { d: countryPath(polygons), class: "aam__boundary" });
+      boundaryLayer.append(boundary);
+    });
+
+    ["ESP", "PRT"].forEach(id => {
+      const d = countryPath(countryData[id]);
+      const land = createSvg("path", { d, class: "aam__iberia" });
+      const clip = createSvg("path", { d });
+      iberiaLayer.append(land);
+      iberiaClip.append(clip);
+    });
+
+  };
+
+  const appendTerritory = (layer, polygons, external = false) => {
+    polygons.forEach(points => {
+      layer.append(createSvg("path", {
+        d: ringPath(points),
+        class: `aam__territory${external ? " aam__territory--external" : ""}`
+      }));
+    });
+  };
+
+  const appendPlaces = places => {
+    places.forEach((place, index) => {
+      const [x, y] = project(place.coords);
+      const dot = createSvg("circle", {
+        cx: x.toFixed(2),
+        cy: y.toFixed(2),
+        r: place.accent ? "4.2" : "3.2",
+        class: `aam__place-dot${place.accent ? " aam__place-dot--accent" : ""}`
+      });
+      const text = createSvg("text", {
+        x: (x + (place.dx ?? 7)).toFixed(2),
+        y: (y + (place.dy ?? (index % 2 ? 13 : -7))).toFixed(2),
+        class: "aam__place-label"
+      });
+      text.textContent = place.label;
+      placeLayer.append(dot, text);
+    });
+  };
+
+  const renderEvent = index => {
+    const entry = localizedEventAt(index);
+    const text = uiText[language];
+    dateNode.textContent = entry.date;
+    titleNode.textContent = entry.title;
+    phaseNode.textContent = entry.phase;
+    eventNode.textContent = entry.event;
+    countNode.textContent = `${String(index + 1).padStart(2, "0")} / ${String(events.length).padStart(2, "0")}`;
+    scrubber.value = String(index);
+    scrubber.setAttribute("aria-valuetext", `${entry.date}: ${entry.title}`);
+    descriptionNode.textContent = `${entry.date}, ${entry.title}. ${entry.event}`;
+
+    [territoryLayer, externalLayer, fragmentationLayer, originLayer, movementLayer, placeLayer].forEach(layer => {
+      layer.style.opacity = "0";
+      layer.replaceChildren();
+    });
+
+    appendTerritory(territoryLayer, territoryShapes[entry.territory] || []);
+
+    if (entry.external) appendTerritory(externalLayer, septimania, true);
+
+    if (entry.fragmented) {
+      appendTerritory(fragmentationLayer, territoryShapes[entry.territory] || []);
+      fragmentationLayer.querySelectorAll("path").forEach(path => path.setAttribute("class", "aam__taifa-overlay"));
+      taifaLines.forEach(points => fragmentationLayer.append(createSvg("path", { d: polylinePath(points), class: "aam__taifa-line" })));
+    }
+
+    if (entry.origin) {
+      originLayer.append(createSvg("path", { d: countryPath(countryData.MAR), class: "aam__origin" }));
+    }
+
+    entry.arrows.forEach(arrow => {
+      movementLayer.append(createSvg("path", { d: polylinePath(arrow.points), class: `aam__movement aam__movement--${arrow.type}` }));
+    });
+
+    appendPlaces(entry.places || []);
+
+    requestAnimationFrame(() => {
+      [territoryLayer, externalLayer, fragmentationLayer, originLayer, movementLayer, placeLayer].forEach(layer => {
+        layer.style.opacity = "1";
+      });
+    });
+
+    previousButton.disabled = playing || index === 0;
+    nextButton.disabled = playing || index === events.length - 1;
+    const atEnd = index === events.length - 1 && !playing;
+    playLabel.textContent = atEnd ? text.replay : (playing ? text.pause : text.play);
+    playButton.setAttribute("aria-label", atEnd ? text.replayLabel : (playing ? text.pauseLabel : text.playLabel));
+    playIcon.textContent = playing ? "❚❚" : (index === events.length - 1 ? "↻" : "▶");
+  };
+
+  const speeds = [
+    { rate: 0.5, label: "½×" },
+    { rate: 1, label: "1×" },
+    { rate: 2, label: "2×" }
+  ];
+  let speedIndex = 1;
+  let currentIndex = 0;
+  let playing = false;
+  let timer = null;
+
+  const updateSpeedButton = () => {
+    const speed = speeds[speedIndex];
+    const text = uiText[language];
+    speedButton.textContent = `${text.speed} ${speed.label}`;
+    speedButton.setAttribute("aria-label", text.speedLabel(speed.label));
+  };
+
+  const applyLanguage = () => {
+    const text = uiText[language];
+    document.documentElement.lang = language;
+    root.lang = language;
+    root.setAttribute("aria-label", text.rootLabel);
+    mapTitleNode.textContent = text.mapTitle;
+    descriptionNode.textContent = text.mapDescription;
+    legend.setAttribute("aria-label", text.legend);
+    legendMuslimTerritory.textContent = text.muslimTerritory;
+    legendChristianTerritory.textContent = text.christianTerritory;
+    legendMuslimAdvance.textContent = text.muslimAdvance;
+    legendChristianAdvance.textContent = text.christianAdvance;
+    stepControls.setAttribute("aria-label", text.navigation);
+    previousButton.textContent = text.previous;
+    nextButton.textContent = text.next;
+    timelineLabel.textContent = text.timeline;
+    caveatNode.innerHTML = text.caveat;
+    sourceNode.innerHTML = text.source;
+    updateSpeedButton();
+    renderGeographicLabels();
+    renderEvent(currentIndex);
+  };
+
+  const stopPlayback = () => {
+    playing = false;
+    if (timer) window.clearTimeout(timer);
+    timer = null;
+    renderEvent(currentIndex);
+  };
+
+  const scheduleNext = () => {
+    if (!playing) return;
+    timer = window.setTimeout(() => {
+      if (currentIndex >= events.length - 1) {
+        stopPlayback();
+        return;
+      }
+      currentIndex += 1;
+      renderEvent(currentIndex);
+      scheduleNext();
+    }, 4300 / speeds[speedIndex].rate);
+  };
+
+  playButton.addEventListener("click", () => {
+    if (playing) {
+      stopPlayback();
+      return;
+    }
+    if (currentIndex >= events.length - 1) currentIndex = 0;
+    playing = true;
+    renderEvent(currentIndex);
+    scheduleNext();
+  });
+
+  previousButton.addEventListener("click", () => {
+    currentIndex = Math.max(0, currentIndex - 1);
+    renderEvent(currentIndex);
+  });
+
+  nextButton.addEventListener("click", () => {
+    currentIndex = Math.min(events.length - 1, currentIndex + 1);
+    renderEvent(currentIndex);
+  });
+
+  speedButton.addEventListener("click", () => {
+    speedIndex = (speedIndex + 1) % speeds.length;
+    updateSpeedButton();
+    if (playing) {
+      if (timer) window.clearTimeout(timer);
+      scheduleNext();
+    }
+  });
+
+  scrubber.addEventListener("input", () => {
+    if (playing) stopPlayback();
+    currentIndex = Math.round(Number(scrubber.value));
+    renderEvent(currentIndex);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && playing) stopPlayback();
+  });
+
+  window.addEventListener("aam:languagechange", event => {
+    language = event.detail?.language === "fr" ? "fr" : "en";
+    applyLanguage();
+  });
+
+  scrubber.max = String(events.length - 1);
+  renderStaticMap();
+  applyLanguage();
+})();
+</script>
+</body>
+</html>

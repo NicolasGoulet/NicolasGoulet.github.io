@@ -14,5 +14,8 @@ vendor/
 .bundle/
 .tools/
 
+# Keep downloaded agent handoff archives local after integrating their assets
+/al-andalus-history-map-agent-handoff.zip
+
 # Ignore folders related to IDEs
 .vscode/
