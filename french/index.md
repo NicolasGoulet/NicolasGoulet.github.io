@@ -22,7 +22,7 @@ redirect_from:
 Je suis doctorant à <strong>HEC×MILA</strong> sous la supervision de la professeure Eva Portelance,  
 et je travaille sur l'acquisition du langage chez les humains et les machines.<br>
 Auparavant, j'ai passé sept ans avec le professeur Stevan Harnad et quatre ans en parallèle avec le professeur Alexandre Blondin Massé; mon <em>mémoire</em> de maîtrise  
-portait sur les Minimal Grounding Sets.
+portait sur les ensembles minimaux d’ancrage (<em>Minimal Grounding Sets</em>).
 </p>
 
 <p>

@@ -14,7 +14,7 @@ period: "2026–20XX · HEC × Mila"
 
 À venir bientôt...!
 
-## Sensification des mécanismes internes des LLM
+## Sensification des mécanismes internes des grands modèles de langue (LLM)
 
 À venir bientôt...!
 

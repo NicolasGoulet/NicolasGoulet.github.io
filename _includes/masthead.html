@@ -9,13 +9,15 @@
 {% assign language_url = page.alternate_url | default: "/french/" %}
 {% assign language_label = "Français" %}
 {% assign language_title = "Voir en français" %}
+{% assign theme_title = "Toggle theme" %}
 {% if is_french %}
   {% assign navigation_links = site.data.navigation.main_fr %}
   {% assign home_url = "/french/" %}
   {% assign home_label = "Accueil" %}
   {% assign language_url = page.alternate_url | default: "/" %}
-  {% assign language_label = "English" %}
-  {% assign language_title = "View in English" %}
+  {% assign language_label = "Anglais" %}
+  {% assign language_title = "Voir en anglais" %}
+  {% assign theme_title = "Changer de thème" %}
 {% endif %}
 
 <div class="masthead">
@@ -41,7 +43,7 @@
             </a>
           </li>
           <li id="theme-toggle" class="masthead__menu-item persist tail">
-            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+            <a role="button" aria-label="{{ theme_title }}" title="{{ theme_title }}"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i></a>
           </li>
         </ul>
         <ul class="hidden-links hidden"></ul>

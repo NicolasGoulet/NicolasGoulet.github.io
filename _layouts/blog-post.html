@@ -10,12 +10,12 @@ layout: default
 
     <header class="blog-article__header">
       <p class="blog-kicker">
-        {{ page.status | default: "Draft" }} · {{ page.series_title }}
+        {% if page.status %}{{ page.status }}{% elsif page.lang == "fr" %}Brouillon{% else %}Draft{% endif %} · {{ page.series_title }}
         {% if page.work_title %} · {{ page.work_title }}{% endif %}
         {% if page.entry_number %} · {% if page.lang == "fr" %}Entrée{% else %}Entry{% endif %} {{ page.entry_number }}{% endif %}
       </p>
       <h1 itemprop="headline">{{ page.title }}</h1>
-      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %d, %Y" }}</time>
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{% include localized-date.html date=page.date lang=page.lang %}</time>
     </header>
 
     <div class="blog-article__content" itemprop="articleBody">

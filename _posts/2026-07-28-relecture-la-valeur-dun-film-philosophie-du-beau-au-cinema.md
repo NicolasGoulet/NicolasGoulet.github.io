@@ -13,6 +13,7 @@ series_title: "ReLecture"
 series_url: /french/blog/relecture/
 status: "Travail en cours"
 lang: fr
+locale: fr-CA
 alternate_url: /blog/rereading-la-valeur-dun-film-philosophie-du-beau-au-cinema/
 ---
 

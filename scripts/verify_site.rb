@@ -28,6 +28,34 @@ def nav_hrefs(document)
   document.css("#site-nav a[href]").map { |link| href_path(link["href"]) }
 end
 
+def alternate_hrefs(document)
+  document.css('link[rel="alternate"][hreflang]').to_h do |link|
+    [link["hreflang"], href_path(link["href"])]
+  end
+end
+
+def assert_language_pair(site_dir, english_path, french_path)
+  english_file = english_path == "/" ? "index.html" : "#{english_path.delete_prefix('/')}index.html"
+  french_file = "#{french_path.delete_prefix('/')}index.html"
+  english = document_at(site_dir, english_file)
+  french = document_at(site_dir, french_file)
+
+  fail_check("#{english_path} does not declare English") unless english.at_css('html[lang="en"]')
+  fail_check("#{french_path} does not declare French") unless french.at_css('html[lang="fr"]')
+
+  english_toggle = english.at_css('#language-toggle a[href]')
+  french_toggle = french.at_css('#language-toggle a[href]')
+  fail_check("#{english_path} has no language toggle") if english_toggle.nil?
+  fail_check("#{french_path} has no language toggle") if french_toggle.nil?
+  fail_check("#{english_path} points to the wrong French page") unless href_path(english_toggle["href"]) == french_path
+  fail_check("#{french_path} points to the wrong English page") unless href_path(french_toggle["href"]) == english_path
+
+  english_alternates = alternate_hrefs(english)
+  french_alternates = alternate_hrefs(french)
+  fail_check("#{english_path} is missing its French hreflang") unless english_alternates["fr-CA"] == french_path
+  fail_check("#{french_path} is missing its English hreflang") unless french_alternates["en"] == english_path
+end
+
 english = document_at(site_dir, "index.html")
 french = document_at(site_dir, "french/index.html")
 
@@ -71,6 +99,28 @@ fail_check("English home styling hook is missing") if english.at_css(".home-prof
 fail_check("French home styling hook is missing") if french.at_css(".home-profile").nil?
 fail_check("compiled stylesheet is missing") unless site_dir.join("assets/css/main.css").file?
 
+language_pairs = {
+  "/" => "/french/",
+  "/academic-interests/" => "/french/academic-interests/",
+  "/academic-interests/harnad-years/" => "/french/academic-interests/annees-harnad/",
+  "/academic-interests/mila-years/" => "/french/academic-interests/annees-mila/",
+  "/blog/" => "/french/blog/",
+  "/blog/rereading/" => "/french/blog/relecture/",
+  "/blog/rewatching/" => "/french/blog/revisionnage/",
+  "/blog/replaying/" => "/french/blog/rejeu/",
+  "/blog/rethinking/" => "/french/blog/repensee/",
+  "/books/" => "/french/books/",
+  "/music/" => "/french/music/",
+  "/blog/rereading-julie-ou-la-nouvelle-heloise/" => "/french/blog/relecture-julie-ou-la-nouvelle-heloise/",
+  "/blog/rereading-la-valeur-dun-film-philosophie-du-beau-au-cinema/" => "/french/blog/relecture-la-valeur-dun-film-philosophie-du-beau-au-cinema/",
+  "/blog/rereading-don-quichotte/" => "/french/blog/relecture-don-quichotte/",
+  "/blog/rereading-don-quichotte-2/" => "/french/blog/relecture-don-quichotte-2/"
+}
+
+language_pairs.each do |english_path, french_path|
+  assert_language_pair(site_dir, english_path, french_path)
+end
+
 rereading = document_at(site_dir, "blog/rereading/index.html")
 don_quichotte_entries = rereading.css("#don-quichotte .reading-entry")
 don_quichotte_paths = don_quichotte_entries.map { |entry| href_path(entry["href"]) }
@@ -81,6 +131,31 @@ expected_don_quichotte_paths = [
 
 unless don_quichotte_paths == expected_don_quichotte_paths
   fail_check("Don Quichotte entries are incomplete or out of order: #{don_quichotte_paths.inspect}")
+end
+
+french_rereading = document_at(site_dir, "french/blog/relecture/index.html")
+french_don_quichotte_paths = french_rereading.css("#don-quichotte .reading-entry").map { |entry| href_path(entry["href"]) }
+expected_french_don_quichotte_paths = [
+  "/french/blog/relecture-don-quichotte/",
+  "/french/blog/relecture-don-quichotte-2/"
+]
+
+unless french_don_quichotte_paths == expected_french_don_quichotte_paths
+  fail_check("French Don Quichotte entries are incomplete or out of order: #{french_don_quichotte_paths.inspect}")
+end
+
+french_entry_two = document_at(site_dir, "french/blog/relecture-don-quichotte-2/index.html")
+french_entry_two_text = french_entry_two.text
+fail_check("French Entry 2 did not render its translated content") unless french_entry_two_text.include?("Dédicace, prologue et poèmes liminaires")
+fail_check("French Entry 2 still renders an English work status") if french_entry_two_text.include?("Work in progress")
+fail_check("French Entry 2 still renders an English date") if french_entry_two_text.include?("August 14, 2026")
+fail_check("French Entry 2 did not render its localized date") unless french_entry_two_text.include?("14 août 2026")
+
+[french, french_rereading, french_entry_two].each do |document|
+  fail_check("French page is missing the Anglais toggle") unless document.at_css("#language-toggle")&.text&.include?("Anglais")
+  fail_check("French page still labels the theme control in English") if document.at_css("#theme-toggle a")&.[]("aria-label") == "Toggle theme"
+  fail_check("French page has the wrong Open Graph locale") unless document.at_css('meta[property="og:locale"]')&.[]("content") == "fr_CA"
+  fail_check("French page still uses the English site-title suffix") if document.at_css("title")&.text&.include?("Home Page")
 end
 
 {
@@ -99,4 +174,4 @@ fail_check("Cervantes map is missing its French translation") unless map_html.in
 fail_check("Cervantes map is missing its light palette") unless map_css.include?("--cvm-map-sea: #e7ecea")
 fail_check("Cervantes map is missing its dark palette") unless map_css.include?("--cvm-map-sea: #070303")
 
-puts "Site verification passed: navigation, retained pages, Don Quichotte entries, and bilingual map themes all build."
+puts "Site verification passed: navigation, paired translations, localized metadata, Don Quichotte entries, and bilingual map themes all build."

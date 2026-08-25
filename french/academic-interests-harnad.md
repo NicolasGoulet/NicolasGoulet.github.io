@@ -8,7 +8,7 @@ alternate_url: /academic-interests/harnad-years/
 period: "2017–2026 · UQAM × McGill"
 ---
 
-<!-- Ajoutez ici une introduction à cette période de recherche. -->
+J’ai commencé à travailler comme assistant de recherche en 2017 au laboratoire du professeur Stevan Harnad, à l’UQAM × McGill. J’y suis resté jusqu’à mon départ pour HEC × Mila en 2026. Au cours de ces années, j’ai développé un intérêt et une expertise pratique dans les domaines de recherche suivants :
 
 ## Perception catégorielle
 

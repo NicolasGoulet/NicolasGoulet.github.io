@@ -38,7 +38,7 @@ layout: default
                   <span class="reading-entry__number">{% if page.lang == "fr" %}Entrée{% else %}Entry{% endif %} {{ entry.entry_number }}</span>
                   <span class="reading-entry__body">
                     <strong>{{ entry.entry_title }}</strong>
-                    <span>{{ entry.date | date: "%B %Y" }} · {{ entry.status }}</span>
+                    <span>{% include localized-date.html date=entry.date lang=entry.lang format="month_year" %} · {{ entry.status }}</span>
                   </span>
                   <span class="reading-entry__arrow" aria-hidden="true">→</span>
                 </a>
@@ -53,8 +53,8 @@ layout: default
       {% for post in blog_posts %}
         <a class="blog-card" href="{{ base_path }}{{ post.url }}">
           <div class="blog-card__meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %Y" }}</time>
-            <span>{{ post.status | default: "Draft" }}</span>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{% include localized-date.html date=post.date lang=post.lang format="month_year" %}</time>
+            <span>{% if post.status %}{{ post.status }}{% elsif page.lang == "fr" %}Brouillon{% else %}Draft{% endif %}</span>
           </div>
           <div class="blog-card__title">
             <p>{{ page.entry_label }}</p>

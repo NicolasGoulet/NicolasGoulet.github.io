@@ -1,0 +1,28 @@
+{%- assign localized_date = include.date -%}
+{%- assign localized_lang = include.lang | default: page.lang | default: "en" -%}
+{%- if localized_lang == "fr" -%}
+  {%- assign month_number = localized_date | date: "%-m" -%}
+  {%- case month_number -%}
+    {%- when "1" -%}{%- assign month_name = "janvier" -%}
+    {%- when "2" -%}{%- assign month_name = "février" -%}
+    {%- when "3" -%}{%- assign month_name = "mars" -%}
+    {%- when "4" -%}{%- assign month_name = "avril" -%}
+    {%- when "5" -%}{%- assign month_name = "mai" -%}
+    {%- when "6" -%}{%- assign month_name = "juin" -%}
+    {%- when "7" -%}{%- assign month_name = "juillet" -%}
+    {%- when "8" -%}{%- assign month_name = "août" -%}
+    {%- when "9" -%}{%- assign month_name = "septembre" -%}
+    {%- when "10" -%}{%- assign month_name = "octobre" -%}
+    {%- when "11" -%}{%- assign month_name = "novembre" -%}
+    {%- when "12" -%}{%- assign month_name = "décembre" -%}
+  {%- endcase -%}
+  {%- if include.format == "month_year" -%}
+    {{- month_name }} {{ localized_date | date: "%Y" -}}
+  {%- else -%}
+    {{- localized_date | date: "%-d" }} {{ month_name }} {{ localized_date | date: "%Y" -}}
+  {%- endif -%}
+{%- elsif include.format == "month_year" -%}
+  {{- localized_date | date: "%B %Y" -}}
+{%- else -%}
+  {{- localized_date | date: "%B %d, %Y" -}}
+{%- endif -%}

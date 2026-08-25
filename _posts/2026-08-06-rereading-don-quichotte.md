@@ -43,7 +43,7 @@ The first time I read this, dear reader, was 16 years ago when I was a troubled 
 
 Who was Miguel De Cervantes? This is a more than academic question : it is an object of ceaseless acaemdic effort for centuries now. This is not an academic essay about Cervantes. That's a rabbit hole for you to dig yourself into. Some among you might be surprised by the nerdiness and the intellectual LARPing of thoes dedicating themselves to the lore of certain mangas : litearrary studies are the most glorified and refined form of this, and it is relvant and necessary for society. 
 
-The first thing that amazed me about him was how not sedentary he was. He was a solider and literaly got shot, was a slave for many years etc. Some of us barely get through the angstof living in the modern conditions and struggle to express the best of ourselves through fully accomplishing work of arts. The resilience and courage it took for this indiviudla to not literaly die while trying to  flee three times from slavery and fully bearing responsability for attemps at feeling in face of a litertaly king ot then just later on write some of the greatest liteary works of human kind is, as the kids sya, based. 
+The first thing that amazed me about him was how not sedentary he was. He was a soldier, was actually shot, and then spent five years in captivity, among other things. Some of us barely get through the angst of living under modern conditions and struggle to express the best of ourselves by fully accomplishing a work of art. The resilience and courage it took for this individual not to literally die during five years of captivity, to lead four escape attempts, to accept sole responsibility for those plans before the ruler of Algiers in order to protect his companions, and then to write some of the greatest literary works of humankind is, as the kids say, based.
 
 The exact chronology of his life is still subject of debate. While this blogpost will not serve a sa review of the differnt argeumnts made for placing cervantes at specific times and places, I still want to show you a mpa tracing the life and times of CErvantes, that can be played and watched at your leasure. 
 
@@ -55,17 +55,17 @@ At this point, this blog post could start explaining the very complex socio-poli
 
 How do we introduce the greatest noble knight to have ever walked this earth? Who is this man, how come he lives through us? Nowadays, we are full of modern Quichottes, people whose brain turn to mush after reading certain things too much. There is so much commentary to be written or already written about how certain of our contemporaries are in what we could call the *dimensionality* of *Quichottism*. Like many things in this blog post, I leave for my reader the pleasure of conjuring up their own ideas about the matter. 
 
-For the sake of those who have yet to open this great book, let's actually describe it for now. Don Quicho TODO. 
+For the sake of those who have yet to open this great book, let's actually describe it for now. Don Quichotte TODO.
 
 Another character at this point should deserve his own section, is Sancho. Enough time will be dedicated to him later. For now, let's mention that the eponym character can hardly be considered outside of the couple he forms with his most loyal squire. 
 
 ## A Brief History of Its Publication
 
-To conclude this first blog post about Don Quichottes, it is relevant to express certain interesting facts surrounding the book itself and its publication. One fact that might feel certain who have already read the book feel better is the fact that **mistakes were made in the various original published editions**. This went as far a wrong ordering of chapters, of names of chapters, and **even the names of characters being wrong** at times! Indeed, the First of the Quichottes (as there are two) might come across as mind-boggingly confusing. It ended up being entirely addressed in the Second Quichottes (let's use First and Second for short from now on), with Sancho () TODO
+To conclude this first blog post about *Don Quichotte*, it is worth mentioning a few interesting facts about the book itself and its publication. One fact that might reassure those who have already read it is that **the different original editions contained mistakes**. These included inconsistencies in chapter divisions and titles and, in places, in characters' names. The 1605 volume—which I will call Part One from now on, since there is also the 1615 sequel—can therefore seem mind-bogglingly confusing. Cervantes also plays with problems of authorship and the transmission of the story, while his protagonists will later call out the infamy of the supposed historian who recorded their most famous exploits.
 
 ### The Fake Second Quichottes
 
-Did I mention that this book is endlessly fascinating, even the discourse surrounding it? After the success of the First, many people were expecting a Second, a continuation and end to the adventures of our ingenious knight. Up until now, not much has been said about the actual contents of the work TODO
+Did I mention that this book is endlessly fascinating, even in the discourse surrounding it? After the success of the 1605 volume, many people expected a sequel and a conclusion to the adventures of our ingenious knight. In 1614, while Cervantes was still preparing his own sequel, an author writing under the name Alonso Fernández de Avellaneda published an apocryphal *Second Volume*. Up until now, not much has been said about the actual contents of the work TODO
 
 ## Conclusion
 
