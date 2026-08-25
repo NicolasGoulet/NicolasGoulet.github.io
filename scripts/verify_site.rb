@@ -83,4 +83,20 @@ unless don_quichotte_paths == expected_don_quichotte_paths
   fail_check("Don Quichotte entries are incomplete or out of order: #{don_quichotte_paths.inspect}")
 end
 
-puts "Site verification passed: active tabs render, hidden tabs stay hidden, and retained pages still build."
+{
+  "English" => ["blog/rereading-don-quichotte/index.html", "lang=en"],
+  "French" => ["french/blog/relecture-don-quichotte/index.html", "lang=fr"]
+}.each do |language, (relative_path, language_query)|
+  document = document_at(site_dir, relative_path)
+  frame = document.at_css("#cervantes-life-map-frame")
+  fail_check("#{language} Cervantes map is missing") if frame.nil?
+  fail_check("#{language} Cervantes map has the wrong language") unless frame["src"].include?(language_query)
+end
+
+map_html = site_dir.join("assets/maps/cervantes-life-map.html").read
+map_css = site_dir.join("assets/css/cervantes-life-map-embed.css").read
+fail_check("Cervantes map is missing its French translation") unless map_html.include?("Lancer le voyage")
+fail_check("Cervantes map is missing its light palette") unless map_css.include?("--cvm-map-sea: #e7ecea")
+fail_check("Cervantes map is missing its dark palette") unless map_css.include?("--cvm-map-sea: #070303")
+
+puts "Site verification passed: navigation, retained pages, Don Quichotte entries, and bilingual map themes all build."

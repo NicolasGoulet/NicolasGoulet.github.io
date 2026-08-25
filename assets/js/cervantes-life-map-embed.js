@@ -7,6 +7,32 @@
   const parentRoot = document.documentElement;
   let resizeObserver = null;
 
+  const mapLanguage = frame.dataset.language === "fr" || parentRoot.lang.toLowerCase().startsWith("fr")
+    ? "fr"
+    : "en";
+
+  const controlText = mapLanguage === "fr"
+    ? {
+        navigation: "Navigation du voyage",
+        previous: "← Précédent",
+        next: "Suivant →",
+        pauseHint: "Mettez le voyage en pause pour changer de lieu",
+        previousHint: "Lieu précédent",
+        nextHint: "Lieu suivant",
+        speed: "Vitesse",
+        speedLabel: rate => `Vitesse de lecture ${rate}; activer pour la modifier`
+      }
+    : {
+        navigation: "Journey navigation",
+        previous: "← Previous",
+        next: "Next →",
+        pauseHint: "Pause the journey to move between places",
+        previousHint: "Previous place",
+        nextHint: "Next place",
+        speed: "Speed",
+        speedLabel: rate => `Playback speed ${rate}; activate to change`
+      };
+
   const syncTheme = () => {
     const childRoot = frame.contentDocument?.documentElement;
     if (!childRoot) return;
@@ -16,6 +42,17 @@
     } else {
       childRoot.removeAttribute("data-theme");
     }
+  };
+
+  const syncLanguage = () => {
+    const childRoot = frame.contentDocument?.documentElement;
+    const childWindow = frame.contentWindow;
+    if (!childRoot || !childWindow) return;
+
+    childRoot.lang = mapLanguage;
+    childWindow.dispatchEvent(new childWindow.CustomEvent("cvm:languagechange", {
+      detail: { language: mapLanguage }
+    }));
   };
 
   const syncHeight = () => {
@@ -67,12 +104,12 @@
 
     const controls = childDocument.createElement("div");
     controls.className = "cvm__step-controls";
-    controls.setAttribute("aria-label", "Journey navigation");
+    controls.setAttribute("aria-label", controlText.navigation);
 
     const previousButton = childDocument.createElement("button");
     previousButton.type = "button";
     previousButton.className = "cvm__utility-button";
-    previousButton.textContent = "← Previous";
+    previousButton.textContent = controlText.previous;
 
     const speedButton = childDocument.createElement("button");
     speedButton.type = "button";
@@ -81,7 +118,7 @@
     const nextButton = childDocument.createElement("button");
     nextButton.type = "button";
     nextButton.className = "cvm__utility-button";
-    nextButton.textContent = "Next →";
+    nextButton.textContent = controlText.next;
 
     controls.append(previousButton, nextButton, speedButton);
     controlsRow.append(controls);
@@ -102,12 +139,12 @@
       const playing = isPlaying();
       previousButton.disabled = playing || Math.round(position) <= 0;
       nextButton.disabled = playing || Math.round(position) >= maxPosition();
-      previousButton.title = playing ? "Pause the journey to move between places" : "Previous place";
-      nextButton.title = playing ? "Pause the journey to move between places" : "Next place";
+      previousButton.title = playing ? controlText.pauseHint : controlText.previousHint;
+      nextButton.title = playing ? controlText.pauseHint : controlText.nextHint;
 
       const speed = speeds[speedIndex];
-      speedButton.textContent = `Speed ${speed.label}`;
-      speedButton.setAttribute("aria-label", `Playback speed ${speed.label}; activate to change`);
+      speedButton.textContent = `${controlText.speed} ${speed.label}`;
+      speedButton.setAttribute("aria-label", controlText.speedLabel(speed.label));
     };
 
     const goTo = position => {
@@ -164,6 +201,7 @@
     }
 
     syncTheme();
+    syncLanguage();
     addStepControls(map);
 
     resizeObserver?.disconnect();

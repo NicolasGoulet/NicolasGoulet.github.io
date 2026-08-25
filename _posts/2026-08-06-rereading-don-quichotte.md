@@ -47,16 +47,7 @@ The first thing that amazed me about him was how not sedentary he was. He was a 
 
 The exact chronology of his life is still subject of debate. While this blogpost will not serve a sa review of the differnt argeumnts made for placing cervantes at specific times and places, I still want to show you a mpa tracing the life and times of CErvantes, that can be played and watched at your leasure. 
 
-<iframe
-  id="cervantes-life-map-frame"
-  class="cervantes-life-map-frame"
-  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}?v=dd4ceaa"
-  data-embed-stylesheet="{{ '/assets/css/cervantes-life-map-embed.css' | relative_url }}?v=2"
-  title="Animated map of Miguel de Cervantes’s life and travels"
-  loading="lazy"
-  scrolling="no">
-</iframe>
-<script src="{{ '/assets/js/cervantes-life-map-embed.js' | relative_url }}?v=2"></script>
+{% include cervantes-life-map.html %}
 
 At this point, this blog post could start explaining the very complex socio-political climate our author grew up in, but it'd be simply overwhleming. Instead, I propose that future blog posts will explore the most important ones as we progress through chapters in the upcoming months. 
 

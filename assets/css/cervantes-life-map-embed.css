@@ -5,6 +5,13 @@
   --site-muted: #687174;
   --site-accent: #9b4b38;
   --site-rule: rgba(27, 42, 47, 0.16);
+  --cvm-map-sea: #e7ecea;
+  --cvm-map-graticule: #c4cbc8;
+  --cvm-map-land: #d8d1c5;
+  --cvm-map-boundary: #77716e;
+  --cvm-map-route-future: #9b4b38;
+  --cvm-map-route-future-opacity: 0.32;
+  color-scheme: light;
 }
 
 html body {
@@ -20,6 +27,12 @@ html[data-theme="dark"] {
   --site-muted: #96999d;
   --site-accent: #ff453a;
   --site-rule: rgba(242, 238, 230, 0.16);
+  --cvm-map-sea: #070303;
+  --cvm-map-graticule: #302727;
+  --cvm-map-land: #2b2727;
+  --cvm-map-boundary: #77716e;
+  --cvm-map-route-future: #b52c25;
+  --cvm-map-route-future-opacity: 0.32;
   color-scheme: dark;
 }
 
@@ -35,27 +48,6 @@ html body #cervantes-life-map .cvm__place {
 
 html body #cervantes-life-map .cvm__event {
   font-size: clamp(1.1rem, 2.5vw, 1.25rem);
-}
-
-html[data-theme="dark"] body #cervantes-life-map .cvm__sea {
-  fill: #070303;
-}
-
-html[data-theme="dark"] body #cervantes-life-map .cvm__graticule {
-  stroke: #302727;
-}
-
-html[data-theme="dark"] body #cervantes-life-map .cvm__country {
-  fill: #2b2727;
-}
-
-html[data-theme="dark"] body #cervantes-life-map .cvm__boundary {
-  stroke: #77716e;
-}
-
-html[data-theme="dark"] body #cervantes-life-map .cvm__route-future {
-  stroke: #b52c25;
-  opacity: 0.32;
 }
 
 html body #cervantes-life-map .cvm__play,

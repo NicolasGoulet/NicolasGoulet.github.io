@@ -1,0 +1,17 @@
+{% assign cervantes_map_lang = include.lang | default: page.lang | default: "en" %}
+{% if cervantes_map_lang == "fr" %}
+  {% assign cervantes_map_title = "Carte animée de la vie et des voyages de Miguel de Cervantès" %}
+{% else %}
+  {% assign cervantes_map_title = "Animated map of Miguel de Cervantes’s life and travels" %}
+{% endif %}
+<iframe
+  id="cervantes-life-map-frame"
+  class="cervantes-life-map-frame"
+  src="{{ '/assets/maps/cervantes-life-map.html' | relative_url }}?v=3&amp;lang={{ cervantes_map_lang }}"
+  data-embed-stylesheet="{{ '/assets/css/cervantes-life-map-embed.css' | relative_url }}?v=3"
+  data-language="{{ cervantes_map_lang }}"
+  title="{{ cervantes_map_title }}"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+<script src="{{ '/assets/js/cervantes-life-map-embed.js' | relative_url }}?v=3"></script>
