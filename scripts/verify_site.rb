@@ -114,7 +114,9 @@ language_pairs = {
   "/blog/rereading-julie-ou-la-nouvelle-heloise/" => "/french/blog/relecture-julie-ou-la-nouvelle-heloise/",
   "/blog/rereading-la-valeur-dun-film-philosophie-du-beau-au-cinema/" => "/french/blog/relecture-la-valeur-dun-film-philosophie-du-beau-au-cinema/",
   "/blog/rereading-don-quichotte/" => "/french/blog/relecture-don-quichotte/",
-  "/blog/rereading-don-quichotte-2/" => "/french/blog/relecture-don-quichotte-2/"
+  "/blog/rereading-don-quichotte-2/" => "/french/blog/relecture-don-quichotte-2/",
+  "/blog/rereading-don-quichotte-3/" => "/french/blog/relecture-don-quichotte-3/",
+  "/blog/replaying-deltarune/" => "/french/blog/rejeu-deltarune/"
 }
 
 language_pairs.each do |english_path, french_path|
@@ -126,7 +128,8 @@ don_quichotte_entries = rereading.css("#don-quichotte .reading-entry")
 don_quichotte_paths = don_quichotte_entries.map { |entry| href_path(entry["href"]) }
 expected_don_quichotte_paths = [
   "/blog/rereading-don-quichotte/",
-  "/blog/rereading-don-quichotte-2/"
+  "/blog/rereading-don-quichotte-2/",
+  "/blog/rereading-don-quichotte-3/"
 ]
 
 unless don_quichotte_paths == expected_don_quichotte_paths
@@ -137,7 +140,8 @@ french_rereading = document_at(site_dir, "french/blog/relecture/index.html")
 french_don_quichotte_paths = french_rereading.css("#don-quichotte .reading-entry").map { |entry| href_path(entry["href"]) }
 expected_french_don_quichotte_paths = [
   "/french/blog/relecture-don-quichotte/",
-  "/french/blog/relecture-don-quichotte-2/"
+  "/french/blog/relecture-don-quichotte-2/",
+  "/french/blog/relecture-don-quichotte-3/"
 ]
 
 unless french_don_quichotte_paths == expected_french_don_quichotte_paths

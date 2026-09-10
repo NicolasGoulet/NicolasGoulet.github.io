@@ -7,6 +7,7 @@ lang: fr
 alternate_url: /blog/replaying/
 blog_series: replaying
 entry_label: "Notes de jeu"
+group_by_work: true
 ---
 
 ## Comment lire cette série de billets ?

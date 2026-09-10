@@ -7,6 +7,7 @@ lang: en
 alternate_url: /french/blog/rejeu/
 blog_series: replaying
 entry_label: "Playing notes"
+group_by_work: true
 ---
 
 ## How to read this blog series?
