@@ -15,7 +15,14 @@ layout: default
         {% if page.entry_number %} · {% if page.lang == "fr" %}Entrée{% else %}Entry{% endif %} {{ page.entry_number }}{% endif %}
       </p>
       <h1 itemprop="headline">{{ page.title }}</h1>
-      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{% include localized-date.html date=page.date lang=page.lang %}</time>
+      {% if page.presentation_date %}
+        <time datetime="{{ page.presentation_date | date: '%Y-%m-%d' }}">Presentation date {% include localized-date.html date=page.presentation_date lang=page.lang %}</time>
+      {% else %}
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{% include localized-date.html date=page.date lang=page.lang %}</time>
+      {% endif %}
+      {% if page.paper_url %}
+        · <a href="{{ page.paper_url | escape }}">Read the paper</a>
+      {% endif %}
     </header>
 
     <div class="blog-article__content" itemprop="articleBody">

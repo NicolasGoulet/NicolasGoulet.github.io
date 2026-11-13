@@ -6,7 +6,9 @@ layout: default
 
 <div id="main" role="main">
   <main class="blog-index" aria-labelledby="blog-title">
-    <a class="blog-back" href="{{ base_path }}{% if page.lang == 'fr' %}/french/blog/{% else %}/blog/{% endif %}"><span aria-hidden="true">←</span> Blog</a>
+    {% unless page.blog_back == false %}
+      <a class="blog-back" href="{{ base_path }}{% if page.lang == 'fr' %}/french/blog/{% else %}/blog/{% endif %}"><span aria-hidden="true">←</span> Blog</a>
+    {% endunless %}
 
     <header class="blog-index__header">
       <p class="blog-kicker">{% if page.lang == "fr" %}Série du blogue{% else %}Blog series{% endif %}</p>
@@ -53,7 +55,11 @@ layout: default
       {% for post in blog_posts %}
         <a class="blog-card" href="{{ base_path }}{{ post.url }}">
           <div class="blog-card__meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{% include localized-date.html date=post.date lang=post.lang format="month_year" %}</time>
+            {% if post.presentation_date %}
+              <time datetime="{{ post.presentation_date | date: '%Y-%m-%d' }}">{% include localized-date.html date=post.presentation_date lang=post.lang %}</time>
+            {% else %}
+              <time datetime="{{ post.date | date_to_xmlschema }}">{% include localized-date.html date=post.date lang=post.lang format="month_year" %}</time>
+            {% endif %}
             <span>{% if post.status %}{{ post.status }}{% elsif page.lang == "fr" %}Brouillon{% else %}Draft{% endif %}</span>
           </div>
           <div class="blog-card__title">

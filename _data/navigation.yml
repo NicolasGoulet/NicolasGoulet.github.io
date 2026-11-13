@@ -18,6 +18,8 @@ main:
     visible: false
   - title: "Blog"
     url:   /blog/
+  - title: "Decision Science Seminars"
+    url:   /decision-science-seminars/
 
 main_fr:
   - title: "Intérêts académiques"
